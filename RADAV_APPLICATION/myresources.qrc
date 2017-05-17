@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Resources/images/Connected-50.png</file>
+        <file>Resources/images/Disconnected-48.png</file>
+        <file>Resources/images/OSU_AIAA_2016-17.png</file>
+        <file>Resources/models/crosshairs.obj</file>
+        <file>Resources/models/navball.obj</file>
+        <file>Resources/textures/navball.bmp</file>
+        <file>Resources/qml/mapping.qml</file>
+        <file>Resources/images/rocket_icon.png</file>
+    </qresource>
+</RCC>
