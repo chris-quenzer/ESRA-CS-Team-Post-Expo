@@ -1584,6 +1584,10 @@ void MainWindow::updateRocketPath()
     double latMins = plotting.getAttributeFromSource(plotting.source, LAT_MIN, 1);
     double lonMins = plotting.getAttributeFromSource(plotting.source, LON_MIN, 1);
 
+    if(!plotting.isValidCoord(latDegrees, latMins, lonDegrees, lonMins))
+    {
+        return;
+    }
 
     map_latitude = convertGPSCoord(latDegrees, latMins);
     map_longitude = -(convertGPSCoord(lonDegrees, lonMins));
