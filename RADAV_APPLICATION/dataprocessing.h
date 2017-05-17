@@ -15,12 +15,12 @@ GPS_TIME,
 X_GYRO,
 Y_GYRO,
 Z_GYRO,
-X_MAG,
-Y_MAG,
-Z_MAG,
 X_ACCEL,
 Y_ACCEL,
 Z_ACCEL,
+X_MAG,
+Y_MAG,
+Z_MAG,
 X_HGYRO,
 Y_HGYRO,
 Z_HGYRO,
@@ -262,6 +262,8 @@ public:
 
     //Chris's new functions defined in data processing needed a prototype
     double getAccelerationMagnitude(int source);
+
+    bool isValidCoord(double latDeg, double latMin, double lonDeg, double lonMin);
 
     int count = 0;
     int count1 = 0;

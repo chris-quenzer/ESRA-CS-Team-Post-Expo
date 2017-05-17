@@ -9,6 +9,7 @@
 #include <QFileDialog>
 #include <QtMath>
 
+bool demo = true; // Expo
 
 DataProcessing::DataProcessing()
 {
@@ -48,50 +49,84 @@ int DataProcessing::ReadFromCSV(){
             QByteArray line = csv.readLine();
            csvData.m_timeGPS.push_back(line.split(',').value(GPS_TIME));
 
-           csvData.m_xGyro.push_back(line.split(',').value(X_GYRO));
-           csvData.m_yGyro.push_back(line.split(',').value(Y_GYRO));
-           csvData.m_zGyro.push_back(line.split(',').value(Z_GYRO));
+           csvData.m_xGyro.push_back(line.split(',').value(X_GYRO - 1));
+           csvData.m_yGyro.push_back(line.split(',').value(Y_GYRO - 1));
+           csvData.m_zGyro.push_back(line.split(',').value(Z_GYRO - 1));
 
-           csvData.m_xAccel.push_back(line.split(',').value(X_ACCEL));
-           csvData.m_yAccel.push_back(line.split(',').value(Y_ACCEL));
-           csvData.m_zAccel.push_back(line.split(',').value(Z_ACCEL));
+           csvData.m_xAccel.push_back(line.split(',').value(X_ACCEL - 1));
+           csvData.m_yAccel.push_back(line.split(',').value(Y_ACCEL - 1));
+           csvData.m_zAccel.push_back(line.split(',').value(Z_ACCEL - 1));
 
-           csvData.m_xMag.push_back(line.split(',').value(X_MAG));
-           csvData.m_yMag.push_back(line.split(',').value(Y_MAG));
-           csvData.m_zMag.push_back(line.split(',').value(Z_MAG));
+           csvData.m_xMag.push_back(line.split(',').value(X_MAG - 1));
+           csvData.m_yMag.push_back(line.split(',').value(Y_MAG - 1));
+           csvData.m_zMag.push_back(line.split(',').value(Z_MAG - 1));
 
-           csvData.m_xHGyro.push_back(line.split(',').value(X_HGYRO));
-           csvData.m_yHGyro.push_back(line.split(',').value(Y_HGYRO));
-           csvData.m_zHGyro.push_back(line.split(',').value(Z_HGYRO));
+           csvData.m_xHGyro.push_back(line.split(',').value(X_HGYRO - 1));
+           csvData.m_yHGyro.push_back(line.split(',').value(Y_HGYRO - 1));
+           csvData.m_zHGyro.push_back(line.split(',').value(Z_HGYRO - 1));
 
-           csvData.m_xHAccel.push_back(line.split(',').value(X_HACCEL));
-           csvData.m_yHAccel.push_back(line.split(',').value(Y_HACCEL));
-           csvData.m_zHAccel.push_back(line.split(',').value(Z_HACCEL));
+           csvData.m_xHAccel.push_back(line.split(',').value(X_HACCEL - 1));
+           csvData.m_yHAccel.push_back(line.split(',').value(Y_HACCEL - 1));
+           csvData.m_zHAccel.push_back(line.split(',').value(Z_HACCEL - 1));
 
-           csvData.m_xHMag.push_back(line.split(',').value(X_HMAG));
-           csvData.m_yHMag.push_back(line.split(',').value(Y_HMAG));
-           csvData.m_zHMag.push_back(line.split(',').value(Z_HMAG));
+           csvData.m_xHMag.push_back(line.split(',').value(X_HMAG - 1));
+           csvData.m_yHMag.push_back(line.split(',').value(Y_HMAG - 1));
+           csvData.m_zHMag.push_back(line.split(',').value(Z_HMAG - 1));
 
-           csvData.m_Altimeter.push_back(line.split(',').value(ALTITUDE));
-           csvData.m_latGPS.push_back(line.split(',').value(GPS_LAT));
-           csvData.m_longGPS.push_back(line.split(',').value(GPS_LONG));
+           csvData.m_Altimeter.push_back(line.split(',').value(ALTITUDE - 1));
 
-           csvData.m_AltimeterGPS.push_back(line.split(',').value(ALTITUDE_GPS));
+           QString latDeg = line.split(',').value(LAT_DEG - 1);
+           QString lonDeg = line.split(',').value(LON_DEG - 1);
+           QString latMin = line.split(',').value(LAT_MIN - 1);
+           QString lonMin = line.split(',').value(LON_MIN - 1);
 
-           csvData.m_humanLat.push_back(line.split(',').value(HUMAN_LAT));
-           csvData.m_latDegrees.push_back(line.split(',').value(LAT_DEG));
-           csvData.m_latMins.push_back(line.split(',').value(LAT_MIN));
-           csvData.m_latDegreesVel.push_back(line.split(',').value(LAT_DEG));
-           csvData.m_latMinsVel.push_back(line.split(',').value(LAT_MIN));
+           if(isValidCoord(latDeg.toDouble(), latMin.toDouble(), lonDeg.toDouble(), lonMin.toDouble()))
+           {
+               csvData.m_latGPS.push_back(line.split(',').value(GPS_LAT - 1));
+               csvData.m_longGPS.push_back(line.split(',').value(GPS_LONG - 1));
 
-           csvData.m_humanLon.push_back(line.split(',').value(HUMAN_LON));
-           csvData.m_lonDegrees.push_back(line.split(',').value(LON_DEG));
-           csvData.m_lonMins.push_back(line.split(',').value(LON_MIN));
-           csvData.m_lonDegreesVel.push_back(line.split(',').value(LON_DEG));
-           csvData.m_lonMinsVel.push_back(line.split(',').value(LON_MIN));
+               csvData.m_AltimeterGPS.push_back(line.split(',').value(ALTITUDE_GPS - 1));
+
+               csvData.m_humanLat.push_back(line.split(',').value(HUMAN_LAT - 1));
+               csvData.m_latDegrees.push_back(line.split(',').value(LAT_DEG - 1));
+               csvData.m_latMins.push_back(line.split(',').value(LAT_MIN - 1));
+               csvData.m_latDegreesVel.push_back(line.split(',').value(LAT_DEG - 1));
+               csvData.m_latMinsVel.push_back(line.split(',').value(LAT_MIN - 1));
+
+               csvData.m_humanLon.push_back(line.split(',').value(HUMAN_LON - 1));
+               csvData.m_lonDegrees.push_back(line.split(',').value(LON_DEG - 1));
+               csvData.m_lonMins.push_back(line.split(',').value(LON_MIN - 1));
+               csvData.m_lonDegreesVel.push_back(line.split(',').value(LON_DEG - 1));
+               csvData.m_lonMinsVel.push_back(line.split(',').value(LON_MIN - 1));
+           }
+           else
+           {
+               csvData.m_latGPS.push_back("GPS ERROR");
+               csvData.m_longGPS.push_back("GPS ERROR");
+
+               csvData.m_AltimeterGPS.push_back("GPS ERROR");
+
+               csvData.m_humanLat.push_back("GPS ERROR");
+               csvData.m_latDegrees.push_back("GPS ERROR");
+               csvData.m_latMins.push_back("GPS ERROR");
+               csvData.m_latDegreesVel.push_back("GPS ERROR");
+               csvData.m_latMinsVel.push_back("GPS ERROR");
+
+               csvData.m_humanLon.push_back("GPS ERROR");
+               csvData.m_lonDegrees.push_back("GPS ERROR");
+               csvData.m_lonMins.push_back("GPS ERROR");
+               csvData.m_lonDegreesVel.push_back("GPS ERROR");
+               csvData.m_lonMinsVel.push_back("GPS ERROR");
+           }
+
         }
 
         qDebug() << "LENGTH AFTER IMPORT: " << csvData.m_xGyro.length();
+    }
+
+    if(demo)
+    {
+        rocketData = csvData;
     }
 
     return 1;
@@ -163,13 +198,16 @@ void DataProcessing::receiveDataVector(QVector<inputData>* tmpData, bool writeCS
     }
 
     // convert values here
-    convertInputData();
+    //convertInputData();
 
     // write processed values to new .CSV
 
     while(m_inputDataVector->size() > 0)
     {
         inputData tmpData = m_inputDataVector->front();
+
+        tmpData.altitude.toStdString() = (1 - (qPow((tmpData.altitude.toDouble() / 100) / 1013.25, 0.190284) * 145366.45)) - altInit; // (- baseAlt)
+
         m_inputDataVector->pop_front();
         rocketData.m_xGyro.append(tmpData.gyroX);
         rocketData.m_yGyro.append(tmpData.gyroY);
@@ -210,6 +248,11 @@ void DataProcessing::receiveDataVector(QVector<inputData>* tmpData, bool writeCS
 
     }    
 
+    if(demo)
+    {
+        rocketData = csvData;
+    }
+
 }
 
 void DataProcessing::convertInputData()
@@ -228,7 +271,7 @@ void DataProcessing::convertInputData()
        // do the same for all other data
    }
 
-   m_inputDataVector = tmpData; // ok to overwrite m_inputDataVector?
+   //m_inputDataVector = tmpData; // ok to overwrite m_inputDataVector?
    //m_convertedDataVector = tmpData;
 }
 
@@ -489,6 +532,7 @@ double DataProcessing::nextDataPoint(sensorData &sourceData, Attribute a, int po
         case (GPS_TIME):
         {
             nextValue = getNextValue(sourceData.m_timeGPS, pop);
+
             break;
         }
 
@@ -557,10 +601,20 @@ double DataProcessing::nextDataPoint(sensorData &sourceData, Attribute a, int po
 double DataProcessing::getNextValue(QStringList & attribute, int pop)
 {
     double nextValue;
+    QString nextString;
 
     if(attribute.length() > 0)
     {
-        nextValue = attribute.at(0).toDouble();
+        nextString = attribute.at(0);
+
+        if(nextString == "GPS ERROR")
+        {
+            if (pop)
+                attribute.removeAt(0);
+            return 1000;
+        }
+
+        nextValue = nextString.toDouble();
        // qDebug() << nextValue;
         if (pop)
             attribute.removeAt(0);
@@ -645,6 +699,31 @@ void DataProcessing::clear_data()
    csvData.m_zAccel.clear();
 
     qDebug() << "LENGTH AFTER CLEAR: " << csvData.m_xGyro.length();
+}
+
+bool DataProcessing::isValidCoord(double latDeg, double latMin, double lonDeg, double lonMin)
+{
+    int condCount = 0;
+    if(latDeg >= -90 && latDeg <= 90 && latDeg)
+    {
+        condCount++;
+    }
+    if(lonDeg >= -180 && lonDeg <= 180 && lonDeg)
+    {
+        condCount++;
+    }
+    if(latMin < 60 && lonMin < 60 && latMin != nan("") && lonMin)
+    {
+        condCount++;
+    }
+    if(condCount == 3)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 
