@@ -246,6 +246,8 @@ private slots:
 
     void on_mavProxyShowButton_clicked();
 
+    void on_expoDemoCheckBox_clicked(bool checked);
+
 public slots:
     // MAPPING
     void on_zoomSlider_valueChanged(int value);

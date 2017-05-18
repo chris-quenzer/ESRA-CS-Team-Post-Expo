@@ -1696,3 +1696,8 @@ void MainWindow::on_mavProxyShowButton_clicked()
 {
     mavProxLink->show();
 }
+
+void MainWindow::on_expoDemoCheckBox_clicked(bool checked)
+{
+    plotting.demo = checked;
+}

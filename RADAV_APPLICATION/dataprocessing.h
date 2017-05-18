@@ -287,6 +287,8 @@ public:
     double accel_mag = 0;
 
     double altInit = 0;
+
+    bool demo;
 };
 
 #endif // DATAPROCESSING_H

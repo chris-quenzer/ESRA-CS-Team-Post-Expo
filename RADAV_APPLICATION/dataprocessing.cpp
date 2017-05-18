@@ -9,8 +9,6 @@
 #include <QFileDialog>
 #include <QtMath>
 
-bool demo = true; // Expo
-
 DataProcessing::DataProcessing()
 {
     m_inputDataVector = nullptr;
@@ -47,7 +45,6 @@ int DataProcessing::ReadFromCSV(){
 
         while (!csv.atEnd()) {
             QByteArray line = csv.readLine();
-           csvData.m_timeGPS.push_back(line.split(',').value(GPS_TIME));
 
            csvData.m_xGyro.push_back(line.split(',').value(X_GYRO - 1));
            csvData.m_yGyro.push_back(line.split(',').value(Y_GYRO - 1));
@@ -82,37 +79,41 @@ int DataProcessing::ReadFromCSV(){
 
            if(isValidCoord(latDeg.toDouble(), latMin.toDouble(), lonDeg.toDouble(), lonMin.toDouble()))
            {
+               csvData.m_timeGPS.push_back(line.split(',').value(GPS_TIME));
+               csvData.m_AltimeterGPS.push_back(line.split(',').value(ALTITUDE_GPS - 1));
+
                csvData.m_latGPS.push_back(line.split(',').value(GPS_LAT - 1));
                csvData.m_longGPS.push_back(line.split(',').value(GPS_LONG - 1));
 
-               csvData.m_AltimeterGPS.push_back(line.split(',').value(ALTITUDE_GPS - 1));
-
                csvData.m_humanLat.push_back(line.split(',').value(HUMAN_LAT - 1));
+               csvData.m_humanLon.push_back(line.split(',').value(HUMAN_LON - 1));
+
                csvData.m_latDegrees.push_back(line.split(',').value(LAT_DEG - 1));
                csvData.m_latMins.push_back(line.split(',').value(LAT_MIN - 1));
-               csvData.m_latDegreesVel.push_back(line.split(',').value(LAT_DEG - 1));
-               csvData.m_latMinsVel.push_back(line.split(',').value(LAT_MIN - 1));
-
-               csvData.m_humanLon.push_back(line.split(',').value(HUMAN_LON - 1));
                csvData.m_lonDegrees.push_back(line.split(',').value(LON_DEG - 1));
                csvData.m_lonMins.push_back(line.split(',').value(LON_MIN - 1));
+
+               csvData.m_latDegreesVel.push_back(line.split(',').value(LAT_DEG - 1));
+               csvData.m_latMinsVel.push_back(line.split(',').value(LAT_MIN - 1));
                csvData.m_lonDegreesVel.push_back(line.split(',').value(LON_DEG - 1));
                csvData.m_lonMinsVel.push_back(line.split(',').value(LON_MIN - 1));
            }
            else
            {
+               csvData.m_timeGPS.push_back("GPS ERROR");
+               csvData.m_AltimeterGPS.push_back("GPS ERROR");
+
                csvData.m_latGPS.push_back("GPS ERROR");
                csvData.m_longGPS.push_back("GPS ERROR");
 
-               csvData.m_AltimeterGPS.push_back("GPS ERROR");
-
                csvData.m_humanLat.push_back("GPS ERROR");
+               csvData.m_humanLon.push_back("GPS ERROR");
+
                csvData.m_latDegrees.push_back("GPS ERROR");
                csvData.m_latMins.push_back("GPS ERROR");
                csvData.m_latDegreesVel.push_back("GPS ERROR");
                csvData.m_latMinsVel.push_back("GPS ERROR");
 
-               csvData.m_humanLon.push_back("GPS ERROR");
                csvData.m_lonDegrees.push_back("GPS ERROR");
                csvData.m_lonMins.push_back("GPS ERROR");
                csvData.m_lonDegreesVel.push_back("GPS ERROR");
@@ -127,6 +128,58 @@ int DataProcessing::ReadFromCSV(){
     if(demo)
     {
         rocketData = csvData;
+
+        for(int i = 0; i < 29; i++)
+        {
+            inputData *tempInput = new inputData;
+
+            tempInput->gyroX = rocketData.m_xGyro.at(i);
+            tempInput->gyroY = rocketData.m_yGyro.at(i);
+            tempInput->gyroZ = rocketData.m_zGyro.at(i);
+
+            tempInput->accX = rocketData.m_xAccel.at(i);
+            tempInput->accY = rocketData.m_yAccel.at(i);
+            tempInput->accZ = rocketData.m_zAccel.at(i);
+
+            tempInput->magX = rocketData.m_xMag.at(i);
+            tempInput->magY = rocketData.m_yMag.at(i);
+            tempInput->magZ = rocketData.m_zMag.at(i);
+
+            tempInput->gyroXH = rocketData.m_xHGyro.at(i);
+            tempInput->gyroYH = rocketData.m_yHGyro.at(i);
+            tempInput->gyroZH = rocketData.m_zHGyro.at(i);
+
+            tempInput->accXH = rocketData.m_xHAccel.at(i);
+            tempInput->accYH = rocketData.m_yHAccel.at(i);
+            tempInput->accZH = rocketData.m_zHAccel.at(i);
+
+            tempInput->magXH = rocketData.m_xHMag.at(i);
+            tempInput->magYH = rocketData.m_yHMag.at(i);
+            tempInput->magZH = rocketData.m_zHMag.at(i);
+
+            tempInput->altitude = rocketData.m_Altimeter.at(i);
+
+            tempInput->curTime = rocketData.m_timeGPS.at(i);
+            tempInput->altGPSMeter = rocketData.m_AltimeterGPS.at(i);
+
+            tempInput->latitude = rocketData.m_latGPS.at(i);
+            tempInput->longitude = rocketData.m_longGPS.at(i);
+
+            tempInput->humanLat = rocketData.m_humanLat.at(i);
+            tempInput->humanLon = rocketData.m_humanLon.at(i);
+
+            tempInput->latDegrees = rocketData.m_latDegrees.at(i).toInt();
+            tempInput->latMins = rocketData.m_latMins.at(i).toDouble();
+            tempInput->lonDegrees = rocketData.m_lonDegrees.at(i).toInt();
+            tempInput->lonMins = rocketData.m_lonMins.at(i).toDouble();
+
+            m_inputDataVector->push_back(*tempInput);
+            qDebug() << "INPUT SIZE: " << m_inputDataVector->size();
+
+            QString writePath = "DemoFlight";
+            WriteToCSV(writePath);
+            //receiveDataVector(tempVector, true, writePath);
+        }
     }
 
     return 1;
@@ -197,16 +250,13 @@ void DataProcessing::receiveDataVector(QVector<inputData>* tmpData, bool writeCS
         WriteToCSV(writePath);
     }
 
-    // convert values here
-    //convertInputData();
-
     // write processed values to new .CSV
 
     while(m_inputDataVector->size() > 0)
     {
         inputData tmpData = m_inputDataVector->front();
 
-        tmpData.altitude.toStdString() = (1 - (qPow((tmpData.altitude.toDouble() / 100) / 1013.25, 0.190284) * 145366.45)) - altInit; // (- baseAlt)
+        //tmpData.altitude.toStdString() = (1 - (qPow((tmpData.altitude.toDouble() / 100) / 1013.25, 0.190284) * 145366.45)) - altInit; // (- baseAlt)
 
         m_inputDataVector->pop_front();
         rocketData.m_xGyro.append(tmpData.gyroX);
@@ -230,21 +280,55 @@ void DataProcessing::receiveDataVector(QVector<inputData>* tmpData, bool writeCS
         rocketData.m_zHMag.append(tmpData.magZH);
 
         rocketData.m_Altimeter.append(tmpData.altitude);
-        rocketData.m_AltimeterGPS.append(tmpData.altGPSMeter);
-        rocketData.m_latGPS.append(tmpData.latitude);
-        rocketData.m_longGPS.append(tmpData.longitude);
-        rocketData.m_timeGPS.append(tmpData.curTimeString);
         rocketData.m_time.append(tmpData.curTime);
 
-        rocketData.m_lonDegrees.append(QString::number(tmpData.lonDegrees));
-        rocketData.m_lonMins.append(QString::number(tmpData.lonMins));
-        rocketData.m_latDegrees.append(QString::number(tmpData.latDegrees));
-        rocketData.m_latMins.append(QString::number(tmpData.latMins));
+        int latDeg = tmpData.latDegrees;
+        int lonDeg = tmpData.lonDegrees;
+        double latMin = tmpData.latMins;
+        double lonMin = tmpData.lonMins;
 
-        rocketData.m_lonDegreesVel.append(QString::number(tmpData.lonDegrees));
-        rocketData.m_lonMinsVel.append(QString::number(tmpData.lonMins));
-        rocketData.m_latDegreesVel.append(QString::number(tmpData.latDegrees));
-        rocketData.m_latMinsVel.append(QString::number(tmpData.latMins));
+        if(isValidCoord(latDeg, latMin, lonDeg, lonMin))
+        {
+            rocketData.m_timeGPS.append(tmpData.curTimeString);
+            rocketData.m_AltimeterGPS.append(tmpData.altGPSMeter);
+
+            rocketData.m_latGPS.append(tmpData.latitude);
+            rocketData.m_longGPS.append(tmpData.longitude);
+
+            rocketData.m_humanLat.append(tmpData.humanLat);
+            rocketData.m_humanLon.append(tmpData.humanLon);
+
+            rocketData.m_latDegrees.append(QString::number(tmpData.latDegrees));
+            rocketData.m_latMins.append(QString::number(tmpData.latMins));
+            rocketData.m_lonDegrees.append(QString::number(tmpData.lonDegrees));
+            rocketData.m_lonMins.append(QString::number(tmpData.lonMins));
+
+            rocketData.m_lonDegreesVel.append(QString::number(tmpData.lonDegrees));
+            rocketData.m_lonMinsVel.append(QString::number(tmpData.lonMins));
+            rocketData.m_latDegreesVel.append(QString::number(tmpData.latDegrees));
+            rocketData.m_latMinsVel.append(QString::number(tmpData.latMins));
+        }
+        else
+        {
+            rocketData.m_timeGPS.push_back("GPS ERROR");
+            rocketData.m_AltimeterGPS.push_back("GPS ERROR");
+
+            rocketData.m_latGPS.push_back("GPS ERROR");
+            rocketData.m_longGPS.push_back("GPS ERROR");
+
+            rocketData.m_humanLat.push_back("GPS ERROR");
+            rocketData.m_humanLon.push_back("GPS ERROR");
+
+            rocketData.m_latDegrees.push_back("GPS ERROR");
+            rocketData.m_latMins.push_back("GPS ERROR");
+            rocketData.m_latDegreesVel.push_back("GPS ERROR");
+            rocketData.m_latMinsVel.push_back("GPS ERROR");
+
+            rocketData.m_lonDegrees.push_back("GPS ERROR");
+            rocketData.m_lonMins.push_back("GPS ERROR");
+            rocketData.m_lonDegreesVel.push_back("GPS ERROR");
+            rocketData.m_lonMinsVel.push_back("GPS ERROR");
+        }
 
     }    
 
@@ -253,26 +337,6 @@ void DataProcessing::receiveDataVector(QVector<inputData>* tmpData, bool writeCS
         rocketData = csvData;
     }
 
-}
-
-void DataProcessing::convertInputData()
-{
-   QVector<inputData>* tmpData;
-   tmpData = m_inputDataVector;
-
-   qDebug() << "INITIAL ALTITUDE: " << altInit;
-
-   for(int i = 0; i < m_inputDataVector->size(); i++)
-   {
-       //Altitude -> ((1 - ((millibars / 1013.25)^0.190284)) * 145366.45) - baseAlt
-       tmpData->at(i).altitude.toStdString() = (1 - (qPow((m_inputDataVector->at(i).altitude.toDouble() / 100) / 1013.25, 0.190284) * 145366.45)) - altInit; // (- baseAlt)
-       //tmpData->at(i).accX =
-
-       // do the same for all other data
-   }
-
-   //m_inputDataVector = tmpData; // ok to overwrite m_inputDataVector?
-   //m_convertedDataVector = tmpData;
 }
 
 /****************************************************************
