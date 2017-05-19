@@ -1135,33 +1135,73 @@ void MainWindow::nav_update(double time)
 void MainWindow::alt_vel_update(int key, double time)
 {
     struct baseAltitudeInfo altInfo = profile->getAltitudeInfo();
-    double altGps = graph_data->plotNextAltitude(key, altitude, plotting, altInfo);
-    double vel = graph_data->plotNextVelocity(key, velocity, plotting, time, includeHistoric);
 
+    //double vel = graph_data->plotNextVelocity(key, velocity, plotting, time, includeHistoric);
+
+    //altitude
+    double alt = plotting.getNextAltitude(plotting.source, ALTITUDE, altInfo);
+    double inputAlt, lastKnownAlt, lastKnownMaxAlt;
     plotting.altInit = altInfo.baseHeight;
 
-    if(altGps != nan(""))
+    //velocity
+    double vel, inputVel;
+    if(altList.empty())
     {
-        ui->alt_cur_LCD->display(altGps);
+        vel = 0;
     }
+
+    if(alt != nan(""))
+    {
+        graph_data->plotNextAltitude(key, altitude, plotting, altInfo, alt);
+        inputAlt = alt;
+        altList.push_front(inputAlt);
+        ui->alt_cur_LCD->display(inputAlt);
+        lastKnownAlt = inputAlt;
+
+        if(alt > maxAlt)
+        {
+             maxAlt = alt;
+             ui->alt_max_LCD->display(maxAlt);
+        }
+        else
+        {
+            lastKnownMaxAlt = maxAlt;
+            ui->alt_max_LCD->display(lastKnownMaxAlt);
+            if(inputAlt > 0)
+            {
+                ui->apogee->setChecked(true);
+            }
+        }
+
+        ui->alt_cur_LCD->display(lastKnownAlt);
+    }
+    else
+    {
+        ui->alt_cur_LCD->display(lastKnownAlt);
+    }
+
     if(vel != nan(""))
     {
+        if(altList.size() > 1)
+        {
+            vel = plotting.getNextVelocity(plotting.source, 0, altList[1], altList[0]);
+        }
+
+        graph_data->plotNextVelocity(key, velocity, plotting, time, includeHistoric, vel);
+
         ui->vel_cur_LCD->display(vel);
+
+        if(vel > maxVel)
+        {
+             maxVel = vel;
+             ui->vel_max_LCD->display(vel);
+        }
     }
+
     ui->accel_LCD->display(plotting.getAccelerationMagnitude(1));
     ui->g_force->display(plotting.getGForce());
 
-    if(altGps > maxAlt)
-    {
-         maxAlt = altGps;
-         ui->alt_max_LCD->display(maxAlt);
-    }
 
-    if(vel > maxVel)
-    {
-         maxVel = vel;
-         ui->vel_max_LCD->display(vel);
-    }
 }
 
 /******************************************************************************
@@ -1312,7 +1352,7 @@ void MainWindow::realtimeDataSlot()
     .arg(ms, 3, 10, QLatin1Char('0')) );
     //------------------------------------------------------
 
-    if (key-lastPointKey > 0.5) // at most add point every 2 ms
+    if (key-lastPointKey > 1.0) // at most add point every 2 ms
     {
         // add data to graphs
        double timeMsec = plotting.getAttributeFromSource(plotting.source, GPS_TIME, 1);
@@ -1337,7 +1377,7 @@ void MainWindow::realtimeDataSlot()
     static double lastFpsKey;
     static int frameCount;
     ++frameCount;
-    if (key-lastFpsKey > .02) // average fps over 2 seconds
+    if (key-lastFpsKey > 1.0) // average fps over 2 seconds
     {
       lastFpsKey = key;
       frameCount = 0;
@@ -1586,7 +1626,12 @@ void MainWindow::updateRocketPath()
 
     if(!plotting.isValidCoord(latDegrees, latMins, lonDegrees, lonMins))
     {
+        ui->gps_status->setText("GPS Status: NO GPS LOCK");
         return;
+    }
+    else
+    {
+        ui->gps_status->setText("GPS Status: GPS LOCK");
     }
 
     map_latitude = convertGPSCoord(latDegrees, latMins);

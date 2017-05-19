@@ -114,7 +114,7 @@ void Graphs::makeAltitudePlot(QCustomPlot *&altitude)
     altitude->graph(0)->addToLegend();
     altitude->graph(1)->addToLegend();
     altitude->graph(2)->addToLegend();
-    altitude->legend->setVisible(true);
+    //altitude->legend->setVisible(true);
 
 }
 
@@ -169,23 +169,23 @@ void Graphs::makeVelocityPlot(QCustomPlot *&velocity, bool historic)
  * Output: Qcustomplot with a new data point on the graph
  *
  * ********************************************************************************/
-double Graphs::plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing &plotting, struct baseAltitudeInfo altInfo)
+double Graphs::plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing &plotting, struct baseAltitudeInfo altInfo, double alt)
 {
     // add data to lines:
-   double alt = plotting.getNextAltitude(plotting.source, ALTITUDE, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE, 1);
-   double altGps = plotting.getNextAltitude(plotting.source, ALTITUDE_GPS, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE_GPS, 1);
-   qDebug() << "ALT GPS " << altGps << endl;
-   double altDiff = fabs(alt) - fabs(altGps);
+   //double alt = plotting.getNextAltitude(plotting.source, ALTITUDE, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE, 1);
+   //double altGps = plotting.getNextAltitude(plotting.source, ALTITUDE_GPS, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE_GPS, 1);
+   qDebug() << "ALT GPS " << alt << endl;
+   //double altDiff = fabs(alt) - fabs(altGps);
 
   altitude->graph(0)->addData(key, alt);
-  altitude->graph(1)->addData(key, altGps);
-  altitude->graph(2)->addData(key, altDiff);
+  //altitude->graph(1)->addData(key, altGps);
+  //altitude->graph(2)->addData(key, altDiff);
 
   //rescale value (vertical) axis to fit the current data:
   altitude->graph(0)->rescaleValueAxis(true);
-  altitude->graph(1)->rescaleValueAxis(true);
+  //altitude->graph(1)->rescaleValueAxis(true);
 
-  return altGps;
+  return alt;
 }
 
 
@@ -198,9 +198,9 @@ double Graphs::plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing 
  * Output: Qcustomplot with a new data point on the graph
  *
  * *******************************************************************************/
-double Graphs::plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing &plotting, double time, bool historic)
+double Graphs::plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing &plotting, double time, bool historic, double velocityValue)
 {
-    double velocityValue = plotting.getNextVelocity(plotting.source, time);
+    //double velocityValue = plotting.getNextVelocity(plotting.source, time);
 
     qDebug() << "VELOCITY VALUE " << velocityValue << endl;
     if(velocityValue != nan(""))
@@ -212,7 +212,7 @@ double Graphs::plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing 
 
         if(historic)
         {
-            double velocityValue = plotting.getNextVelocity(FFILE, time);
+            //double velocityValue = plotting.getNextVelocity(FFILE, time);
             velocity->graph(1)->addData(key, velocityValue); //Position Data
 
             //rescale value (vertical) axis to fit the current data:

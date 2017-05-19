@@ -182,6 +182,8 @@ public:
     int Rand_i(int ilow, int ihigh); //testing
     // END MAPPING
 
+    QList<double> altList;
+
 private slots:
 
     void NoseAviByte();

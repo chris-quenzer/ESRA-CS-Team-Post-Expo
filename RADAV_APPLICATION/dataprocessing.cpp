@@ -128,7 +128,7 @@ int DataProcessing::ReadFromCSV(){
     if(demo)
     {
         rocketData = csvData;
-
+        /*
         for(int i = 0; i < 29; i++)
         {
             inputData *tempInput = new inputData;
@@ -180,6 +180,7 @@ int DataProcessing::ReadFromCSV(){
             WriteToCSV(writePath);
             //receiveDataVector(tempVector, true, writePath);
         }
+        */
     }
 
     return 1;
@@ -405,7 +406,7 @@ return 0;
  * Input: Source to get time, lat, and long coordinates from ie. a file or a sensor
  * Output: velocity in feet per second as a double value
  * **********************************************/
-double DataProcessing::getNextVelocity(int source, double delta_time)
+double DataProcessing::getNextVelocity(int source, double delta_time, double alt1, double alt2)
 {
   //double dist = calculateDistance(source);
   //qDebug() << "DISTANCE " << dist << endl;
@@ -413,9 +414,9 @@ double DataProcessing::getNextVelocity(int source, double delta_time)
   //qDebug() << "TIME " << time_s << endl;
   //qDebug() << "Velocity Calculated " << dist / time_s << endl;
 
-  double curVel = prevVel + accel_mag * delta_time;
+  //double curVel = prevVel + accel_mag * delta_time;
 
-  prevVel = curVel;
+  double curVel = alt2 - alt1;
 
   return curVel;
 }
@@ -429,18 +430,10 @@ double DataProcessing::getNextVelocity(int source, double delta_time)
  * **************************************************************/
 double DataProcessing::getNextAltitude(int source, Attribute alt, struct baseAltitudeInfo altInfo)
 {
-    double nextPressure = getAttributeFromSource(source, alt, 1);
-    double pascalPressure = nextPressure * 100;
-    double R = 8.3144598; //universal gas constant J/mol/K
-    double G0 = 9.80665; //Gravitational Acceleration m/s^2
-    double M = 0.0289644; //Molar Mass of Earth's Air kg/mol
+   double nextPressure = getAttributeFromSource(source, alt, 1);
 
-   //calculates height in meters
-   double nextHeight = altInfo.baseHeight + (((R * altInfo.baseTemp) * (qLn(pascalPressure/altInfo.basePressure))) / (G0 * M));
-   //convert height to feet
-   double feetHeight = nextHeight * 3.28084;
+   double feetHeight = ((1 - qPow(((nextPressure/100) / 1012.25),0.190284)) * 145366.45) - altInfo.baseHeight;
    return feetHeight;
-
 }
 
 
