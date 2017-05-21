@@ -8,9 +8,9 @@
 
 MAKEFILE      = Makefile
 
-first: debug
-install: debug-install
-uninstall: debug-uninstall
+first: release
+install: release-install
+uninstall: release-uninstall
 QMAKE         = E:\Qt\5.7\msvc2015\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -26,31 +26,10 @@ SYMLINK       = $(QMAKE) -install ln -f -s
 DEL_DIR       = rmdir
 MOVE          = move
 SUBTARGETS    =  \
-		debug \
-		release
+		release \
+		debug
 
 
-debug: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug
-debug-make_first: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug 
-debug-all: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug all
-debug-clean: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug clean
-debug-distclean: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug distclean
-debug-install: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug install
-debug-uninstall: FORCE
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug uninstall
 release: FORCE
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Release
@@ -72,6 +51,27 @@ release-install: FORCE
 release-uninstall: FORCE
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Release uninstall
+debug: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug
+debug-make_first: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug 
+debug-all: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug all
+debug-clean: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug clean
+debug-distclean: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug distclean
+debug-install: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug install
+debug-uninstall: FORCE
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug uninstall
 
 Makefile: ..\RADAV_APPLICATION\TestApplication.pro E:\Qt\5.7\msvc2015\mkspecs\win32-msvc2015\qmake.conf E:\Qt\5.7\msvc2015\mkspecs\features\spec_pre.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\common\angle.conf \
@@ -226,6 +226,7 @@ Makefile: ..\RADAV_APPLICATION\TestApplication.pro E:\Qt\5.7\msvc2015\mkspecs\wi
 		E:\Qt\5.7\msvc2015\mkspecs\features\moc.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\features\win32\opengl.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\features\uic.prf \
+		E:\Qt\5.7\msvc2015\mkspecs\features\designer_defines.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\features\file_copies.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\features\win32\windows.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\features\testcase_targets.prf \
@@ -233,15 +234,17 @@ Makefile: ..\RADAV_APPLICATION\TestApplication.pro E:\Qt\5.7\msvc2015\mkspecs\wi
 		E:\Qt\5.7\msvc2015\mkspecs\features\yacc.prf \
 		E:\Qt\5.7\msvc2015\mkspecs\features\lex.prf \
 		..\RADAV_APPLICATION\TestApplication.pro \
-		E:\Qt\5.7\msvc2015\lib\qtmaind.prl \
+		E:\Qt\5.7\msvc2015\lib\qtmain.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5OpenGL.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5PrintSupport.prl \
+		E:\Qt\5.7\msvc2015\lib\Qt5Designer.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Widgets.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Quick.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Gui.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Qml.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Network.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5SerialPort.prl \
+		E:\Qt\5.7\msvc2015\lib\Qt5Xml.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Core.prl
 	$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\RADAV_APPLICATION\TestApplication.pro
 E:\Qt\5.7\msvc2015\mkspecs\features\spec_pre.prf:
@@ -397,6 +400,7 @@ E:\Qt\5.7\msvc2015\mkspecs\features\resources.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\moc.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\win32\opengl.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\uic.prf:
+E:\Qt\5.7\msvc2015\mkspecs\features\designer_defines.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\file_copies.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\win32\windows.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\testcase_targets.prf:
@@ -404,52 +408,51 @@ E:\Qt\5.7\msvc2015\mkspecs\features\exceptions.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\yacc.prf:
 E:\Qt\5.7\msvc2015\mkspecs\features\lex.prf:
 ..\RADAV_APPLICATION\TestApplication.pro:
-E:\Qt\5.7\msvc2015\lib\qtmaind.prl:
+E:\Qt\5.7\msvc2015\lib\qtmain.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5OpenGL.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5PrintSupport.prl:
+E:\Qt\5.7\msvc2015\lib\Qt5Designer.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Widgets.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Quick.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Gui.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Qml.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Network.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5SerialPort.prl:
+E:\Qt\5.7\msvc2015\lib\Qt5Xml.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -spec win32-msvc2015 "CONFIG+=debug" "CONFIG+=qml_debug" -o Makefile ..\RADAV_APPLICATION\TestApplication.pro
 
 qmake_all: FORCE
 
-make_first: debug-make_first release-make_first  FORCE
-all: debug-all release-all  FORCE
-clean: debug-clean release-clean  FORCE
+make_first: release-make_first debug-make_first  FORCE
+all: release-all debug-all  FORCE
+clean: release-clean debug-clean  FORCE
 	-$(DEL_FILE) TestApplication.exp
-	-$(DEL_FILE) TestApplication.vc.pdb
-	-$(DEL_FILE) TestApplication.ilk
-	-$(DEL_FILE) TestApplication.idb
-distclean: debug-distclean release-distclean  FORCE
+distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) TestApplication.lib TestApplication.pdb
+	-$(DEL_FILE) TestApplication.lib
 
-debug-mocclean:
-	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug mocclean
 release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Release mocclean
-mocclean: debug-mocclean release-mocclean
-
-debug-mocables:
+debug-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)
-	$(MAKE) -f $(MAKEFILE).Debug mocables
+	$(MAKE) -f $(MAKEFILE).Debug mocclean
+mocclean: release-mocclean debug-mocclean
+
 release-mocables:
 	@set MAKEFLAGS=$(MAKEFLAGS)
 	$(MAKE) -f $(MAKEFILE).Release mocables
-mocables: debug-mocables release-mocables
+debug-mocables:
+	@set MAKEFLAGS=$(MAKEFLAGS)
+	$(MAKE) -f $(MAKEFILE).Debug mocables
+mocables: release-mocables debug-mocables
 
 check: first
 
 benchmark: first
 FORCE:
 
-$(MAKEFILE).Debug: Makefile
 $(MAKEFILE).Release: Makefile
+$(MAKEFILE).Debug: Makefile

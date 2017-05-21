@@ -11,13 +11,13 @@ MAKEFILE      = Makefile.Debug
 
 CC            = cl
 CXX           = cl
-DEFINES       = -DUNICODE -DWIN32 -DQT_QML_DEBUG -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_GUI_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_SERIALPORT_LIB -DQT_CORE_LIB
+DEFINES       = -DUNICODE -DWIN32 -DQT_QML_DEBUG -DQT_PLUGIN -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_DESIGNER_LIB -DQT_UIPLUGIN_LIB -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_GUI_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_SERIALPORT_LIB -DQT_XML_LIB -DQT_CORE_LIB -DQDESIGNER_EXPORT_WIDGETS
 CFLAGS        = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zi -MDd -W3 -w44456 -w44457 -w44458 /Fddebug\TestApplication.vc.pdb $(DEFINES)
 CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zc:throwingNew -Zi -MDd -GR -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -EHsc /Fddebug\TestApplication.vc.pdb $(DEFINES)
-INCPATH       = -I..\RADAV_APPLICATION -I. -IE:\Qt\5.7\msvc2015\include -IE:\Qt\5.7\msvc2015\include\QtOpenGL -IE:\Qt\5.7\msvc2015\include\QtPrintSupport -IE:\Qt\5.7\msvc2015\include\QtWidgets -IE:\Qt\5.7\msvc2015\include\QtQuick -IE:\Qt\5.7\msvc2015\include\QtGui -IE:\Qt\5.7\msvc2015\include\QtANGLE -IE:\Qt\5.7\msvc2015\include\QtQml -IE:\Qt\5.7\msvc2015\include\QtNetwork -IE:\Qt\5.7\msvc2015\include\QtSerialPort -IE:\Qt\5.7\msvc2015\include\QtCore -Idebug -I. -IE:\Qt\5.7\msvc2015\mkspecs\win32-msvc2015 
+INCPATH       = -I..\RADAV_APPLICATION -I. -I..\RADAV_APPLICATION -IE:\Qt\5.7\msvc2015\include -IE:\Qt\5.7\msvc2015\include\QtOpenGL -IE:\Qt\5.7\msvc2015\include\QtPrintSupport -IE:\Qt\5.7\msvc2015\include\QtDesigner -IE:\Qt\5.7\msvc2015\include\QtUiPlugin -IE:\Qt\5.7\msvc2015\include\QtWidgets -IE:\Qt\5.7\msvc2015\include\QtQuick -IE:\Qt\5.7\msvc2015\include\QtGui -IE:\Qt\5.7\msvc2015\include\QtANGLE -IE:\Qt\5.7\msvc2015\include\QtQml -IE:\Qt\5.7\msvc2015\include\QtNetwork -IE:\Qt\5.7\msvc2015\include\QtSerialPort -IE:\Qt\5.7\msvc2015\include\QtXml -IE:\Qt\5.7\msvc2015\include\QtCore -Idebug -I. -IE:\Qt\5.7\msvc2015\mkspecs\win32-msvc2015 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:E:\Qt\5.7\msvc2015\lib E:\Qt\5.7\msvc2015\lib\qtmaind.lib shell32.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib opengl32.lib GlU32.lib E:\Qt\5.7\msvc2015\lib\Qt5OpenGLd.lib E:\Qt\5.7\msvc2015\lib\Qt5PrintSupportd.lib E:\Qt\5.7\msvc2015\lib\Qt5Widgetsd.lib E:\Qt\5.7\msvc2015\lib\Qt5Quickd.lib E:\Qt\5.7\msvc2015\lib\Qt5Guid.lib E:\Qt\5.7\msvc2015\lib\Qt5Qmld.lib E:\Qt\5.7\msvc2015\lib\Qt5Networkd.lib E:\Qt\5.7\msvc2015\lib\Qt5SerialPortd.lib E:\Qt\5.7\msvc2015\lib\Qt5Cored.lib debug\RADAV.res 
+LIBS          = /LIBPATH:E:\Qt\5.7\msvc2015\lib E:\Qt\5.7\msvc2015\lib\qtmaind.lib shell32.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib opengl32.lib GlU32.lib E:\Qt\5.7\msvc2015\lib\Qt5OpenGLd.lib E:\Qt\5.7\msvc2015\lib\Qt5PrintSupportd.lib E:\Qt\5.7\msvc2015\lib\Qt5Designerd.lib E:\Qt\5.7\msvc2015\lib\Qt5Widgetsd.lib E:\Qt\5.7\msvc2015\lib\Qt5Quickd.lib E:\Qt\5.7\msvc2015\lib\Qt5Guid.lib E:\Qt\5.7\msvc2015\lib\Qt5Qmld.lib E:\Qt\5.7\msvc2015\lib\Qt5Networkd.lib E:\Qt\5.7\msvc2015\lib\Qt5SerialPortd.lib E:\Qt\5.7\msvc2015\lib\Qt5Xmld.lib E:\Qt\5.7\msvc2015\lib\Qt5Cored.lib debug\RADAV.res 
 QMAKE         = E:\Qt\5.7\msvc2015\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -53,7 +53,9 @@ SOURCES       = ..\RADAV_APPLICATION\main.cpp \
 		..\RADAV_APPLICATION\mpu9250.cpp \
 		..\RADAV_APPLICATION\createprofile.cpp \
 		..\RADAV_APPLICATION\mavlinkIncludes\tcplink.cpp \
-		..\RADAV_APPLICATION\mavproxyint.cpp debug\qrc_myresources.cpp \
+		..\RADAV_APPLICATION\mavproxyint.cpp \
+		..\RADAV_APPLICATION\LED.cpp \
+		..\RADAV_APPLICATION\LEDPlugin.cpp debug\qrc_myresources.cpp \
 		debug\moc_mainwindow.cpp \
 		debug\moc_settingsdialog.cpp \
 		debug\moc_qcustomplot.cpp \
@@ -61,7 +63,9 @@ SOURCES       = ..\RADAV_APPLICATION\main.cpp \
 		debug\moc_glwidget.cpp \
 		debug\moc_createprofile.cpp \
 		debug\moc_tcplink.cpp \
-		debug\moc_mavproxyint.cpp
+		debug\moc_mavproxyint.cpp \
+		debug\moc_LED.cpp \
+		debug\moc_LEDPlugin.cpp
 OBJECTS       = debug\main.obj \
 		debug\mainwindow.obj \
 		debug\settingsdialog.obj \
@@ -73,6 +77,8 @@ OBJECTS       = debug\main.obj \
 		debug\createprofile.obj \
 		debug\tcplink.obj \
 		debug\mavproxyint.obj \
+		debug\LED.obj \
+		debug\LEDPlugin.obj \
 		debug\qrc_myresources.obj \
 		debug\moc_mainwindow.obj \
 		debug\moc_settingsdialog.obj \
@@ -81,7 +87,9 @@ OBJECTS       = debug\main.obj \
 		debug\moc_glwidget.obj \
 		debug\moc_createprofile.obj \
 		debug\moc_tcplink.obj \
-		debug\moc_mavproxyint.obj
+		debug\moc_mavproxyint.obj \
+		debug\moc_LED.obj \
+		debug\moc_LEDPlugin.obj
 
 DIST          = icons/Connected-50.png \
 		icons/Disconnected-48.png \
@@ -241,7 +249,9 @@ DIST          = icons/Connected-50.png \
 		..\RADAV_APPLICATION\mavlinkIncludes\protocol.h \
 		..\RADAV_APPLICATION\mavlinkIncludes\tcplink.h \
 		..\RADAV_APPLICATION\tmpDPclass.h \
-		..\RADAV_APPLICATION\mavproxyint.h ..\RADAV_APPLICATION\main.cpp \
+		..\RADAV_APPLICATION\mavproxyint.h \
+		..\RADAV_APPLICATION\LED.h \
+		..\RADAV_APPLICATION\LEDPlugin.h ..\RADAV_APPLICATION\main.cpp \
 		..\RADAV_APPLICATION\mainwindow.cpp \
 		..\RADAV_APPLICATION\settingsdialog.cpp \
 		..\RADAV_APPLICATION\dataprocessing.cpp \
@@ -251,7 +261,9 @@ DIST          = icons/Connected-50.png \
 		..\RADAV_APPLICATION\mpu9250.cpp \
 		..\RADAV_APPLICATION\createprofile.cpp \
 		..\RADAV_APPLICATION\mavlinkIncludes\tcplink.cpp \
-		..\RADAV_APPLICATION\mavproxyint.cpp
+		..\RADAV_APPLICATION\mavproxyint.cpp \
+		..\RADAV_APPLICATION\LED.cpp \
+		..\RADAV_APPLICATION\LEDPlugin.cpp
 QMAKE_TARGET  = TestApplication
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = TestApplication.exe
@@ -360,10 +372,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) TestApplication.zip $(SOURCES) $(DIST) ..\RADAV_APPLICATION\TestApplication.pro E:\Qt\5.7\msvc2015\mkspecs\features\spec_pre.prf E:\Qt\5.7\msvc2015\mkspecs\common\angle.conf E:\Qt\5.7\msvc2015\mkspecs\common\msvc-base.conf E:\Qt\5.7\msvc2015\mkspecs\common\msvc-desktop.conf E:\Qt\5.7\msvc2015\mkspecs\qconfig.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dcore.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dcore_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dextras.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dextras_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dinput.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dinput_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dlogic.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dlogic_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquick.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquick_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickextras.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickextras_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickinput.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickinput_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickrender.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickrender_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3drender.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3drender_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axbase.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axbase_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axcontainer.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axcontainer_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axserver.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axserver_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_bluetooth.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_bluetooth_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_bootstrap_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_charts.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_charts_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_clucene_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_concurrent.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_concurrent_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_core.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_core_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_datavisualization.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_datavisualization_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_dbus.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_dbus_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_designer.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_designer_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_designercomponents_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gamepad.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gamepad_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gui.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gui_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_help.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_help_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_location.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_location_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimedia.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimedia_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimediawidgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_network.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_network_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_nfc.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_nfc_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_opengl.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_opengl_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_openglextensions.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_openglextensions_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_platformsupport_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_positioning.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_positioning_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_printsupport.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_printsupport_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_purchasing.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_purchasing_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qml.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qml_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmldebug_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmltest.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmltest_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quick.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quick_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickcontrols2.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickparticles_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickwidgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_script.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_script_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scripttools.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scripttools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scxml.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scxml_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sensors.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sensors_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialbus.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialbus_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialport.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialport_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sql.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sql_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_svg.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_svg_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_testlib.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_testlib_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_uiplugin.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_uitools.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_uitools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webchannel.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webchannel_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webengine.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webengine_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginecore.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginecore_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginewidgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginewidgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_websockets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_websockets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webview.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webview_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_widgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_widgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_winextras.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_winextras_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xml.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xml_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xmlpatterns.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_zlib_private.pri E:\Qt\5.7\msvc2015\mkspecs\features\qt_functions.prf E:\Qt\5.7\msvc2015\mkspecs\features\qt_config.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\qt_config.prf E:\Qt\5.7\msvc2015\mkspecs\win32-msvc2015\qmake.conf E:\Qt\5.7\msvc2015\mkspecs\features\spec_post.prf E:\Qt\5.7\msvc2015\mkspecs\features\exclusive_builds.prf E:\Qt\5.7\msvc2015\mkspecs\features\toolchain.prf E:\Qt\5.7\msvc2015\mkspecs\features\default_pre.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\default_pre.prf E:\Qt\5.7\msvc2015\mkspecs\features\resolve_config.prf E:\Qt\5.7\msvc2015\mkspecs\features\exclusive_builds_post.prf E:\Qt\5.7\msvc2015\mkspecs\features\default_post.prf E:\Qt\5.7\msvc2015\mkspecs\features\build_pass.prf E:\Qt\5.7\msvc2015\mkspecs\features\qml_debug.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\rtti.prf E:\Qt\5.7\msvc2015\mkspecs\features\precompile_header.prf E:\Qt\5.7\msvc2015\mkspecs\features\warn_on.prf E:\Qt\5.7\msvc2015\mkspecs\features\qt.prf E:\Qt\5.7\msvc2015\mkspecs\features\resources.prf E:\Qt\5.7\msvc2015\mkspecs\features\moc.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\opengl.prf E:\Qt\5.7\msvc2015\mkspecs\features\uic.prf E:\Qt\5.7\msvc2015\mkspecs\features\file_copies.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\windows.prf E:\Qt\5.7\msvc2015\mkspecs\features\testcase_targets.prf E:\Qt\5.7\msvc2015\mkspecs\features\exceptions.prf E:\Qt\5.7\msvc2015\mkspecs\features\yacc.prf E:\Qt\5.7\msvc2015\mkspecs\features\lex.prf ..\RADAV_APPLICATION\TestApplication.pro ..\RADAV_APPLICATION\myresources.qrc E:\Qt\5.7\msvc2015\lib\qtmaind.prl E:\Qt\5.7\msvc2015\lib\Qt5OpenGLd.prl E:\Qt\5.7\msvc2015\lib\Qt5PrintSupportd.prl E:\Qt\5.7\msvc2015\lib\Qt5Widgetsd.prl E:\Qt\5.7\msvc2015\lib\Qt5Quickd.prl E:\Qt\5.7\msvc2015\lib\Qt5Guid.prl E:\Qt\5.7\msvc2015\lib\Qt5Qmld.prl E:\Qt\5.7\msvc2015\lib\Qt5Networkd.prl E:\Qt\5.7\msvc2015\lib\Qt5SerialPortd.prl E:\Qt\5.7\msvc2015\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
+	$(ZIP) TestApplication.zip $(SOURCES) $(DIST) ..\RADAV_APPLICATION\TestApplication.pro E:\Qt\5.7\msvc2015\mkspecs\features\spec_pre.prf E:\Qt\5.7\msvc2015\mkspecs\common\angle.conf E:\Qt\5.7\msvc2015\mkspecs\common\msvc-base.conf E:\Qt\5.7\msvc2015\mkspecs\common\msvc-desktop.conf E:\Qt\5.7\msvc2015\mkspecs\qconfig.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dcore.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dcore_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dextras.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dextras_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dinput.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dinput_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dlogic.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dlogic_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquick.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquick_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickextras.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickextras_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickinput.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickinput_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickrender.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3dquickrender_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3drender.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_3drender_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axbase.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axbase_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axcontainer.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axcontainer_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axserver.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_axserver_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_bluetooth.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_bluetooth_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_bootstrap_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_charts.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_charts_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_clucene_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_concurrent.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_concurrent_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_core.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_core_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_datavisualization.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_datavisualization_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_dbus.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_dbus_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_designer.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_designer_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_designercomponents_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gamepad.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gamepad_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gui.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_gui_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_help.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_help_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_location.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_location_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimedia.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimedia_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimediawidgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_multimediawidgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_network.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_network_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_nfc.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_nfc_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_opengl.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_opengl_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_openglextensions.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_openglextensions_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_packetprotocol_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_platformsupport_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_positioning.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_positioning_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_printsupport.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_printsupport_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_purchasing.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_purchasing_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qml.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qml_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmldebug_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmldevtools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmltest.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qmltest_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quick.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quick_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickcontrols2.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickcontrols2_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickparticles_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quicktemplates2_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickwidgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_quickwidgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_script.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_script_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scripttools.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scripttools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scxml.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_scxml_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sensors.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sensors_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialbus.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialbus_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialport.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_serialport_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sql.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_sql_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_svg.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_svg_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_testlib.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_testlib_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_uiplugin.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_uitools.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_uitools_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webchannel.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webchannel_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webengine.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webengine_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginecore.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginecore_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginewidgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webenginewidgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_websockets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_websockets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webview.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_webview_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_widgets.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_widgets_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_winextras.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_winextras_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xml.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xml_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xmlpatterns.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_xmlpatterns_private.pri E:\Qt\5.7\msvc2015\mkspecs\modules\qt_lib_zlib_private.pri E:\Qt\5.7\msvc2015\mkspecs\features\qt_functions.prf E:\Qt\5.7\msvc2015\mkspecs\features\qt_config.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\qt_config.prf E:\Qt\5.7\msvc2015\mkspecs\win32-msvc2015\qmake.conf E:\Qt\5.7\msvc2015\mkspecs\features\spec_post.prf E:\Qt\5.7\msvc2015\mkspecs\features\exclusive_builds.prf E:\Qt\5.7\msvc2015\mkspecs\features\toolchain.prf E:\Qt\5.7\msvc2015\mkspecs\features\default_pre.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\default_pre.prf E:\Qt\5.7\msvc2015\mkspecs\features\resolve_config.prf E:\Qt\5.7\msvc2015\mkspecs\features\exclusive_builds_post.prf E:\Qt\5.7\msvc2015\mkspecs\features\default_post.prf E:\Qt\5.7\msvc2015\mkspecs\features\build_pass.prf E:\Qt\5.7\msvc2015\mkspecs\features\qml_debug.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\rtti.prf E:\Qt\5.7\msvc2015\mkspecs\features\precompile_header.prf E:\Qt\5.7\msvc2015\mkspecs\features\warn_on.prf E:\Qt\5.7\msvc2015\mkspecs\features\qt.prf E:\Qt\5.7\msvc2015\mkspecs\features\resources.prf E:\Qt\5.7\msvc2015\mkspecs\features\moc.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\opengl.prf E:\Qt\5.7\msvc2015\mkspecs\features\uic.prf E:\Qt\5.7\msvc2015\mkspecs\features\designer_defines.prf E:\Qt\5.7\msvc2015\mkspecs\features\file_copies.prf E:\Qt\5.7\msvc2015\mkspecs\features\win32\windows.prf E:\Qt\5.7\msvc2015\mkspecs\features\testcase_targets.prf E:\Qt\5.7\msvc2015\mkspecs\features\exceptions.prf E:\Qt\5.7\msvc2015\mkspecs\features\yacc.prf E:\Qt\5.7\msvc2015\mkspecs\features\lex.prf ..\RADAV_APPLICATION\TestApplication.pro ..\RADAV_APPLICATION\myresources.qrc E:\Qt\5.7\msvc2015\lib\qtmaind.prl E:\Qt\5.7\msvc2015\lib\Qt5OpenGLd.prl E:\Qt\5.7\msvc2015\lib\Qt5PrintSupportd.prl E:\Qt\5.7\msvc2015\lib\Qt5Designerd.prl E:\Qt\5.7\msvc2015\lib\Qt5Widgetsd.prl E:\Qt\5.7\msvc2015\lib\Qt5Quickd.prl E:\Qt\5.7\msvc2015\lib\Qt5Guid.prl E:\Qt\5.7\msvc2015\lib\Qt5Qmld.prl E:\Qt\5.7\msvc2015\lib\Qt5Networkd.prl E:\Qt\5.7\msvc2015\lib\Qt5SerialPortd.prl E:\Qt\5.7\msvc2015\lib\Qt5Xmld.prl E:\Qt\5.7\msvc2015\lib\Qt5Cored.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\settingsdialog.obj debug\dataprocessing.obj debug\qcustomplot.obj debug\graphs.obj debug\glwidget.obj debug\mpu9250.obj debug\createprofile.obj debug\tcplink.obj debug\mavproxyint.obj debug\qrc_myresources.obj debug\moc_mainwindow.obj debug\moc_settingsdialog.obj debug\moc_qcustomplot.obj debug\moc_graphs.obj debug\moc_glwidget.obj debug\moc_createprofile.obj debug\moc_tcplink.obj debug\moc_mavproxyint.obj
+	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\settingsdialog.obj debug\dataprocessing.obj debug\qcustomplot.obj debug\graphs.obj debug\glwidget.obj debug\mpu9250.obj debug\createprofile.obj debug\tcplink.obj debug\mavproxyint.obj debug\LED.obj debug\LEDPlugin.obj debug\qrc_myresources.obj debug\moc_mainwindow.obj debug\moc_settingsdialog.obj debug\moc_qcustomplot.obj debug\moc_graphs.obj debug\moc_glwidget.obj debug\moc_createprofile.obj debug\moc_tcplink.obj debug\moc_mavproxyint.obj debug\moc_LED.obj debug\moc_LEDPlugin.obj
 	-$(DEL_FILE) debug\TestApplication.exp debug\TestApplication.vc.pdb debug\TestApplication.ilk debug\TestApplication.idb
 	-$(DEL_FILE) debug\RADAV.res
 
@@ -397,9 +409,9 @@ debug\qrc_myresources.cpp: ..\RADAV_APPLICATION\myresources.qrc \
 		..\RADAV_APPLICATION\Resources\textures\navball.bmp
 	E:\Qt\5.7\msvc2015\bin\rcc.exe -name myresources ..\RADAV_APPLICATION\myresources.qrc -o debug\qrc_myresources.cpp
 
-compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_settingsdialog.cpp debug\moc_qcustomplot.cpp debug\moc_graphs.cpp debug\moc_glwidget.cpp debug\moc_createprofile.cpp debug\moc_tcplink.cpp debug\moc_mavproxyint.cpp
+compiler_moc_header_make_all: debug\moc_mainwindow.cpp debug\moc_settingsdialog.cpp debug\moc_qcustomplot.cpp debug\moc_graphs.cpp debug\moc_glwidget.cpp debug\moc_createprofile.cpp debug\moc_tcplink.cpp debug\moc_mavproxyint.cpp debug\moc_LED.cpp debug\moc_LEDPlugin.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_settingsdialog.cpp debug\moc_qcustomplot.cpp debug\moc_graphs.cpp debug\moc_glwidget.cpp debug\moc_createprofile.cpp debug\moc_tcplink.cpp debug\moc_mavproxyint.cpp
+	-$(DEL_FILE) debug\moc_mainwindow.cpp debug\moc_settingsdialog.cpp debug\moc_qcustomplot.cpp debug\moc_graphs.cpp debug\moc_glwidget.cpp debug\moc_createprofile.cpp debug\moc_tcplink.cpp debug\moc_mavproxyint.cpp debug\moc_LED.cpp debug\moc_LEDPlugin.cpp
 debug\moc_mainwindow.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QMainWindow \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qmainwindow.h \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
@@ -1070,7 +1082,7 @@ debug\moc_mainwindow.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QMainWindow \
 		..\RADAV_APPLICATION\settingsdialog.h \
 		..\RADAV_APPLICATION\mainwindow.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\mainwindow.h -o debug\moc_mainwindow.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug\moc_settingsdialog.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
@@ -1175,7 +1187,7 @@ debug\moc_settingsdialog.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
 		E:\Qt\5.7\msvc2015\include\QtSerialPort\qserialportglobal.h \
 		..\RADAV_APPLICATION\settingsdialog.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\settingsdialog.h -o debug\moc_settingsdialog.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\settingsdialog.h -o debug\moc_settingsdialog.cpp
 
 debug\moc_qcustomplot.cpp: E:\Qt\5.7\msvc2015\include\QtCore\qglobal.h \
 		E:\Qt\5.7\msvc2015\include\QtCore\qconfig.h \
@@ -1660,7 +1672,7 @@ debug\moc_qcustomplot.cpp: E:\Qt\5.7\msvc2015\include\QtCore\qglobal.h \
 		E:\Qt\5.7\msvc2015\include\QtPrintSupport\qtprintsupportversion.h \
 		..\RADAV_APPLICATION\qcustomplot.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\qcustomplot.h -o debug\moc_qcustomplot.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\qcustomplot.h -o debug\moc_qcustomplot.cpp
 
 debug\moc_graphs.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
@@ -2332,7 +2344,7 @@ debug\moc_graphs.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
 		E:\Qt\5.7\msvc2015\include\QtPrintSupport\qtprintsupportversion.h \
 		..\RADAV_APPLICATION\graphs.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\graphs.h -o debug\moc_graphs.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\graphs.h -o debug\moc_graphs.cpp
 
 debug\moc_glwidget.cpp: E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLFunctions \
 		E:\Qt\5.7\msvc2015\include\QtGui\qopenglfunctions.h \
@@ -2458,7 +2470,7 @@ debug\moc_glwidget.cpp: E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLFunctions \
 		E:\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
 		..\RADAV_APPLICATION\glwidget.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\glwidget.h -o debug\moc_glwidget.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\glwidget.h -o debug\moc_glwidget.cpp
 
 debug\moc_createprofile.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
@@ -2562,7 +2574,7 @@ debug\moc_createprofile.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QDialog \
 		E:\Qt\5.7\msvc2015\include\QtCore\QStringList \
 		..\RADAV_APPLICATION\createprofile.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\createprofile.h -o debug\moc_createprofile.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\createprofile.h -o debug\moc_createprofile.cpp
 
 debug\moc_tcplink.cpp: E:\Qt\5.7\msvc2015\include\QtCore\QObject \
 		E:\Qt\5.7\msvc2015\include\QtCore\qobject.h \
@@ -2614,7 +2626,7 @@ debug\moc_tcplink.cpp: E:\Qt\5.7\msvc2015\include\QtCore\QObject \
 		E:\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
 		..\RADAV_APPLICATION\mavlinkIncludes\tcplink.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\mavlinkIncludes\tcplink.h -o debug\moc_tcplink.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\mavlinkIncludes\tcplink.h -o debug\moc_tcplink.cpp
 
 debug\moc_mavproxyint.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QWidget \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
@@ -2866,7 +2878,600 @@ debug\moc_mavproxyint.cpp: E:\Qt\5.7\msvc2015\include\QtWidgets\QWidget \
 		..\RADAV_APPLICATION\mavlinkIncludes\common\mavlink_msg_debug.h \
 		..\RADAV_APPLICATION\mavproxyint.h \
 		E:\Qt\5.7\msvc2015\bin\moc.exe
-	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\mavproxyint.h -o debug\moc_mavproxyint.cpp
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\mavproxyint.h -o debug\moc_mavproxyint.cpp
+
+debug\moc_LED.cpp: E:\Qt\5.7\msvc2015\include\QtDesigner\QtDesigner \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\QtDesignerDepends \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtCore \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtCoreDepends \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnamespace.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qconfig.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfeatures.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocessordetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcompilerdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypeinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypetraits.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qisenum.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsysinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlogging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qflags.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasicatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_bootstrap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qgenericatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_cxx11.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_msvc.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobalstatic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmutex.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnumeric.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversiontagging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstring.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qchar.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrefcount.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qalgorithms.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhashfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpair.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraylist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregexp.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreevent.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetatype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvarlengtharray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextcodec.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qendian.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbuffer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdir.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfileinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfiledevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdiriterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfileselector.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QObject \
+		E:\Qt\5.7\msvc2015\include\QtCore\QStringList \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlockfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocess.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qresource.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsavefile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsettings.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QScopedPointer \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qurl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qurlquery.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonarray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsondocument.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasictimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmath.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetaobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimedata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtranslator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimetype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlibrary.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpluginloader.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\quuid.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfinalstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhistorystate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstatemachine.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qexception.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuture.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrunnable.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qresultstore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsemaphore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthread.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthreadpool.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydataops.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbitarray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcache.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcollator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qline.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmargins.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qqueue.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrect.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsize.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregularexpression.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstack.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimeline.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimezone.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversionnumber.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qxmlstream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QtGui \
+		E:\Qt\5.7\msvc2015\include\QtGui\QtGuiDepends \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessible.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcolor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qevent.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qregion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qkeysequence.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector2d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessiblebridge.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessibleobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessibleplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbitmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimage.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qiconengine.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qiconengineplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimageiohandler.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimagereader.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimagewriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmovie.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpicture.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpictureformatplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmapcache.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstandarditemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbrush.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfont.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qclipboard.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qdrag.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericpluginfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qoffscreensurface.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsurface.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsurfaceformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglcontext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QSurfaceFormat \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qt_windows.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES3\gl3.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES3\gl3platform.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\KHR\khrplatform.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES2\gl2.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES2\gl2platform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengles2ext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglversionfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPaintDeviceWindow \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevicewindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QWindow \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QEvent \
+		E:\Qt\5.7\msvc2015\include\QtCore\QMargins \
+		E:\Qt\5.7\msvc2015\include\QtCore\QRect \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPaintDevice \
+		E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLContext \
+		E:\Qt\5.7\msvc2015\include\QtGui\QImage \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpalette.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrasterwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qscreen.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QList \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSize \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSizeF \
+		E:\Qt\5.7\msvc2015\include\QtGui\QTransform \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsessionmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstylehints.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix4x4.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector3d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector4d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qquaternion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglbuffer.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengldebug.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglextrafunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglframebufferobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglpixeltransferoptions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSharedDataPointer \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglshaderprogram.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengltexture.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengltimerquery.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglvertexarrayobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbackingstore.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagedpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagelayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagesize.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintengine.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpen.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontmetrics.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpdfwriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qabstracttextdocumentlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qglyphrun.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrawfont.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontdatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocument.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstatictext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsyntaxhighlighter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocumentfragment.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocumentwriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextlist.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtexttable.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qdesktopservices.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvalidator.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtguiversion.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QtWidgets \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QtWidgetsDepends \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaccessiblewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolordialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsizepolicy.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qerrormessage.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfiledialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfilesystemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfontdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qinputdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlineedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmessagebox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qprogressdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwizard.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicseffect.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsanchorlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsitemanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslinearlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsproxywidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicswidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsscene.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicssceneevent.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicstransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QVector3D \
+		E:\Qt\5.7\msvc2015\include\QtGui\QMatrix4x4 \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolumnview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdatawidgetmapper.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdirmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfileiconprovider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qitemeditorfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlistview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlistwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleditemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtableview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtablewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreeview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreewidgetitemiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaction.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qboxlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qformlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgesture.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgesturerecognizer.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qopenglwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QWidget \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qshortcut.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstackedlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtooltip.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwhatsthis.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidgetaction.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qkeyeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmouseeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcommonstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdrawutil.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qproxystyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QCommonStyle \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstylefactory.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstylepainter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolormap.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcompleter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscroller.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPointF \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QScrollerProperties \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollerproperties.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QMetaType \
+		E:\Qt\5.7\msvc2015\include\QtCore\QVariant \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsystemtrayicon.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundogroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundostack.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundoview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcalendarwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcheckbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcommandlinkbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qpushbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdatetimeedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdial.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialogbuttonbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdockwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfocusframe.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfontcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgroupbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qkeysequenceedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlabel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlcdnumber.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmainwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmdiarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmdisubwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmenu.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmenubar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qplaintextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qprogressbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qradiobutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsizegrip.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsplashscreen.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsplitter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstackedwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstatusbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextbrowser.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtwidgetsversion.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\QtXml \
+		E:\Qt\5.7\msvc2015\include\QtXml\QtXmlDepends \
+		E:\Qt\5.7\msvc2015\include\QtXml\qtxmlglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qdom.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qxml.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qtxmlversion.h \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QtUiPlugin \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QtUiPluginDepends \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\customwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QString \
+		E:\Qt\5.7\msvc2015\include\QtGui\QIcon \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\qdesignerexportwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\qtuipluginversion.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extension.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\qextensionmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extension_global.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QHash \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractactioneditor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\sdk_global.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractdnditem.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformeditor.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPointer \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformeditorplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowtool.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractintegration.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QFlags \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractlanguage.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractmetadatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractnewformwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractobjectinspector.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractoptionspage.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractpromotioninterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPair \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSet \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractpropertyeditor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractresourcebrowser.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractsettings.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetbox.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetdatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\container.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\dynamicpropertysheet.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extrainfo.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\layoutdecoration.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\membersheet.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QByteArray \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\propertysheet.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\taskmenu.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\uilib_global.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QDir \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSizePolicy \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPalette \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\formbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\qtdesignerversion.h \
+		..\RADAV_APPLICATION\LED.h \
+		E:\Qt\5.7\msvc2015\bin\moc.exe
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\LED.h -o debug\moc_LED.cpp
+
+debug\moc_LEDPlugin.cpp: E:\Qt\5.7\msvc2015\include\QtDesigner\QDesignerCustomWidgetInterface \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QDesignerCustomWidgetInterface \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\customwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QObject \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnamespace.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qconfig.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfeatures.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocessordetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcompilerdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypeinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypetraits.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qisenum.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsysinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlogging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qflags.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasicatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_bootstrap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qgenericatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_cxx11.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_msvc.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobalstatic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmutex.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnumeric.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversiontagging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstring.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qchar.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrefcount.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qalgorithms.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhashfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpair.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraylist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregexp.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreevent.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetatype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvarlengtharray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QString \
+		E:\Qt\5.7\msvc2015\include\QtGui\QIcon \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsize.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrect.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmargins.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcolor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimage.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qregion.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qline.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
+		..\RADAV_APPLICATION\LEDPlugin.h \
+		E:\Qt\5.7\msvc2015\bin\moc.exe
+	E:\Qt\5.7\msvc2015\bin\moc.exe $(DEFINES) -D_MSC_VER=1900 -D_WIN32 -IE:/Qt/5.7/msvc2015/mkspecs/win32-msvc2015 -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -I"C:/Users/Chris Q/Documents/GitHub/ESRA-CS-Team-Post-Expo/RADAV_APPLICATION" -IE:/Qt/5.7/msvc2015/include -IE:/Qt/5.7/msvc2015/include/QtOpenGL -IE:/Qt/5.7/msvc2015/include/QtPrintSupport -IE:/Qt/5.7/msvc2015/include/QtDesigner -IE:/Qt/5.7/msvc2015/include/QtUiPlugin -IE:/Qt/5.7/msvc2015/include/QtWidgets -IE:/Qt/5.7/msvc2015/include/QtQuick -IE:/Qt/5.7/msvc2015/include/QtGui -IE:/Qt/5.7/msvc2015/include/QtANGLE -IE:/Qt/5.7/msvc2015/include/QtQml -IE:/Qt/5.7/msvc2015/include/QtNetwork -IE:/Qt/5.7/msvc2015/include/QtSerialPort -IE:/Qt/5.7/msvc2015/include/QtXml -IE:/Qt/5.7/msvc2015/include/QtCore -I. ..\RADAV_APPLICATION\LEDPlugin.h -o debug\moc_LEDPlugin.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -4845,9 +5450,34 @@ debug\mainwindow.obj: ..\RADAV_APPLICATION\mainwindow.cpp ../RADAV_APPLICATION/m
 		E:\Qt\5.7\msvc2015\include\QtPrintSupport\qprintpreviewwidget.h \
 		E:\Qt\5.7\msvc2015\include\QtPrintSupport\qtprintsupportversion.h \
 		ui_mainwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QAction \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QButtonGroup \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QCheckBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QDoubleSpinBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QFormLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QFrame \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGridLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGroupBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHBoxLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHeaderView \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLabel \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLineEdit \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QMenu \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QMenuBar \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QPushButton \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QScrollArea \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSlider \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSpacerItem \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QStatusBar \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QTabWidget \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QToolBar \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QVBoxLayout \
+		../RADAV_APPLICATION/glwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLFunctions \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QOpenGLWidget \
 		../RADAV_APPLICATION/graphs.h \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\QMessageBox \
-		E:\Qt\5.7\msvc2015\include\QtWidgets\QLabel \
 		E:\Qt\5.7\msvc2015\include\QtGui\QColor \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\QFileDialog
 
@@ -4954,6 +5584,54 @@ debug\settingsdialog.obj: ..\RADAV_APPLICATION\settingsdialog.cpp ../RADAV_APPLI
 		E:\Qt\5.7\msvc2015\include\QtSerialPort\qserialport.h \
 		E:\Qt\5.7\msvc2015\include\QtSerialPort\qserialportglobal.h \
 		ui_settingsdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QVariant \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QAction \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaction.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QButtonGroup \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QComboBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvalidator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregularexpression.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGridLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qboxlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGroupBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgroupbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHBoxLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHeaderView \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLabel \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlabel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QPushButton \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qpushbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QVBoxLayout \
 		E:\Qt\5.7\msvc2015\include\QtSerialPort\QSerialPortInfo \
 		E:\Qt\5.7\msvc2015\include\QtSerialPort\qserialportinfo.h
 
@@ -6784,7 +7462,33 @@ debug\graphs.obj: ..\RADAV_APPLICATION\graphs.cpp ../RADAV_APPLICATION/graphs.h 
 		E:\Qt\5.7\msvc2015\include\QtCore\QPair \
 		E:\Qt\5.7\msvc2015\include\QtPrintSupport\qprintpreviewwidget.h \
 		E:\Qt\5.7\msvc2015\include\QtPrintSupport\qtprintsupportversion.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QAction \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QButtonGroup \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QCheckBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QDoubleSpinBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QFormLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QFrame \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGridLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGroupBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHBoxLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHeaderView \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLabel \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLineEdit \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QMenu \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QMenuBar \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QPushButton \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QScrollArea \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSlider \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSpacerItem \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QStatusBar \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QTabWidget \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QToolBar \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QVBoxLayout \
+		../RADAV_APPLICATION/glwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLFunctions \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QOpenGLWidget
 
 debug\glwidget.obj: ..\RADAV_APPLICATION\glwidget.cpp ../RADAV_APPLICATION/glwidget.h \
 		E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLFunctions \
@@ -7687,6 +8391,56 @@ debug\createprofile.obj: ..\RADAV_APPLICATION\createprofile.cpp ../RADAV_APPLICA
 		../RADAV_APPLICATION/dataprocessing.h \
 		E:\Qt\5.7\msvc2015\include\QtCore\QStringList \
 		ui_createprofile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QVariant \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QAction \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaction.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QButtonGroup \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QCheckBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcheckbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QDialogButtonBox \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialogbuttonbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHBoxLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qboxlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHeaderView \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvalidator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregularexpression.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLineEdit \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlineedit.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpen.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QVBoxLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QWidget \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\QFileDialog \
 		E:\Qt\5.7\msvc2015\include\QtWidgets\qfiledialog.h \
 		E:\Qt\5.7\msvc2015\include\QtCore\qdir.h \
@@ -7996,7 +8750,1079 @@ debug\mavproxyint.obj: ..\RADAV_APPLICATION\mavproxyint.cpp ../RADAV_APPLICATION
 		../RADAV_APPLICATION/mavlinkIncludes/common/mavlink_msg_named_value_int.h \
 		../RADAV_APPLICATION/mavlinkIncludes/common/mavlink_msg_statustext.h \
 		../RADAV_APPLICATION/mavlinkIncludes/common/mavlink_msg_debug.h \
-		ui_mavproxyint.h
+		ui_mavproxyint.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QVariant \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QAction \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaction.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QApplication \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QButtonGroup \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QGridLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qboxlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QHeaderView \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvalidator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregularexpression.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLabel \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlabel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QPushButton \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qpushbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QScrollArea \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QTextEdit \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocument.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpen.h
+
+debug\LED.obj: ..\RADAV_APPLICATION\LED.cpp E:\Qt\5.7\msvc2015\include\QtGui\QPainter \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainter.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnamespace.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qconfig.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfeatures.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocessordetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcompilerdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypeinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypetraits.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qisenum.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsysinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlogging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qflags.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasicatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_bootstrap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qgenericatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_cxx11.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_msvc.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobalstatic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmutex.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnumeric.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversiontagging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrect.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmargins.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsize.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcolor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qalgorithms.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrefcount.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhashfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qchar.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpair.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraylist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstring.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregexp.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreevent.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetatype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvarlengtharray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimage.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qregion.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qline.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpen.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbrush.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfont.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontmetrics.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QGradient \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPaintDevice \
+		E:\Qt\5.7\msvc2015\include\QtCore\QTimer \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasictimer.h \
+		../RADAV_APPLICATION/LED.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\QtDesigner \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\QtDesignerDepends \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtCore \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtCoreDepends \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextcodec.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qendian.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbuffer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdir.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfileinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfiledevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdiriterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfileselector.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QObject \
+		E:\Qt\5.7\msvc2015\include\QtCore\QStringList \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlockfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocess.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qresource.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsavefile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsettings.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QScopedPointer \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qurl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qurlquery.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonarray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsondocument.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmath.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetaobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimedata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtranslator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimetype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlibrary.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpluginloader.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\quuid.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfinalstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhistorystate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstatemachine.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qexception.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuture.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrunnable.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qresultstore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsemaphore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthread.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthreadpool.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydataops.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbitarray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcache.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcollator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qqueue.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregularexpression.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstack.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimeline.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimezone.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversionnumber.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qxmlstream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QtGui \
+		E:\Qt\5.7\msvc2015\include\QtGui\QtGuiDepends \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessible.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qevent.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qkeysequence.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector2d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessiblebridge.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessibleobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessibleplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbitmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qiconengine.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qiconengineplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimageiohandler.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimagereader.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimagewriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmovie.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpicture.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpictureformatplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmapcache.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstandarditemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qclipboard.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qdrag.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericpluginfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qoffscreensurface.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsurface.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsurfaceformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglcontext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QSurfaceFormat \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qt_windows.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES3\gl3.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES3\gl3platform.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\KHR\khrplatform.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES2\gl2.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES2\gl2platform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengles2ext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglversionfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPaintDeviceWindow \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevicewindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QWindow \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QEvent \
+		E:\Qt\5.7\msvc2015\include\QtCore\QMargins \
+		E:\Qt\5.7\msvc2015\include\QtCore\QRect \
+		E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLContext \
+		E:\Qt\5.7\msvc2015\include\QtGui\QImage \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpalette.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrasterwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qscreen.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QList \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSize \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSizeF \
+		E:\Qt\5.7\msvc2015\include\QtGui\QTransform \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsessionmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstylehints.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix4x4.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector3d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector4d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qquaternion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglbuffer.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengldebug.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglextrafunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglframebufferobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglpixeltransferoptions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSharedDataPointer \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglshaderprogram.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengltexture.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengltimerquery.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglvertexarrayobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbackingstore.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagedpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagelayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagesize.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintengine.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpdfwriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qabstracttextdocumentlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qglyphrun.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrawfont.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontdatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocument.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstatictext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsyntaxhighlighter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocumentfragment.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocumentwriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextlist.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtexttable.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qdesktopservices.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvalidator.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtguiversion.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QtWidgets \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QtWidgetsDepends \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaccessiblewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolordialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsizepolicy.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qerrormessage.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfiledialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfilesystemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfontdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qinputdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlineedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmessagebox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qprogressdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwizard.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicseffect.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsanchorlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsitemanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslinearlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsproxywidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicswidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsscene.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicssceneevent.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicstransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QVector3D \
+		E:\Qt\5.7\msvc2015\include\QtGui\QMatrix4x4 \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolumnview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdatawidgetmapper.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdirmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfileiconprovider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qitemeditorfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlistview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlistwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleditemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtableview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtablewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreeview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreewidgetitemiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaction.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qboxlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qformlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgesture.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgesturerecognizer.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qopenglwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QWidget \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qshortcut.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstackedlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtooltip.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwhatsthis.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidgetaction.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qkeyeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmouseeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcommonstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdrawutil.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qproxystyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QCommonStyle \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstylefactory.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstylepainter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolormap.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcompleter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscroller.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPointF \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QScrollerProperties \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollerproperties.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QMetaType \
+		E:\Qt\5.7\msvc2015\include\QtCore\QVariant \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsystemtrayicon.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundogroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundostack.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundoview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcalendarwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcheckbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcommandlinkbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qpushbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdatetimeedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdial.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialogbuttonbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdockwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfocusframe.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfontcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgroupbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qkeysequenceedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlabel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlcdnumber.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmainwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmdiarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmdisubwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmenu.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmenubar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qplaintextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qprogressbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qradiobutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsizegrip.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsplashscreen.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsplitter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstackedwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstatusbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextbrowser.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtwidgetsversion.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\QtXml \
+		E:\Qt\5.7\msvc2015\include\QtXml\QtXmlDepends \
+		E:\Qt\5.7\msvc2015\include\QtXml\qtxmlglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qdom.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qxml.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qtxmlversion.h \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QtUiPlugin \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QtUiPluginDepends \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\customwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QString \
+		E:\Qt\5.7\msvc2015\include\QtGui\QIcon \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\qdesignerexportwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\qtuipluginversion.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extension.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\qextensionmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extension_global.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QHash \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractactioneditor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\sdk_global.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractdnditem.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformeditor.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPointer \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformeditorplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowtool.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractintegration.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QFlags \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractlanguage.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractmetadatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractnewformwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractobjectinspector.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractoptionspage.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractpromotioninterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPair \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSet \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractpropertyeditor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractresourcebrowser.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractsettings.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetbox.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetdatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\container.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\dynamicpropertysheet.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extrainfo.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\layoutdecoration.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\membersheet.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QByteArray \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\propertysheet.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\taskmenu.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\uilib_global.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QDir \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSizePolicy \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPalette \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\formbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\qtdesignerversion.h
+
+debug\LEDPlugin.obj: ..\RADAV_APPLICATION\LEDPlugin.cpp ../RADAV_APPLICATION/LED.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\QtDesigner \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\QtDesignerDepends \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtCore \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtCoreDepends \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnamespace.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qconfig.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfeatures.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocessordetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcompilerdetection.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypeinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtypetraits.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qisenum.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsysinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlogging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qflags.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasicatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_bootstrap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qgenericatomic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_cxx11.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qatomic_msvc.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qglobalstatic.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmutex.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qnumeric.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversiontagging.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectdefs_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstring.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qchar.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrefcount.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qalgorithms.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhashfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpair.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraylist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregexp.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringmatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreevent.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetatype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvarlengtharray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontainerfwd.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobject_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qparallelanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpauseanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpropertyanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvariantanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeasingcurve.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvector.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpoint.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qvariant.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmap.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdebug.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextstream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qiodevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlocale.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qshareddata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qset.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcontiguouscache.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedpointer_impl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsequentialanimationgroup.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextcodec.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qendian.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlibraryinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatetime.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbuffer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdatastream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdir.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfileinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfiledevice.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qdiriterator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfileselector.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QObject \
+		E:\Qt\5.7\msvc2015\include\QtCore\QStringList \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfilesystemwatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlockfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qloggingcategory.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qprocess.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qresource.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsavefile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsettings.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstandardpaths.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstorageinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtemporarydir.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QScopedPointer \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtemporaryfile.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qurl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qurlquery.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractitemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qidentityproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qitemselectionmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsortfilterproxymodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstringlistmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonarray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonvalue.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsondocument.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qjsonobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstracteventdispatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventloop.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractnativeeventfilter.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbasictimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcoreapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmath.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmetaobject.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimedata.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qobjectcleanuphandler.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsharedmemory.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsignalmapper.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsocketnotifier.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsystemsemaphore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtranslator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qwineventnotifier.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimedatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmimetype.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfactoryinterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlibrary.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qpluginloader.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\quuid.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstractstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qabstracttransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfinalstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qhistorystate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsignaltransition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstate.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstatemachine.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qexception.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuture.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfutureinterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrunnable.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qresultstore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuturesynchronizer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qfuturewatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qreadwritelock.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsemaphore.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthread.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthreadpool.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qthreadstorage.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qwaitcondition.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydataops.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qarraydatapointer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbitarray.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qbytearraymatcher.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcache.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcollator.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcommandlineoption.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcommandlineparser.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qcryptographichash.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qelapsedtimer.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qline.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qlinkedlist.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmargins.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qmessageauthenticationcode.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qqueue.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qrect.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qsize.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qregularexpression.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qscopedvaluerollback.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qstack.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtextboundaryfinder.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimeline.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtimezone.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qversionnumber.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qxmlstream.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qtcoreversion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QtGui \
+		E:\Qt\5.7\msvc2015\include\QtGui\QtGuiDepends \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessible.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcolor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgb.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrgba64.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qevent.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindowdefs_win.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qregion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qkeysequence.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector2d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtouchdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessiblebridge.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessibleobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qaccessibleplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbitmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmap.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimage.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixelformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpolygon.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainterpath.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qicon.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qiconengine.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qiconengineplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimageiohandler.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimagereader.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qimagewriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmovie.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpicture.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpictureformatplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpixmapcache.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstandarditemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbrush.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfont.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qclipboard.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qdrag.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericpluginfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qguiapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qinputmethod.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qoffscreensurface.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsurface.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsurfaceformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglcontext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QSurfaceFormat \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengl.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\qt_windows.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES3\gl3.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES3\gl3platform.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\KHR\khrplatform.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES2\gl2.h \
+		E:\Qt\5.7\msvc2015\include\QtANGLE\GLES2\gl2platform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengles2ext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglversionfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPaintDeviceWindow \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintdevicewindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QWindow \
+		E:\Qt\5.7\msvc2015\include\QtGui\qwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QEvent \
+		E:\Qt\5.7\msvc2015\include\QtCore\QMargins \
+		E:\Qt\5.7\msvc2015\include\QtCore\QRect \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPaintDevice \
+		E:\Qt\5.7\msvc2015\include\QtGui\QOpenGLContext \
+		E:\Qt\5.7\msvc2015\include\QtGui\QImage \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpalette.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrasterwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qscreen.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QList \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSize \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSizeF \
+		E:\Qt\5.7\msvc2015\include\QtGui\QTransform \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsessionmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstylehints.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qgenericmatrix.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qmatrix4x4.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector3d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvector4d.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qquaternion.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglbuffer.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengldebug.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglextrafunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglfunctions.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglframebufferobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglpixeltransferoptions.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSharedDataPointer \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglshaderprogram.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengltexture.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopengltimerquery.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qopenglvertexarrayobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qbackingstore.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagedpaintdevice.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagelayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpagesize.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpaintengine.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpainter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextoption.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpen.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontinfo.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontmetrics.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qpdfwriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qabstracttextdocumentlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextformat.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qglyphrun.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qrawfont.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qfontdatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocument.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qstatictext.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qsyntaxhighlighter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextobject.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocumentfragment.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextdocumentwriter.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtextlist.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtexttable.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qdesktopservices.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qvalidator.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\qtguiversion.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QtWidgets \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QtWidgetsDepends \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaccessiblewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolordialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsizepolicy.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qerrormessage.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfiledialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfilesystemmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfontdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qinputdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlineedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qframe.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmessagebox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qprogressdialog.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwizard.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicseffect.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsanchorlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsitemanimation.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicslinearlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsproxywidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicswidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsscene.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicssceneevent.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicstransform.h \
+		E:\Qt\5.7\msvc2015\include\QtGui\QVector3D \
+		E:\Qt\5.7\msvc2015\include\QtGui\QMatrix4x4 \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgraphicsview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractscrollarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleoption.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractslider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtabwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qrubberband.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractitemview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolumnview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdatawidgetmapper.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdirmodel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfileiconprovider.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qheaderview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qitemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qitemeditorfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlistview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlistwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleditemdelegate.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtableview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtablewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreeview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreewidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtreewidgetitemiterator.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qaction.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qactiongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qapplication.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdesktopwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qboxlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlayoutitem.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgridlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qformlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QLayout \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgesture.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgesturerecognizer.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qopenglwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QWidget \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qshortcut.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstackedlayout.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtooltip.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwhatsthis.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qwidgetaction.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qkeyeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmouseeventtransition.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcommonstyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdrawutil.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qproxystyle.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QCommonStyle \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstylefactory.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstylepainter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstyleplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcolormap.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcompleter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscroller.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPointF \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QScrollerProperties \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollerproperties.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QMetaType \
+		E:\Qt\5.7\msvc2015\include\QtCore\QVariant \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsystemtrayicon.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundogroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundostack.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qundoview.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qabstractbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qbuttongroup.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcalendarwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcheckbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qcommandlinkbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qpushbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdatetimeedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdial.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdialogbuttonbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qdockwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfocusframe.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qfontcombobox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qgroupbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qkeysequenceedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlabel.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qlcdnumber.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmainwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmdiarea.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmdisubwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmenu.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qmenubar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qplaintextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextedit.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qprogressbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qradiobutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qscrollbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsizegrip.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qspinbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsplashscreen.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qsplitter.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstackedwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qstatusbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtextbrowser.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbar.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbox.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtoolbutton.h \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\qtwidgetsversion.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\QtXml \
+		E:\Qt\5.7\msvc2015\include\QtXml\QtXmlDepends \
+		E:\Qt\5.7\msvc2015\include\QtXml\qtxmlglobal.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qdom.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qxml.h \
+		E:\Qt\5.7\msvc2015\include\QtXml\qtxmlversion.h \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QtUiPlugin \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QtUiPluginDepends \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\customwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QString \
+		E:\Qt\5.7\msvc2015\include\QtGui\QIcon \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\qdesignerexportwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtGlobal \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\qtuipluginversion.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extension.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\qextensionmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extension_global.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QHash \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractactioneditor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\sdk_global.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractdnditem.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformeditor.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPointer \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformeditorplugin.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindow.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowcursor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowmanager.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformwindowtool.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractintegration.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QFlags \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractlanguage.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractmetadatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractnewformwidget.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractobjectinspector.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractoptionspage.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractpromotioninterface.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QPair \
+		E:\Qt\5.7\msvc2015\include\QtCore\QSet \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractpropertyeditor.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractresourcebrowser.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractsettings.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetbox.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetdatabase.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractwidgetfactory.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\container.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\dynamicpropertysheet.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\extrainfo.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\layoutdecoration.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\membersheet.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QByteArray \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\propertysheet.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\taskmenu.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\abstractformbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\uilib_global.h \
+		E:\Qt\5.7\msvc2015\include\QtCore\QDir \
+		E:\Qt\5.7\msvc2015\include\QtWidgets\QSizePolicy \
+		E:\Qt\5.7\msvc2015\include\QtGui\QPalette \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\formbuilder.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\qtdesignerversion.h \
+		../RADAV_APPLICATION/LEDPlugin.h \
+		E:\Qt\5.7\msvc2015\include\QtDesigner\QDesignerCustomWidgetInterface \
+		E:\Qt\5.7\msvc2015\include\QtUiPlugin\QDesignerCustomWidgetInterface \
+		E:\Qt\5.7\msvc2015\include\QtCore\QtPlugin
 
 debug\qrc_myresources.obj: debug\qrc_myresources.cpp 
 
@@ -8016,11 +9842,26 @@ debug\moc_tcplink.obj: debug\moc_tcplink.cpp
 
 debug\moc_mavproxyint.obj: debug\moc_mavproxyint.cpp 
 
+debug\moc_LED.obj: debug\moc_LED.cpp 
+
+debug\moc_LEDPlugin.obj: debug\moc_LEDPlugin.cpp 
+
 ####### Install
 
-install:  FORCE
+install_target: first FORCE
+	@if not exist E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer mkdir E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer & if not exist E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer exit 1
+	-$(INSTALL_FILE) $(DESTDIR_TARGET) E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer\$(TARGET)
+	-$(INSTALL_FILE) debug\TestApplication.pdb E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer\TestApplication.pdb
 
-uninstall:  FORCE
+uninstall_target: FORCE
+	-$(DEL_FILE) E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer\$(TARGET) 
+	 -$(DEL_FILE) E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer\TestApplication.pdb
+	-$(DEL_DIR) E:$(INSTALL_ROOT)\Qt\5.7\msvc2015\plugins\designer 
+
+
+install: install_target  FORCE
+
+uninstall: uninstall_target  FORCE
 
 FORCE:
 

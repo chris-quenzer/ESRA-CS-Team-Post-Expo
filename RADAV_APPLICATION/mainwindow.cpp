@@ -116,6 +116,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /*Finished additions for 1-17-2017*/
 
+    // Apogee LED indicator
+    ui->apo_LED->setColor("green");
+    ui->apo_LED->setDiameter(10);
+    ui->apo_LED->setState(false);
+    //ui->apo_LED->setFlashing(true);
+
+    // GPS LED indicator
+    ui->gps_LED->setState(true);
+
     // graph setup #######################################################################
     timerSetup();
     set_graph1(false);
@@ -123,6 +132,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(ui->start_stop, SIGNAL(on_start_stop_clicked()), Graphs, SLOT(&Graphs::on_start_stop_clicked()));
 
     // End graph setup ###################################################################
+
+    // Mission time init
+    mission_time = "00:00:00:000";
+    ui->mission_time->display(mission_time);
 
     //set LAUNCH button background to green
     QPalette pal = ui->start_stop->palette();
@@ -1167,9 +1180,11 @@ void MainWindow::alt_vel_update(int key, double time)
         {
             lastKnownMaxAlt = maxAlt;
             ui->alt_max_LCD->display(lastKnownMaxAlt);
-            if(inputAlt > 0)
+            if(inputAlt > 0 && !apo_time_set)
             {
-                ui->apogee->setChecked(true);
+                ui->apo_LED->setState(true);
+                ui->apo_time_label->setText(mission_time);
+                apo_time_set = true;
             }
         }
 
@@ -1345,11 +1360,12 @@ void MainWindow::realtimeDataSlot()
     int hours = (secs / 3600);
     int ms = (master_time.elapsed() % 1000);
     secs = secs % 60;
-    ui->mission_time->display(QString("%1:%2:%3:%4")
-    .arg(hours, 2, 10, QLatin1Char('0'))
-    .arg(mins, 2, 10, QLatin1Char('0'))
-    .arg(secs, 2, 10, QLatin1Char('0'))
-    .arg(ms, 3, 10, QLatin1Char('0')) );
+    mission_time = QString("%1:%2:%3:%4")
+            .arg(hours, 2, 10, QLatin1Char('0'))
+            .arg(mins, 2, 10, QLatin1Char('0'))
+            .arg(secs, 2, 10, QLatin1Char('0'))
+            .arg(ms, 3, 10, QLatin1Char('0'));
+    ui->mission_time->display(mission_time);
     //------------------------------------------------------
 
     if (key-lastPointKey > 1.0) // at most add point every 2 ms
@@ -1627,11 +1643,13 @@ void MainWindow::updateRocketPath()
     if(!plotting.isValidCoord(latDegrees, latMins, lonDegrees, lonMins))
     {
         ui->gps_status->setText("GPS Status: NO GPS LOCK");
+        ui->gps_LED->setColor("red");
         return;
     }
     else
     {
         ui->gps_status->setText("GPS Status: GPS LOCK");
+        ui->gps_LED->setColor("green");
     }
 
     map_latitude = convertGPSCoord(latDegrees, latMins);

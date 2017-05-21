@@ -6,11 +6,23 @@
 
 QT       += core gui opengl quick network
 QT       += serialport
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport core
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport core designer
 
-TARGET = TestApplication
+lessThan(QT_MAJOR_VERSION, 5) {
+   CONFIG += designer
+}
+
+CONFIG += plugin release
+
+#TARGET = TestApplication
+#TEMPLATE = app
+
 TEMPLATE = app
+TARGET = $$qtLibraryTarget($$TARGET)
+target.path = $$[QT_INSTALL_PLUGINS]/designer
+INSTALLS += target
 
+INCLUDEPATH += .
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -24,7 +36,9 @@ SOURCES += main.cpp\
     mpu9250.cpp \
     createprofile.cpp \
     mavlinkIncludes/tcplink.cpp \
-    mavproxyint.cpp
+    mavproxyint.cpp \
+    LED.cpp \
+    LEDPlugin.cpp
 
 HEADERS  += mainwindow.h \
     settingsdialog.h \
@@ -181,7 +195,9 @@ HEADERS  += mainwindow.h \
     mavlinkIncludes/protocol.h \
     mavlinkIncludes/tcplink.h \
     tmpDPclass.h \
-    mavproxyint.h
+    mavproxyint.h \
+    LED.h \
+    LEDPlugin.h
 
 FORMS    += mainwindow.ui \
     settingsdialog.ui \
