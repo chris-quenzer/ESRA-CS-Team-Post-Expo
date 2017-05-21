@@ -40,7 +40,24 @@ Rectangle {
         //     value:
         // }
 
-        PluginParameter { name: "osm.mapping.offline.directory"; value: "qrc:/map_tiles" }
+        //PluginParameter { name: "osm.mapping.offline.directory"; value: "qrc:/map_tiles" }
+
+        PluginParameter {
+        name: "googlemaps.useragent"
+        value: "OSU Rocketry RADAV"
+        }
+        PluginParameter {
+        name: "googlemaps.route.apikey"
+        value: "AIzaSyBgoNlqfN3Po0iqgKTQiG1J2u9c3plIyqo"
+        }
+        PluginParameter {
+        name: "googlemaps.maps.apikey"
+        value: "AIzaSyBgoNlqfN3Po0iqgKTQiG1J2u9c3plIyqo"
+        }
+        PluginParameter {
+        name: "googlemaps.maps.tilesize"
+        value: "256"
+        }
     }
 
 
