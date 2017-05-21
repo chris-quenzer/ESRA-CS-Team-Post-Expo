@@ -184,6 +184,9 @@ public:
 
     QList<double> altList;
 
+    QString mission_time;
+    bool apo_time_set = false;
+
 private slots:
 
     void NoseAviByte();
