@@ -182,6 +182,8 @@ public:
     int Rand_i(int ilow, int ihigh); //testing
     // END MAPPING
 
+    QList<double> altList;
+
 private slots:
 
     void NoseAviByte();
@@ -245,6 +247,8 @@ private slots:
     void on_includeHistoric_toggled(bool checked);
 
     void on_mavProxyShowButton_clicked();
+
+    void on_expoDemoCheckBox_clicked(bool checked);
 
 public slots:
     // MAPPING

@@ -24,8 +24,8 @@ public:
     void makeAltitudePlot(QCustomPlot *&altitude);
     void makeVelocityPlot(QCustomPlot *&velocity, bool historic);
     void addHistoricVelocity(QCustomPlot*&velocity);
-    double plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing &, double, bool);
-    double plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing &, struct baseAltitudeInfo altInfo);
+    double plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing &, double, bool, double velocityValue);
+    double plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing &, struct baseAltitudeInfo altInfo, double alt);
 
 
     void makeTable();

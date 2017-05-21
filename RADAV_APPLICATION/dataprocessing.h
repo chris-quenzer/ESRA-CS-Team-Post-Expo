@@ -256,7 +256,7 @@ public:
 
    //Functions for Velocity
     double calculateDistance(int source);
-    double getNextVelocity(int source, double time);
+    double getNextVelocity(int source, double delta_time, double alt1, double alt2);
 
     void receiveDataVector(QVector<inputData>*, bool, QString);
 
@@ -287,6 +287,8 @@ public:
     double accel_mag = 0;
 
     double altInit = 0;
+
+    bool demo;
 };
 
 #endif // DATAPROCESSING_H

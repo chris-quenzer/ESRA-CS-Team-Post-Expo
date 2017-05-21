@@ -40,7 +40,24 @@ Rectangle {
         //     value:
         // }
 
-        PluginParameter { name: "osm.mapping.offline.directory"; value: "qrc:/map_tiles" }
+        //PluginParameter { name: "osm.mapping.offline.directory"; value: "qrc:/map_tiles" }
+
+        PluginParameter {
+        name: "googlemaps.useragent"
+        value: "OSU Rocketry RADAV"
+        }
+        PluginParameter {
+        name: "googlemaps.route.apikey"
+        value: "AIzaSyBgoNlqfN3Po0iqgKTQiG1J2u9c3plIyqo"
+        }
+        PluginParameter {
+        name: "googlemaps.maps.apikey"
+        value: "AIzaSyBgoNlqfN3Po0iqgKTQiG1J2u9c3plIyqo"
+        }
+        PluginParameter {
+        name: "googlemaps.maps.tilesize"
+        value: "256"
+        }
     }
 
 
@@ -57,7 +74,7 @@ Rectangle {
         center: QtPositioning.coordinate(43.7958, -120.65164) // defaults to OSU
         zoomLevel: zoom_level
         copyrightsVisible: false
-        activeMapType: supportedMapTypes[0]
+        activeMapType: supportedMapTypes[1]
 
         MapQuickItem {
             id: rocketMarker
@@ -65,7 +82,6 @@ Rectangle {
             anchorPoint.y: rocket_image.height/2
             coordinate: QtPositioning.coordinate(map_latitude, map_longitude) // defaults to OSU
             scale: 0.05
-
 
             visible: true
 
@@ -87,7 +103,7 @@ Rectangle {
                 latitude: 44.5638
                 longitude: -123.2794
             }*/
-            radius: 500 //meters --> Maybe use to show GPS error range? i.e. coord +/- err distance
+            radius: 30 //meters --> ~90 feet based on test launch
             color: 'red'
             opacity : 0.4
             border.width: 1 //pixels

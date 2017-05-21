@@ -1,0 +1,6 @@
+Folder Name
+Flight log for rocket Rocket Name On 05.18.2017
+Location: Location
+Initial Altitude: 4693 ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
