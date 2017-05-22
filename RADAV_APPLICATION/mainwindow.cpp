@@ -96,6 +96,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowState(Qt::WindowMaximized);
+
     /*Added 1-17-2017 for connections*/
     serial = new QSerialPort(this);     //Create teh serial port object
 
@@ -1688,6 +1690,8 @@ void MainWindow::on_focusRocketCheckBox_clicked(bool checked)
 
 void MainWindow::map_focus_update()
 {
+    ui->map->setMinimumSize(ui->mapFrame->width(), ui->mapFrame->height());
+    ui->map->setMinimumSize(ui->mapFrame->width(), ui->mapFrame->height());
     emit focusRocketChanged();
 }
 
