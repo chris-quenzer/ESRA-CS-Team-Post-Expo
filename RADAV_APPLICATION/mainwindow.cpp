@@ -200,7 +200,6 @@ void MainWindow::NoseAviByte()
     int curCount = 0;
     int maxCount = dataBytes.size();
 
-
     //Loop through array of bytes
     while(curCount < maxCount)
     {
@@ -355,6 +354,17 @@ void MainWindow::NoseAviByte()
             ui->scaledMagXDisp->setText(QString::number((curData->scaledMagX)));
             ui->scaledMagYDisp->setText(QString::number((curData->scaledMagY)));
             ui->scaledMagZDisp->setText(QString::number((curData->scaledMagZ)));
+
+            if(!plotting.isValidCoord(curData->latDegrees, curData->latMins, curData->lonDegrees, curData->lonMins))
+            {
+                ui->gps_status->setText("GPS Status: NO GPS LOCK");
+                ui->gps_LED->setColor("red");
+            }
+            else
+            {
+                ui->gps_status->setText("GPS Status: GPS LOCK");
+                ui->gps_LED->setColor("green");
+            }
 
             //End edits on 05/10/17
 
