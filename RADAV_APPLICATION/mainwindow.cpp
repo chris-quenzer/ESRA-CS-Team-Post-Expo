@@ -116,11 +116,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /*Finished additions for 1-17-2017*/
 
+    // Launch LED indicator
+    ui->launch_LED->setColor("green");
+    ui->launch_LED->setDiameter(10);
+    ui->launch_LED->setState(false);
+
     // Apogee LED indicator
     ui->apo_LED->setColor("green");
     ui->apo_LED->setDiameter(10);
     ui->apo_LED->setState(false);
-    //ui->apo_LED->setFlashing(true);
+
+    // Descent LED indicator
+    ui->descent_LED->setColor("green");
+    ui->descent_LED->setDiameter(10);
+    ui->descent_LED->setState(false);
+    ui->descent_LED->setFlashRate(500);
 
     // GPS LED indicator
     ui->gps_LED->setState(true);
@@ -347,41 +357,6 @@ void MainWindow::NoseAviByte()
             ui->scaledMagZDisp->setText(QString::number((curData->scaledMagZ)));
 
             //End edits on 05/10/17
-
-            //Attribute names for reference
-            /*enum Attribute {
-                GPS_TIME,
-                X_GYRO,
-                Y_GYRO,
-                Z_GYRO,
-                X_MAG,
-                Y_MAG,
-                Z_MAG,
-                X_ACCEL,
-                Y_ACCEL,
-                Z_ACCEL,
-                X_HGYRO,
-                Y_HGYRO,
-                Z_HGYRO,
-                X_HACCEL,
-                Y_HACCEL,
-                Z_HACCEL,
-                X_HMAG,
-                Y_HMAG,
-                Z_HMAG,
-                ALTITUDE,
-                GPS_LAT,
-                GPS_LONG,
-                ALTITUDE_GPS
-              };*/
-
-            // Update Data fields
-
-            //alt_max updated in realtimeDataSlot()
-
-
-            //This is the value that needs to change in order to increase or decrease report rate
-            //delay(500);
 
             qDebug() << "Time: " + curData->curTime;
             qDebug() << "AccX: " + curData->accX;
@@ -1149,7 +1124,7 @@ void MainWindow::alt_vel_update(int key, double time)
 {
     struct baseAltitudeInfo altInfo = profile->getAltitudeInfo();
 
-    //double vel = graph_data->plotNextVelocity(key, velocity, plotting, time, includeHistoric);
+    current_data.time = mission_time; // TIME
 
     //altitude
     double alt = plotting.getNextAltitude(plotting.source, ALTITUDE, altInfo);
@@ -1169,12 +1144,15 @@ void MainWindow::alt_vel_update(int key, double time)
         inputAlt = alt;
         altList.push_front(inputAlt);
         ui->alt_cur_LCD->display(inputAlt);
+        current_data.altitude = inputAlt; // ALTITUDE
         lastKnownAlt = inputAlt;
 
         if(alt > maxAlt)
         {
              maxAlt = alt;
              ui->alt_max_LCD->display(maxAlt);
+             ui->apo_LED->setState(false);
+             apo_time_set = false;
         }
         else
         {
@@ -1184,6 +1162,7 @@ void MainWindow::alt_vel_update(int key, double time)
             {
                 ui->apo_LED->setState(true);
                 ui->apo_time_label->setText(mission_time);
+                current_data.flightEvent = "Apogee"; // APOGEE
                 apo_time_set = true;
             }
         }
@@ -1202,21 +1181,54 @@ void MainWindow::alt_vel_update(int key, double time)
             vel = plotting.getNextVelocity(plotting.source, 0, altList[1], altList[0]);
         }
 
+        if(vel > 50 && !launch_time_set)
+        {
+            ui->launch_LED->setState(true);
+            ui->launch_time_label->setText(mission_time);
+            current_data.flightEvent = "Launch"; // LAUNCH
+            launch_time_set = true;
+        }
+
         graph_data->plotNextVelocity(key, velocity, plotting, time, includeHistoric, vel);
 
         ui->vel_cur_LCD->display(vel);
+
+        current_data.velocity = vel; // VELOCITY
 
         if(vel > maxVel)
         {
              maxVel = vel;
              ui->vel_max_LCD->display(vel);
         }
+
+        if(vel < -2)
+        {
+            ui->descent_LED->setFlashing(true);
+        }
+        else
+        {
+            ui->descent_LED->setState(false);
+        }
     }
 
-    ui->accel_LCD->display(plotting.getAccelerationMagnitude(1));
-    ui->g_force->display(plotting.getGForce());
+    double accelMag = plotting.getAccelerationMagnitude(1);
+    ui->accel_LCD->display(accelMag);
+    current_data.acceleration = accelMag; // ACCELLERATION
 
+    double gForce = plotting.getGForce();
+    ui->g_force->display(gForce);
 
+    current_data.gyroX = 0;
+    current_data.gyroY = 0;
+    current_data.gyroZ = 0;
+
+    current_data.pitchRate = 0;
+    current_data.rollRate = 0;
+    current_data.yawRate = 0;
+
+    current_data.magX = 0;
+    current_data.magX = 0;
+    current_data.magX = 0;
 }
 
 /******************************************************************************
@@ -1375,11 +1387,14 @@ void MainWindow::realtimeDataSlot()
        double timeMsec2 = plotting.getAttributeFromSource(plotting.source, GPS_TIME, 1);
 
        double time = 1.0; //TODO: Add time count to parse function, instead of 1
+
        nav_update(time);
-
+       updateRocketPath();
        alt_vel_update(key, time);
+       final_data.append(current_data);
+       current_data.flightEvent = "";
 
-        lastPointKey = key;
+       lastPointKey = key;
     }
     // make key axis range scroll with the data (at a constant range size of 8):
     ui->customPlot->xAxis->setRange(0, key, Qt::AlignLeft);
@@ -1398,6 +1413,38 @@ void MainWindow::realtimeDataSlot()
       lastFpsKey = key;
       frameCount = 0;
     }
+}
+
+void MainWindow::writeToFinalCSV()
+{
+    QDateTime fileDate;
+    QString writeFile = profile->getProfilePath() + "/finalData" + fileDate.currentDateTime().toString("dd.MM.yyyy") + ".csv";
+
+    QFile::remove(writeFile);
+
+    QFile csv(writeFile);
+
+    if(!csv.open(QFile::Append | QFile::Text))
+    {
+        qDebug() << csv.errorString();
+        return;
+    }
+    QTextStream csvStream( &csv );
+
+    csvStream << "Time----------,Event----------,Altitude----------,Velocity----------,Acceleration----------,Latitude----------,"
+                 "Longitude----------,GyroX----------,GyroY----------,GyroZ----------,Pitch Rate----------,Roll Rate----------,"
+                 "Yaw Rate----------,MagX----------,MagY----------,MagZ----------\n";
+    for(int i = 0; i < final_data.size(); i++)
+    {
+        launchData tempData = final_data.at(i);
+        csvStream << tempData.time << "," << tempData.flightEvent << "," << tempData.altitude << "," <<
+                     tempData.velocity << "," << tempData.acceleration << "," << tempData.latitude << "," <<
+                     tempData.longitude << "," << tempData.gyroX << "," << tempData.gyroY << "," <<
+                     tempData.gyroZ << "," << tempData.pitchRate << "," << tempData.rollRate << "," <<
+                     tempData.yawRate << "," << tempData.magX << "," << tempData.magY << "," << tempData.magZ << "\n";
+    }
+
+    csv.close();
 }
 
 void MainWindow::on_start_stop_clicked()
@@ -1466,6 +1513,11 @@ void MainWindow::on_start_stop_clicked()
         ui->start_stop->setAutoFillBackground(true);
         ui->start_stop->setPalette(pal);
         ui->start_stop->update();
+
+        if(profile->writeCSVCheck())
+        {
+            writeToFinalCSV();
+        }
 
         updateFlightLog();
     }
@@ -1557,13 +1609,13 @@ void MainWindow::initializeMap()
     circleOn = false;
     focusRocketOn = true;
 
-    connect(mapPathTimer, SIGNAL(timeout()), this, SLOT(updateRocketPath()));
-    mapPathTimer->setSingleShot(false);
-    mapPathTimer->start(1000); //calls updateRocketPath() every 1 sec
+    //connect(mapPathTimer, SIGNAL(timeout()), this, SLOT(updateRocketPath()));
+    //mapPathTimer->setSingleShot(false);
+    //mapPathTimer->start(1000); //calls updateRocketPath() every 1 sec
 
     connect(mapFocusTimer, SIGNAL(timeout()), this, SLOT(map_focus_update()));
     mapFocusTimer->setSingleShot(false);
-    mapFocusTimer->start(0); //calls updateRocketPath() every 1 sec
+    mapFocusTimer->start(0);
 
     ui->zoomSlider->setValue(zoom);
     ui->zoomLCD->display(zoom);
@@ -1644,16 +1696,21 @@ void MainWindow::updateRocketPath()
     {
         ui->gps_status->setText("GPS Status: NO GPS LOCK");
         ui->gps_LED->setColor("red");
+        current_data.latitude = "GPS ERROR";
+        current_data.longitude = "GPS ERROR";
         return;
     }
     else
     {
+        map_latitude = convertGPSCoord(latDegrees, latMins);
+        map_longitude = -(convertGPSCoord(lonDegrees, lonMins));
+
         ui->gps_status->setText("GPS Status: GPS LOCK");
         ui->gps_LED->setColor("green");
+        current_data.latitude = QString::number(map_latitude); // LATITUDE
+        current_data.longitude = QString::number(map_longitude); // LONGITUDE
     }
 
-    map_latitude = convertGPSCoord(latDegrees, latMins);
-    map_longitude = -(convertGPSCoord(lonDegrees, lonMins));
 
     ui->GPS_lat_LCD->display(map_latitude);
     ui->GPS_long_LCD->display(map_longitude);

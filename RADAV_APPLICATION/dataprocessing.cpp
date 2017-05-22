@@ -128,59 +128,6 @@ int DataProcessing::ReadFromCSV(){
     if(demo)
     {
         rocketData = csvData;
-        /*
-        for(int i = 0; i < 29; i++)
-        {
-            inputData *tempInput = new inputData;
-
-            tempInput->gyroX = rocketData.m_xGyro.at(i);
-            tempInput->gyroY = rocketData.m_yGyro.at(i);
-            tempInput->gyroZ = rocketData.m_zGyro.at(i);
-
-            tempInput->accX = rocketData.m_xAccel.at(i);
-            tempInput->accY = rocketData.m_yAccel.at(i);
-            tempInput->accZ = rocketData.m_zAccel.at(i);
-
-            tempInput->magX = rocketData.m_xMag.at(i);
-            tempInput->magY = rocketData.m_yMag.at(i);
-            tempInput->magZ = rocketData.m_zMag.at(i);
-
-            tempInput->gyroXH = rocketData.m_xHGyro.at(i);
-            tempInput->gyroYH = rocketData.m_yHGyro.at(i);
-            tempInput->gyroZH = rocketData.m_zHGyro.at(i);
-
-            tempInput->accXH = rocketData.m_xHAccel.at(i);
-            tempInput->accYH = rocketData.m_yHAccel.at(i);
-            tempInput->accZH = rocketData.m_zHAccel.at(i);
-
-            tempInput->magXH = rocketData.m_xHMag.at(i);
-            tempInput->magYH = rocketData.m_yHMag.at(i);
-            tempInput->magZH = rocketData.m_zHMag.at(i);
-
-            tempInput->altitude = rocketData.m_Altimeter.at(i);
-
-            tempInput->curTime = rocketData.m_timeGPS.at(i);
-            tempInput->altGPSMeter = rocketData.m_AltimeterGPS.at(i);
-
-            tempInput->latitude = rocketData.m_latGPS.at(i);
-            tempInput->longitude = rocketData.m_longGPS.at(i);
-
-            tempInput->humanLat = rocketData.m_humanLat.at(i);
-            tempInput->humanLon = rocketData.m_humanLon.at(i);
-
-            tempInput->latDegrees = rocketData.m_latDegrees.at(i).toInt();
-            tempInput->latMins = rocketData.m_latMins.at(i).toDouble();
-            tempInput->lonDegrees = rocketData.m_lonDegrees.at(i).toInt();
-            tempInput->lonMins = rocketData.m_lonMins.at(i).toDouble();
-
-            m_inputDataVector->push_back(*tempInput);
-            qDebug() << "INPUT SIZE: " << m_inputDataVector->size();
-
-            QString writePath = "DemoFlight";
-            WriteToCSV(writePath);
-            //receiveDataVector(tempVector, true, writePath);
-        }
-        */
     }
 
     return 1;

@@ -104,6 +104,33 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    struct launchData{
+        QString time;
+        QString flightEvent;
+        double altitude;
+        double velocity;
+        double acceleration;
+        QString latitude;
+        QString longitude;
+        double gyroX;
+        double gyroY;
+        double gyroZ;
+        double pitchRate;
+        double rollRate;
+        double yawRate;
+        double magX;
+        double magY;
+        double magZ;
+
+        double maxAlt;
+        double maxVel;
+    };
+
+    QVector<launchData> final_data;
+    launchData current_data;
+
+    void writeToFinalCSV();
+
     void putData(const QByteArray &data);
 
     /*Start Changes 2-14-17 Alex Wood*/
@@ -186,6 +213,7 @@ public:
 
     QString mission_time;
     bool apo_time_set = false;
+    bool launch_time_set = false;
 
 private slots:
 
