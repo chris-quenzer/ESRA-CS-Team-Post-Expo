@@ -134,6 +134,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->descent_LED->setState(false);
     ui->descent_LED->setFlashRate(500);
 
+    // Landing LED indicator
+    ui->landing_LED->setColor("green");
+    ui->landing_LED->setDiameter(10);
+    ui->landing_LED->setState(false);
+
     // GPS LED indicator
     ui->gps_LED->setState(true);
 
@@ -1435,6 +1440,11 @@ void MainWindow::writeToFinalCSV()
     QFile::remove(writeFile);
 
     QFile csv(writeFile);
+
+    //if(csv.isOpen())
+    //{
+    //    csv.copy(writeFile);
+    //}
 
     if(!csv.open(QFile::Append | QFile::Text))
     {
