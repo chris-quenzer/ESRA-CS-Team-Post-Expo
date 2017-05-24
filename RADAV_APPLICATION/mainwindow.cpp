@@ -76,6 +76,8 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include <math.h>
+
 QTime master_time(QTime::currentTime());
 QTimer dataTimer;
 bool sim_running = false;
@@ -1108,11 +1110,15 @@ void MainWindow::nav_update(double time)
         double gyro_x = plotting.getAttributeFromSource(plotting.source, X_GYRO, 1);
         double gyro_y = plotting.getAttributeFromSource(plotting.source, Y_GYRO, 1);
         double gyro_z = plotting.getAttributeFromSource(plotting.source, Z_GYRO, 1);
-        if(gyro_x != nan(""))
+        if(!qIsNaN(gyro_x) && !qIsNaN(gyro_y) && !qIsNaN(gyro_z))
         {
             ui->GLwidget->nav_rot_x = gyro_x;
             ui->GLwidget->nav_rot_y = gyro_y;
             ui->GLwidget->nav_rot_z = gyro_z;
+        }
+        else
+        {
+            return;
         }
 
         double ratePitch = (gyro_x - prevGyrox) / time;
@@ -1155,7 +1161,7 @@ void MainWindow::alt_vel_update(int key, double time)
         vel = 0;
     }
 
-    if(alt != nan(""))
+    if(!qIsNaN(alt))
     {
         graph_data->plotNextAltitude(key, altitude, plotting, altInfo, alt);
         inputAlt = alt;
@@ -1191,7 +1197,7 @@ void MainWindow::alt_vel_update(int key, double time)
         ui->alt_cur_LCD->display(lastKnownAlt);
     }
 
-    if(vel != nan(""))
+    if(!qIsNaN(vel))
     {
         if(altList.size() > 1)
         {
@@ -1229,11 +1235,16 @@ void MainWindow::alt_vel_update(int key, double time)
     }
 
     double accelMag = plotting.getAccelerationMagnitude(1);
-    ui->accel_LCD->display(accelMag);
-    current_data.acceleration = accelMag; // ACCELLERATION
 
-    double gForce = plotting.getGForce();
-    ui->g_force->display(gForce);
+    if(!qIsNaN(accelMag))
+    {
+        ui->accel_LCD->display(accelMag);
+        current_data.acceleration = accelMag; // ACCELLERATION
+
+        double gForce = plotting.getGForce();
+        ui->g_force->display(gForce);
+    }
+
 
     current_data.gyroX = 0;
     current_data.gyroY = 0;
@@ -1642,8 +1653,8 @@ void MainWindow::initializeMap()
     ui->zoomSlider->setValue(zoom);
     ui->zoomLCD->display(zoom);
 
-    ui->latitudeSpinBox->setValue(map_latitude);
-    ui->longitudeSpinBox->setValue(map_longitude);
+    ui->decMinSecLat->setText(QString::number(map_latitude));
+    ui->decMinSecLon->setText(QString::number(map_longitude));
 
     ui->circleCheckBox->setChecked(circleOn);
     ui->focusRocketCheckBox->setChecked(focusRocketOn);
@@ -1663,20 +1674,6 @@ double MainWindow::convertGPSCoord(double degrees, double minutes)
     double decDeg;
     decDeg = degrees + minutes / 60;
     return decDeg;
-}
-
-void MainWindow::on_latitudeSpinBox_valueChanged(double arg1)
-{
-    map_latitude = arg1;
-    //qDebug() << latitude;
-    emit latitudeChanged();
-}
-
-void MainWindow::on_longitudeSpinBox_valueChanged(double arg1)
-{
-    map_longitude = arg1;
-    //qDebug() << latitude;
-    emit longitudeChanged();
 }
 
 void MainWindow::on_zoomSlider_valueChanged(int value)
@@ -1735,12 +1732,31 @@ void MainWindow::updateRocketPath()
         current_data.longitude = QString::number(map_longitude); // LONGITUDE
     }
 
+    QString windroseLat, windroseLon;
+    if(map_latitude > 0)
+    {
+        windroseLat = "N ";
+    }
+    else
+    {
+        windroseLat = "S ";
+    }
+    if(map_longitude > 0)
+    {
+        windroseLon = "E ";
+    }
+    else
+    {
+        windroseLon = "W ";
+    }
+
+    QString degDecMinLat = windroseLat + QString::number(latDegrees) + "° " + QString::number(latMins) + "'";
+    ui->decMinSecLat->setText(degDecMinLat);
+    QString degDecMinLon = windroseLon + QString::number(lonDegrees) + "° " + QString::number(lonMins) + "'";
+    ui->decMinSecLon->setText(degDecMinLon);
 
     ui->GPS_lat_LCD->display(map_latitude);
     ui->GPS_long_LCD->display(map_longitude);
-
-    ui->latitudeSpinBox->setValue(map_latitude); //debug
-    ui->longitudeSpinBox->setValue(map_longitude); //debug
 
     //qDebug() << "Current GPS Coord: (" << map_latitude << "," << map_longitude << ")";
 
@@ -1750,7 +1766,7 @@ void MainWindow::updateRocketPath()
     if(rocketPath.empty())
     {
         rocketPath.append(coord);
-      
+
         //qDebug() << "New coord added: (" << rocketPath.last().latitude << "," << rocketPath.last().longitude << ")";
 
         emit latitudeChanged();
@@ -1807,9 +1823,6 @@ void MainWindow::randomPath()
 {
     map_latitude += Rand_f(-0.001, 0.001);
     map_longitude += Rand_f(-0.001, 0.001);
-
-    ui->latitudeSpinBox->setValue(map_latitude);
-    ui->longitudeSpinBox->setValue(map_longitude);
 
     emit latitudeChanged();
     emit longitudeChanged();

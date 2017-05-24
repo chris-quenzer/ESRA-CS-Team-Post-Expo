@@ -284,8 +284,6 @@ private slots:
 public slots:
     // MAPPING
     void on_zoomSlider_valueChanged(int value);
-    void on_latitudeSpinBox_valueChanged(double arg1);
-    void on_longitudeSpinBox_valueChanged(double arg1);
     void on_circleCheckBox_clicked(bool checked);
     void on_focusRocketCheckBox_clicked(bool checked);
     void map_focus_update();

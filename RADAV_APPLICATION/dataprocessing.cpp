@@ -12,7 +12,7 @@
 DataProcessing::DataProcessing()
 {
     m_inputDataVector = nullptr;
-    ReadFromCSV();
+    //ReadFromCSV();
 
 }
 
@@ -122,7 +122,7 @@ int DataProcessing::ReadFromCSV(){
 
         }
 
-        qDebug() << "LENGTH AFTER IMPORT: " << csvData.m_xGyro.length();
+        //qDebug() << "LENGTH AFTER IMPORT: " << csvData.m_xGyro.length();
     }
 
     if(demo)
