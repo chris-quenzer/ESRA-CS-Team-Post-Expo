@@ -1,0 +1,8 @@
+SensorTest
+Flight log for rocket Arduino On 05.24.2017
+Location: Capstone room
+Initial Altitude: 4639 ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 80007.3 ft.
+Max Velocity Attained During Flight: 0 ft./s

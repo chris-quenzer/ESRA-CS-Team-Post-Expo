@@ -125,6 +125,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->launch_LED->setDiameter(10);
     ui->launch_LED->setState(false);
 
+    // Ascent LED indicator
+    ui->ascent_LED->setColor("green");
+    ui->ascent_LED->setDiameter(10);
+    ui->ascent_LED->setState(false);
+    ui->ascent_LED->setFlashRate(500);
+
     // Apogee LED indicator
     ui->apo_LED->setColor("green");
     ui->apo_LED->setDiameter(10);
@@ -218,6 +224,8 @@ void MainWindow::NoseAviByte()
         {
             //Build and fill data structure with received data
             inputData *curData = new inputData;
+
+            receivingData = true;
 
             //All incoming values should be in little endian order
             curCount += 3;
@@ -393,11 +401,15 @@ void MainWindow::NoseAviByte()
         }
         else
         {
+            receivingData = false;
             printErrorLog(dataBytes.at(curCount), curCount);
             curCount++;
         }
 
     }
+
+    ui->receivingCheckBox->setChecked(receivingData);
+
     printErrorLog(-1, -1);
     delay(1010);
 
@@ -1137,8 +1149,13 @@ void MainWindow::nav_update(double time)
         ui->rollRate_LCD->display(rateRoll);
         ui->yawRate_LCD->display(rateYaw);
 
-        //double accel = plotting.getAttributeFromSource(plotting.source, X_ACCEL, 1);
-        //ui->accel_LCD->display(accel);
+        current_data.gyroX = gyro_x;
+        current_data.gyroY = gyro_y;
+        current_data.gyroZ = gyro_z;
+
+        current_data.pitchRate = ratePitch;
+        current_data.rollRate = rateRoll;
+        current_data.yawRate = rateYaw;
 
 
 }
@@ -1187,6 +1204,10 @@ void MainWindow::alt_vel_update(int key, double time)
                 ui->apo_time_label->setText(mission_time);
                 current_data.flightEvent = "Apogee"; // APOGEE
                 apo_time_set = true;
+
+                ui->ascent_LED->setFlashing(false);
+                ui->ascent_LED->setState(true);
+                ui->ascent_label->setText("Complete");
             }
         }
 
@@ -1207,9 +1228,12 @@ void MainWindow::alt_vel_update(int key, double time)
         if(vel > 50 && !launch_time_set)
         {
             ui->launch_LED->setState(true);
-            ui->launch_time_label->setText(mission_time);
+            ui->launch_time_label->setText("00:00:00:000");
             current_data.flightEvent = "Launch"; // LAUNCH
             launch_time_set = true;
+
+            ui->ascent_LED->setFlashing(true);
+            ui->ascent_label->setText("In Progress");
         }
 
         graph_data->plotNextVelocity(key, velocity, plotting, time, includeHistoric, vel);
@@ -1224,13 +1248,36 @@ void MainWindow::alt_vel_update(int key, double time)
              ui->vel_max_LCD->display(vel);
         }
 
-        if(vel < -2)
+        if(vel < -2 && !descent_ind_set)
         {
             ui->descent_LED->setFlashing(true);
+            ui->descent_label->setText("In Progress");
+            descent_ind_set = true;
         }
-        else
+
+        if(altList.size() > 1 && launch_time_set && !landing_time_set)
         {
-            ui->descent_LED->setState(false);
+            double altDiff = altList.last() - altList.front();
+
+            if((abs(altDiff) < 100 && (vel > -200 && vel < 0)) || checkIfAltIsChanging()) // If difference in start and end alt is less than 200ft and vel under -200ft/s
+            {
+                ui->landing_LED->setState(true);
+                ui->landing_time_label->setText(mission_time);
+                current_data.flightEvent = "Landing"; // LANDING
+                landing_time_set = true;
+
+                ui->landingLat->setText(current_data.humLat);
+                ui->landingLon->setText(current_data.humLon);
+
+                ui->descent_LED->setState(true);
+                ui->descent_LED->setFlashing(false);
+                ui->descent_label->setText("Complete");
+            }
+            else
+            {
+                ui->landing_LED->setState(false);
+                landing_time_set = false;
+            }
         }
     }
 
@@ -1245,18 +1292,26 @@ void MainWindow::alt_vel_update(int key, double time)
         ui->g_force->display(gForce);
     }
 
-
-    current_data.gyroX = 0;
-    current_data.gyroY = 0;
-    current_data.gyroZ = 0;
-
-    current_data.pitchRate = 0;
-    current_data.rollRate = 0;
-    current_data.yawRate = 0;
-
     current_data.magX = 0;
     current_data.magX = 0;
     current_data.magX = 0;
+}
+
+bool MainWindow::checkIfAltIsChanging()
+{
+    if(altList.at(0) == altList.at(1) && launch_time_set)
+    {
+        altDiffCount++;
+    }
+    else
+    {
+        altDiffCount = 0;
+        return false;
+    }
+    if(altDiffCount >= 5)
+    {
+        return true;
+    }
 }
 
 /******************************************************************************
@@ -1394,17 +1449,43 @@ void MainWindow::realtimeDataSlot()
     double key = master_time.elapsed()/1000.0; // time elapsed since start of demo, in seconds
     static double lastPointKey = 0;
 
-    //Mission time display ---------------------------------
-    int secs = master_time.elapsed() / 1000;
-    int mins = (secs / 60) % 60;
-    int hours = (secs / 3600);
-    int ms = (master_time.elapsed() % 1000);
-    secs = secs % 60;
-    mission_time = QString("%1:%2:%3:%4")
-            .arg(hours, 2, 10, QLatin1Char('0'))
-            .arg(mins, 2, 10, QLatin1Char('0'))
-            .arg(secs, 2, 10, QLatin1Char('0'))
-            .arg(ms, 3, 10, QLatin1Char('0'));
+    if(!launch_time_set && !time_reset)
+    {
+        //Mission time display ---------------------------------
+        int secs = master_time.elapsed() / 1000;
+        int mins = (secs / 60) % 60;
+        int hours = (secs / 3600);
+        int ms = (master_time.elapsed() % 1000);
+        secs = secs % 60;
+
+        mission_time = QString("%1:%2:%3:%4")
+                .arg(hours, 2, 10, QLatin1Char('0'))
+                .arg(mins, 2, 10, QLatin1Char('0'))
+                .arg(secs, 2, 10, QLatin1Char('0'))
+                .arg(ms, 3, 10, QLatin1Char('0'));
+
+        mission_time = "-" + mission_time;
+        launchTime = master_time.elapsed();
+    }
+    else if(launch_time_set)
+    {
+        flightTime = -(launchTime - master_time.elapsed());
+
+        int secs = flightTime / 1000;
+        int mins = (secs / 60) % 60;
+        int hours = (secs / 3600);
+        int ms = (flightTime % 1000);
+        secs = secs % 60;
+
+        mission_time = QString("%1:%2:%3:%4")
+                .arg(hours, 2, 10, QLatin1Char('0'))
+                .arg(mins, 2, 10, QLatin1Char('0'))
+                .arg(secs, 2, 10, QLatin1Char('0'))
+                .arg(ms, 3, 10, QLatin1Char('0'));
+
+        time_reset = true;
+    }
+
     ui->mission_time->display(mission_time);
     //------------------------------------------------------
 
@@ -1472,8 +1553,8 @@ void MainWindow::writeToFinalCSV()
         launchData tempData = final_data.at(i);
         csvStream << tempData.time << "," << tempData.flightEvent << "," << tempData.altitude << "," <<
                      tempData.velocity << "," << tempData.acceleration << "," << tempData.latitude << "," <<
-                     tempData.longitude << "," << tempData.gyroX << "," << tempData.gyroY << "," <<
-                     tempData.gyroZ << "," << tempData.pitchRate << "," << tempData.rollRate << "," <<
+                     tempData.longitude << "," << tempData.humLat << "," << tempData.humLon << "," << tempData.gyroX << "," <<
+                     tempData.gyroY << "," << tempData.gyroZ << "," << tempData.pitchRate << "," << tempData.rollRate << "," <<
                      tempData.yawRate << "," << tempData.magX << "," << tempData.magY << "," << tempData.magZ << "\n";
     }
 
@@ -1755,8 +1836,8 @@ void MainWindow::updateRocketPath()
     QString degDecMinLon = windroseLon + QString::number(lonDegrees) + "° " + QString::number(lonMins) + "'";
     ui->decMinSecLon->setText(degDecMinLon);
 
-    ui->GPS_lat_LCD->display(map_latitude);
-    ui->GPS_long_LCD->display(map_longitude);
+    current_data.humLat = degDecMinLat;
+    current_data.humLon = degDecMinLon;
 
     //qDebug() << "Current GPS Coord: (" << map_latitude << "," << map_longitude << ")";
 

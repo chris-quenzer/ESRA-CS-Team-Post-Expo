@@ -40,7 +40,9 @@ Rectangle {
         //     value:
         // }
 
-        //PluginParameter { name: "osm.mapping.offline.directory"; value: "qrc:/map_tiles" }
+        //PluginParameter { name: "osm.useragent"; value: "RADAV" }
+        //PluginParameter { name: "osm.mapping.providersrepository.address"; value: "https://tile.thunderforest.com/outdoors/0/0/0.png?apikey=3893a8e9c6ff4e99a6839ad9c43493c7" }
+        //PluginParameter { name: "osm.mapping.custom.host"; value: "https://tile.thunderforest.com/outdoors/0/0/0.png?apikey=3893a8e9c6ff4e99a6839ad9c43493c7" }
 
         PluginParameter {
         name: "googlemaps.useragent"

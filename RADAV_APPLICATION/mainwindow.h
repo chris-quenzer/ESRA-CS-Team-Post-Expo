@@ -112,6 +112,8 @@ public:
         double acceleration;
         QString latitude;
         QString longitude;
+        QString humLat;
+        QString humLon;
         double gyroX;
         double gyroY;
         double gyroZ;
@@ -147,6 +149,7 @@ public:
     QDataStream *inDataStream;   //Added to support data stream object in nose cone rx function
     Ui::MainWindow *ui;
 
+    bool receivingData = false;
 
     void readNoseConeAvi();     //Added for Byte array read 3/31/17 Alex Wood
 
@@ -210,10 +213,20 @@ public:
     // END MAPPING
 
     QList<double> altList;
+    int altDiffCount = 0;
+
+    bool checkIfAltIsChanging();
 
     QString mission_time;
+    int flightTime = 0;
+    int launchTime = 0;
+
+    bool time_reset = false;
     bool apo_time_set = false;
+    bool ascent_ind_set = false;
     bool launch_time_set = false;
+    bool descent_ind_set = false;
+    bool landing_time_set = false;
 
 private slots:
 

@@ -185,7 +185,7 @@ background-color: rgb(70,70,70);
              </spacer>
             </item>
             <item row="0" column="2">
-             <layout class="QGridLayout" name="gridLayout_15" rowstretch="0,0,0" columnminimumwidth="0,0,0,0">
+             <layout class="QGridLayout" name="gridLayout_15" rowstretch="0,0,0" columnminimumwidth="0,0,0,0,0,0">
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -198,11 +198,8 @@ background-color: rgb(70,70,70);
               <property name="horizontalSpacing">
                <number>6</number>
               </property>
-              <item row="1" column="1">
-               <widget class="LED" name="apo_LED" native="true"/>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="apo_label">
+              <item row="2" column="4">
+               <widget class="QLabel" name="apo_label_3">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                   <horstretch>0</horstretch>
@@ -228,74 +225,20 @@ background-color: rgb(70,70,70);
                  </size>
                 </property>
                 <property name="text">
-                 <string>Apogee</string>
+                 <string>Landing</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="apo_time_label">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
+              <item row="1" column="4">
+               <widget class="LED" name="landing_LED" native="true"/>
               </item>
-              <item row="1" column="0">
-               <widget class="LED" name="launch_LED" native="true"/>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="launch_label">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>75</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Launch</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="launch_time_label">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
+              <item row="1" column="3">
                <widget class="LED" name="descent_LED" native="true"/>
               </item>
-              <item row="2" column="2">
+              <item row="2" column="3">
                <widget class="QLabel" name="apo_label_2">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -329,11 +272,24 @@ background-color: rgb(70,70,70);
                 </property>
                </widget>
               </item>
-              <item row="1" column="3">
-               <widget class="LED" name="landing_LED" native="true"/>
+              <item row="0" column="0">
+               <widget class="QLabel" name="launch_time_label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
               </item>
-              <item row="2" column="3">
-               <widget class="QLabel" name="apo_label_3">
+              <item row="2" column="2">
+               <widget class="QLabel" name="apo_label">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                   <horstretch>0</horstretch>
@@ -359,7 +315,200 @@ background-color: rgb(70,70,70);
                  </size>
                 </property>
                 <property name="text">
-                 <string>Landing</string>
+                 <string>Apogee</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="LED" name="launch_LED" native="true"/>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="apo_time_label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="LED" name="apo_LED" native="true"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="launch_label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Launch</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLabel" name="apo_label_4">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="sizeIncrement">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="baseSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Ascent</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLabel" name="landing_time_label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="ascent_label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="LED" name="ascent_LED" native="true"/>
+              </item>
+              <item row="0" column="3">
+               <widget class="QLabel" name="descent_label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="5">
+               <layout class="QVBoxLayout" name="verticalLayout_11">
+                <item>
+                 <widget class="QLabel" name="landingLat">
+                  <property name="font">
+                   <font>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="landingLon">
+                  <property name="font">
+                   <font>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item row="2" column="5">
+               <widget class="QLabel" name="apo_label_5">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>75</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="sizeIncrement">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="baseSize">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Final Location</string>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignCenter</set>
@@ -428,7 +577,7 @@ border-radius: 10px;
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap resource="myresources.qrc">:/Resources/images/OSU_AIAA_Banner.png</pixmap>
+           <pixmap>:/Resources/images/OSU_AIAA_Banner.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -483,8 +632,8 @@ border-radius: 10px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1313</width>
-                 <height>686</height>
+                 <width>1246</width>
+                 <height>653</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_17">
@@ -513,7 +662,7 @@ border-radius: 10px;
 }</string>
                     </property>
                     <property name="title">
-                     <string>Speed and Location</string>
+                     <string>Altitude and Speed</string>
                     </property>
                     <property name="flat">
                      <bool>false</bool>
@@ -521,6 +670,13 @@ border-radius: 10px;
                     <layout class="QVBoxLayout" name="verticalLayout_9">
                      <item>
                       <layout class="QFormLayout" name="formLayout_3">
+                       <item row="0" column="0">
+                        <widget class="QLabel" name="label_19">
+                         <property name="text">
+                          <string>Current Altitude (ft)</string>
+                         </property>
+                        </widget>
+                       </item>
                        <item row="0" column="1">
                         <widget class="QLCDNumber" name="alt_cur_LCD">
                          <property name="sizePolicy">
@@ -531,6 +687,9 @@ border-radius: 10px;
                          </property>
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
+                         </property>
+                         <property name="digitCount">
+                          <number>7</number>
                          </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
@@ -555,6 +714,9 @@ border-radius: 10px;
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
                          </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
                          </property>
@@ -574,6 +736,9 @@ border-radius: 10px;
                            <horstretch>0</horstretch>
                            <verstretch>0</verstretch>
                           </sizepolicy>
+                         </property>
+                         <property name="digitCount">
+                          <number>7</number>
                          </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
@@ -595,6 +760,9 @@ border-radius: 10px;
                            <verstretch>0</verstretch>
                           </sizepolicy>
                          </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
                          </property>
@@ -615,90 +783,22 @@ border-radius: 10px;
                            <verstretch>0</verstretch>
                           </sizepolicy>
                          </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
                          </property>
                         </widget>
                        </item>
                        <item row="5" column="0">
-                        <widget class="QLabel" name="label_10">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="text">
-                          <string>GPS Location</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="5" column="1">
-                        <layout class="QHBoxLayout" name="horizontalLayout_21">
-                         <item>
-                          <layout class="QFormLayout" name="formLayout_5">
-                           <item row="0" column="0">
-                            <widget class="QLabel" name="label_20">
-                             <property name="text">
-                              <string>Lat.</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item row="0" column="1">
-                            <widget class="QLCDNumber" name="GPS_lat_LCD">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="digitCount">
-                              <number>7</number>
-                             </property>
-                             <property name="segmentStyle">
-                              <enum>QLCDNumber::Flat</enum>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                         <item>
-                          <layout class="QFormLayout" name="formLayout_6">
-                           <item row="0" column="0">
-                            <widget class="QLabel" name="label_21">
-                             <property name="text">
-                              <string>Long.</string>
-                             </property>
-                            </widget>
-                           </item>
-                           <item row="0" column="1">
-                            <widget class="QLCDNumber" name="GPS_long_LCD">
-                             <property name="sizePolicy">
-                              <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
-                               <horstretch>0</horstretch>
-                               <verstretch>0</verstretch>
-                              </sizepolicy>
-                             </property>
-                             <property name="digitCount">
-                              <number>7</number>
-                             </property>
-                             <property name="segmentStyle">
-                              <enum>QLCDNumber::Flat</enum>
-                             </property>
-                            </widget>
-                           </item>
-                          </layout>
-                         </item>
-                        </layout>
-                       </item>
-                       <item row="6" column="0">
                         <widget class="QLabel" name="label_11">
                          <property name="text">
                           <string>G Force (G)</string>
                          </property>
                         </widget>
                        </item>
-                       <item row="6" column="1">
+                       <item row="5" column="1">
                         <widget class="QLCDNumber" name="g_force">
                          <property name="sizePolicy">
                           <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
@@ -706,15 +806,11 @@ border-radius: 10px;
                            <verstretch>0</verstretch>
                           </sizepolicy>
                          </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
-                         </property>
-                        </widget>
-                       </item>
-                       <item row="0" column="0">
-                        <widget class="QLabel" name="label_19">
-                         <property name="text">
-                          <string>Current Altitude (ft)</string>
                          </property>
                         </widget>
                        </item>
@@ -771,6 +867,9 @@ border-radius: 10px;
                            <property name="smallDecimalPoint">
                             <bool>false</bool>
                            </property>
+                           <property name="digitCount">
+                            <number>7</number>
+                           </property>
                            <property name="segmentStyle">
                             <enum>QLCDNumber::Flat</enum>
                            </property>
@@ -785,6 +884,9 @@ border-radius: 10px;
                          </item>
                          <item row="1" column="1">
                           <widget class="QLCDNumber" name="roll_LCD">
+                           <property name="digitCount">
+                            <number>7</number>
+                           </property>
                            <property name="segmentStyle">
                             <enum>QLCDNumber::Flat</enum>
                            </property>
@@ -799,6 +901,9 @@ border-radius: 10px;
                          </item>
                          <item row="2" column="1">
                           <widget class="QLCDNumber" name="yaw_LCD">
+                           <property name="digitCount">
+                            <number>7</number>
+                           </property>
                            <property name="segmentStyle">
                             <enum>QLCDNumber::Flat</enum>
                            </property>
@@ -817,6 +922,9 @@ border-radius: 10px;
                          </item>
                          <item row="0" column="1">
                           <widget class="QLCDNumber" name="pitchRate_LCD">
+                           <property name="digitCount">
+                            <number>7</number>
+                           </property>
                            <property name="segmentStyle">
                             <enum>QLCDNumber::Flat</enum>
                            </property>
@@ -831,6 +939,9 @@ border-radius: 10px;
                          </item>
                          <item row="1" column="1">
                           <widget class="QLCDNumber" name="rollRate_LCD">
+                           <property name="digitCount">
+                            <number>7</number>
+                           </property>
                            <property name="segmentStyle">
                             <enum>QLCDNumber::Flat</enum>
                            </property>
@@ -845,6 +956,12 @@ border-radius: 10px;
                          </item>
                          <item row="2" column="1">
                           <widget class="QLCDNumber" name="yawRate_LCD">
+                           <property name="layoutDirection">
+                            <enum>Qt::LeftToRight</enum>
+                           </property>
+                           <property name="digitCount">
+                            <number>7</number>
+                           </property>
                            <property name="segmentStyle">
                             <enum>QLCDNumber::Flat</enum>
                            </property>
@@ -1139,7 +1256,7 @@ border-radius: 10px;
                   <widget class="QWidget" name="scrollAreaWidgetContents_3">
                    <property name="geometry">
                     <rect>
-                     <x>-120</x>
+                     <x>0</x>
                      <y>0</y>
                      <width>518</width>
                      <height>930</height>
@@ -1556,7 +1673,7 @@ border-radius: 10px;
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>HP Altimete :</string>
+                <string>HP Altimeter :</string>
                </property>
               </widget>
              </item>
@@ -2342,6 +2459,19 @@ border-radius: 10px;
            <string>Include Historic Data</string>
           </property>
          </widget>
+         <widget class="QCheckBox" name="receivingCheckBox">
+          <property name="geometry">
+           <rect>
+            <x>880</x>
+            <y>380</y>
+            <width>70</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Receiving</string>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -2493,9 +2623,7 @@ border-radius: 10px;
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="myresources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>pushButton</sender>
