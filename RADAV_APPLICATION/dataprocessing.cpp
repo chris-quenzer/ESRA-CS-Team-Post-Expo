@@ -383,26 +383,35 @@ double DataProcessing::getNextAltitude(int source, Attribute alt, struct baseAlt
    return feetHeight;
 }
 
-
-
-double DataProcessing::getAccelerationMagnitude(int source)
+double DataProcessing::getGForce(int source)
 {
     double accel_X = getAttributeFromSource(source, X_ACCEL, 1);
     double accel_Y = getAttributeFromSource(source, Y_ACCEL, 1);
     double accel_Z = getAttributeFromSource(source, Z_ACCEL, 1);
 
-    accel_mag = sqrt((accel_X*accel_X) + (accel_Y*accel_Y) + (accel_Z*accel_Z)); // |a| = sqrt(ax^2 + ay^2 + az^2)
+    g_force = sqrt((accel_X*accel_X) + (accel_Y*accel_Y) + (accel_Z*accel_Z)); // |a| = sqrt(ax^2 + ay^2 + az^2)
 
-    double G0 = 9.80665; //Gravitational Acceleration m/s^2
-    g_force = accel_mag / G0;
-
-    return accel_mag;
+    return g_force;
 }
 
-
-double DataProcessing::getGForce()
+double DataProcessing::getAccelerationMagnitude()
 {
-    return g_force;
+    bool metric = false; //outputs ft/s^2 in imperial mode
+
+    double G0m = 9.80665; //Gravitational Acceleration m/s^2
+    double G0i = 32.174; //Gravitational Acceleration  ft/s^2
+
+    if(metric)
+    {
+        accel_mag = g_force * G0m;
+    }
+    else
+    {
+        accel_mag = g_force * G0i;
+    }
+
+
+    return accel_mag;
 }
 
 /***************************************************8

@@ -110,6 +110,7 @@ public:
         double altitude;
         double velocity;
         double acceleration;
+        double accelerationG;
         QString latitude;
         QString longitude;
         QString humLat;
@@ -126,6 +127,7 @@ public:
 
         double maxAlt;
         double maxVel;
+        double maxAccelGs;
     };
 
     QVector<launchData> final_data;
@@ -193,6 +195,7 @@ public:
 
     QQuickView *view = new QQuickView();
 
+    int mapType;
     int zoom;
     double map_latitude;
     double map_longitude;
@@ -201,6 +204,7 @@ public:
 
     QList<GPSCoordinate> rocketPath;
 
+    Q_INVOKABLE double get_mapType();
     Q_INVOKABLE double get_zoom();
     Q_INVOKABLE double get_lat();
     Q_INVOKABLE double get_long();
@@ -215,11 +219,12 @@ public:
     QList<double> altList;
     int altDiffCount = 0;
 
-    bool checkIfAltIsChanging();
+    bool altIsChanging();
 
     QString mission_time;
     int flightTime = 0;
     int launchTime = 0;
+    QString landingTime;
 
     bool time_reset = false;
     bool apo_time_set = false;
@@ -286,13 +291,15 @@ private slots:
 
     void realtimeDataSlot();
 
-    //void nav_update();
+    void on_actionRestart_triggered();
 
     void on_includeHistoric_toggled(bool checked);
 
     void on_mavProxyShowButton_clicked();
 
     void on_expoDemoCheckBox_clicked(bool checked);
+
+    void on_mapSelect_valueChanged(int arg1);
 
 public slots:
     // MAPPING
@@ -309,6 +316,7 @@ public slots:
 
 signals:
     // MAPPING
+    void mapTypeChanged();
     void latitudeChanged();
     void longitudeChanged();
     void zoomChanged();
@@ -347,6 +355,7 @@ private:
 
     double maxAlt = 0;
     double maxVel = 0;
+    double maxAccelGs = 0;
     double prevGyrox = 0;
     double prevGyroy = 0;
     double prevGyroz = 0;

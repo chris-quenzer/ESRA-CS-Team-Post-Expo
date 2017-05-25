@@ -24,6 +24,7 @@ Rectangle {
             onCircleChanged: circle_state = mapData.get_circleState()
             onFocusOptionChanged: focusRocket = mapData.get_focusRocketState()
             onRocketPathChanged: rocketPath.addCoordinate(QtPositioning.coordinate(map_latitude, map_longitude))
+            onMapTypeChanged: map.activeMapType = map.supportedMapTypes[mapData.get_mapType()]
     }
 
     Connections {
@@ -41,7 +42,7 @@ Rectangle {
         // }
 
         //PluginParameter { name: "osm.useragent"; value: "RADAV" }
-        //PluginParameter { name: "osm.mapping.providersrepository.address"; value: "https://tile.thunderforest.com/outdoors/0/0/0.png?apikey=3893a8e9c6ff4e99a6839ad9c43493c7" }
+        //PluginParameter { name: "osm.mapping.providersrepository.address"; value: "http://mt1.google.com/vt/lyrs=s" }
         //PluginParameter { name: "osm.mapping.custom.host"; value: "https://tile.thunderforest.com/outdoors/0/0/0.png?apikey=3893a8e9c6ff4e99a6839ad9c43493c7" }
 
         PluginParameter {

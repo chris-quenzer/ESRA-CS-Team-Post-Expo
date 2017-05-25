@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1169</width>
+    <width>1340</width>
     <height>936</height>
    </rect>
   </property>
@@ -577,7 +577,7 @@ border-radius: 10px;
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap>:/Resources/images/OSU_AIAA_Banner.png</pixmap>
+           <pixmap resource="myresources.qrc">:/Resources/images/OSU_AIAA_Banner.png</pixmap>
           </property>
           <property name="scaledContents">
            <bool>true</bool>
@@ -632,8 +632,8 @@ border-radius: 10px;
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>1246</width>
-                 <height>653</height>
+                 <width>1275</width>
+                 <height>682</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_17">
@@ -811,6 +811,29 @@ border-radius: 10px;
                          </property>
                          <property name="segmentStyle">
                           <enum>QLCDNumber::Flat</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="6" column="1">
+                        <widget class="QLCDNumber" name="accel_max_LCD">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
+                         <property name="segmentStyle">
+                          <enum>QLCDNumber::Flat</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="6" column="0">
+                        <widget class="QLabel" name="label_20">
+                         <property name="text">
+                          <string>Max Gs</string>
                          </property>
                         </widget>
                        </item>
@@ -1058,6 +1081,27 @@ border-radius: 10px;
                     </item>
                     <item row="1" column="1">
                      <layout class="QGridLayout" name="gridLayout_8">
+                      <item row="1" column="0">
+                       <layout class="QHBoxLayout" name="horizontalLayout_3">
+                        <item>
+                         <widget class="QLabel" name="label_10">
+                          <property name="text">
+                           <string>Map Type</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QSpinBox" name="mapSelect">
+                          <property name="maximum">
+                           <number>8</number>
+                          </property>
+                          <property name="value">
+                           <number>1</number>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
                       <item row="1" column="1">
                        <widget class="QCheckBox" name="circleCheckBox">
                         <property name="text">
@@ -1206,7 +1250,13 @@ border-radius: 10px;
                      <enum>QFrame::StyledPanel</enum>
                     </property>
                     <property name="frameShadow">
-                     <enum>QFrame::Raised</enum>
+                     <enum>QFrame::Sunken</enum>
+                    </property>
+                    <property name="lineWidth">
+                     <number>1</number>
+                    </property>
+                    <property name="midLineWidth">
+                     <number>0</number>
                     </property>
                     <layout class="QGridLayout" name="gridLayout">
                      <item row="0" column="0">
@@ -1273,7 +1323,7 @@ border-radius: 10px;
                       </property>
                       <property name="minimumSize">
                        <size>
-                        <width>500</width>
+                        <width>200</width>
                         <height>300</height>
                        </size>
                       </property>
@@ -1295,7 +1345,7 @@ border-radius: 10px;
                       </property>
                       <property name="minimumSize">
                        <size>
-                        <width>500</width>
+                        <width>200</width>
                         <height>300</height>
                        </size>
                       </property>
@@ -1317,7 +1367,7 @@ border-radius: 10px;
                       </property>
                       <property name="minimumSize">
                        <size>
-                        <width>500</width>
+                        <width>200</width>
                         <height>300</height>
                        </size>
                       </property>
@@ -2471,6 +2521,9 @@ border-radius: 10px;
           <property name="text">
            <string>Receiving</string>
           </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
          </widget>
         </widget>
        </widget>
@@ -2484,7 +2537,7 @@ border-radius: 10px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1169</width>
+     <width>1340</width>
      <height>21</height>
     </rect>
    </property>
@@ -2496,6 +2549,7 @@ border-radius: 10px;
     <addaction name="action_Save"/>
     <addaction name="action_Open"/>
     <addaction name="separator"/>
+    <addaction name="actionRestart"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -2601,6 +2655,11 @@ border-radius: 10px;
     <string>Show Graphs</string>
    </property>
   </action>
+  <action name="actionRestart">
+   <property name="text">
+    <string>Restart</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -2623,7 +2682,9 @@ border-radius: 10px;
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="myresources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>pushButton</sender>

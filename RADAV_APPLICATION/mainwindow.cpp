@@ -76,7 +76,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-#include <math.h>
+#include <QProcess>
 
 QTime master_time(QTime::currentTime());
 QTimer dataTimer;
@@ -192,6 +192,7 @@ MainWindow::~MainWindow()
 
 }
 
+
 /*Start Changes 2-14-17 Alex Wood*/
 
 
@@ -218,7 +219,6 @@ void MainWindow::NoseAviByte()
     //Loop through array of bytes
     while(curCount < maxCount)
     {
-
         //If packet header is found, parse data vals
         if(((dataBytes.at(curCount) == 'S') && (dataBytes.at(curCount + 1) == 'N') && (dataBytes.at(curCount + 2) == 'P')) && (curCount + 40) < maxCount)
         {
@@ -302,23 +302,32 @@ void MainWindow::NoseAviByte()
 
 
             curData->intAccX = accX;
-            curData->accX = QString::number(accX);
+            //curData->accX = QString::number(accX);
+            curData->accX = QString::number(curData->scaledAccX);
             curData->intAccY = accY;
-            curData->accY = QString::number(accY);
+            //curData->accY = QString::number(accY);
+            curData->accY = QString::number(curData->scaledAccY);
             curData->intAccZ = accZ;
-            curData->accZ = QString::number(accZ);
+            //curData->accZ = QString::number(accZ);
+            curData->accZ = QString::number(curData->scaledAccZ);
             curData->intGyroX = gyroX;
-            curData->gyroX = QString::number(gyroX);
+            //curData->gyroX = QString::number(gyroX);
+            curData->gyroX = QString::number(curData->scaledGyroX);
             curData->intGyroY = gyroY;
-            curData->gyroY = QString::number(gyroY);
+            //curData->gyroY = QString::number(gyroY);
+            curData->gyroY = QString::number(curData->scaledGyroY);
             curData->intGyroZ = gyroZ;
-            curData->gyroZ = QString::number(gyroZ);
+            //curData->gyroZ = QString::number(gyroZ);
+            curData->gyroZ = QString::number(curData->scaledGyroZ);
             curData->intMagX = magX;
-            curData->magX = QString::number(magX);
+            //curData->magX = QString::number(magX);
+            curData->magX = QString::number(curData->scaledMagX);
             curData->intMagY = magY;
-            curData->magY = QString::number(magY);
+            //curData->magY = QString::number(magY);
+            curData->magY = QString::number(curData->scaledMagY);
             curData->intMagZ = magZ;
-            curData->magZ = QString::number(magZ);
+            //curData->magZ = QString::number(magZ);
+            curData->magZ = QString::number(curData->scaledMagY);
 
             curData->intAccXH = accHX;
             curData->accXH = QString::number(accHX);
@@ -395,9 +404,6 @@ void MainWindow::NoseAviByte()
             qDebug() << "MagX: " + curData->magX;
             qDebug() << "MagY: " + curData->magY;
             qDebug() << "MagZ: " + curData->magZ;
-
-            qDebug() << "Heading: " << (atan2(curData->magY.toDouble(), curData->magX.toDouble()) * 180) / M_PI; // Heading in X-Y plane in degrees from North
-
         }
         else
         {
@@ -841,6 +847,12 @@ void MainWindow::on_action_Open_triggered()
     qDebug() << plotting.path;
 }
 
+void MainWindow::on_actionRestart_triggered()
+{
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+}
+
 void MainWindow::aboutQt()
 {
     aboutQt();
@@ -1122,42 +1134,50 @@ void MainWindow::nav_update(double time)
         double gyro_x = plotting.getAttributeFromSource(plotting.source, X_GYRO, 1);
         double gyro_y = plotting.getAttributeFromSource(plotting.source, Y_GYRO, 1);
         double gyro_z = plotting.getAttributeFromSource(plotting.source, Z_GYRO, 1);
+
+        double mag_x = plotting.getAttributeFromSource(plotting.source, X_MAG, 1);
+        double mag_y = plotting.getAttributeFromSource(plotting.source, Y_MAG, 1);
+        double mag_z = plotting.getAttributeFromSource(plotting.source, Z_MAG, 1);
+
         if(!qIsNaN(gyro_x) && !qIsNaN(gyro_y) && !qIsNaN(gyro_z))
         {
-            ui->GLwidget->nav_rot_x = gyro_x;
-            ui->GLwidget->nav_rot_y = gyro_y;
-            ui->GLwidget->nav_rot_z = gyro_z;
+            //ASSUMING +X-AXIS IS FACING SKY
+            double ratePitch = gyro_y;
+            double rateRoll = gyro_x;
+            double rateYaw = gyro_z;
+
+            ui->pitchRate_LCD->display(ratePitch);
+            ui->rollRate_LCD->display(rateRoll);
+            ui->yawRate_LCD->display(rateYaw);
+
+            current_data.gyroX = gyro_x;
+            current_data.gyroY = gyro_y;
+            current_data.gyroZ = gyro_z;
+
+            current_data.pitchRate = ratePitch;
+            current_data.rollRate = rateRoll;
+            current_data.yawRate = rateYaw;
+        }
+        if(!qIsNaN(mag_x) && !qIsNaN(mag_y) && !qIsNaN(mag_z))
+        {
+            double heading = (atan2(mag_x, mag_z) * 180) / M_PI; // Heading in Z-X plane in degrees from North
+
+            //ui->GLwidget->nav_rot_x = gyro_x;
+            ui->GLwidget->nav_rot_y = heading;
+            //ui->GLwidget->nav_rot_z = gyro_z;
+
+            //ui->pitch_LCD->display(gyro_x);
+            ui->roll_LCD->display(heading);
+            //ui->yaw_LCD->display(gyro_z);
+
+            current_data.magX = mag_x;
+            current_data.magX = mag_y;
+            current_data.magX = mag_z;
         }
         else
         {
             return;
         }
-
-        double ratePitch = (gyro_x - prevGyrox) / time;
-        double rateRoll = (gyro_y - prevGyroy) / time;
-        double rateYaw = (gyro_z - prevGyroz) / time;
-        prevGyrox = gyro_x;
-        prevGyroy = gyro_y;
-        prevGyroz = gyro_z;
-
-        qDebug() << "GYRO DATA: " << ui->GLwidget->nav_rot_x;//plotting.NextXGyro(1);
-
-        ui->pitch_LCD->display(gyro_x);
-        ui->roll_LCD->display(gyro_y);
-        ui->yaw_LCD->display(gyro_z);
-        ui->pitchRate_LCD->display(ratePitch);
-        ui->rollRate_LCD->display(rateRoll);
-        ui->yawRate_LCD->display(rateYaw);
-
-        current_data.gyroX = gyro_x;
-        current_data.gyroY = gyro_y;
-        current_data.gyroZ = gyro_z;
-
-        current_data.pitchRate = ratePitch;
-        current_data.rollRate = rateRoll;
-        current_data.yawRate = rateYaw;
-
-
 }
 
 void MainWindow::alt_vel_update(int key, double time)
@@ -1172,7 +1192,7 @@ void MainWindow::alt_vel_update(int key, double time)
     plotting.altInit = altInfo.baseHeight;
 
     //velocity
-    double vel, inputVel;
+    double vel;
     if(altList.empty())
     {
         vel = 0;
@@ -1180,6 +1200,8 @@ void MainWindow::alt_vel_update(int key, double time)
 
     if(!qIsNaN(alt))
     {
+        receivingData = true;
+
         graph_data->plotNextAltitude(key, altitude, plotting, altInfo, alt);
         inputAlt = alt;
         altList.push_front(inputAlt);
@@ -1192,6 +1214,7 @@ void MainWindow::alt_vel_update(int key, double time)
              maxAlt = alt;
              ui->alt_max_LCD->display(maxAlt);
              ui->apo_LED->setState(false);
+             current_data.maxAlt = maxAlt;
              apo_time_set = false;
         }
         else
@@ -1210,12 +1233,10 @@ void MainWindow::alt_vel_update(int key, double time)
                 ui->ascent_label->setText("Complete");
             }
         }
-
-        ui->alt_cur_LCD->display(lastKnownAlt);
     }
     else
     {
-        ui->alt_cur_LCD->display(lastKnownAlt);
+        receivingData = false;
     }
 
     if(!qIsNaN(vel))
@@ -1245,6 +1266,7 @@ void MainWindow::alt_vel_update(int key, double time)
         if(vel > maxVel)
         {
              maxVel = vel;
+             current_data.maxVel = maxVel;
              ui->vel_max_LCD->display(vel);
         }
 
@@ -1255,16 +1277,36 @@ void MainWindow::alt_vel_update(int key, double time)
             descent_ind_set = true;
         }
 
-        if(altList.size() > 1 && launch_time_set && !landing_time_set)
+        if(!altIsChanging()) // No alt change and still radio contact
+        {
+            ui->landing_LED->setState(true);
+            ui->landing_time_label->setText(mission_time);
+            current_data.flightEvent = "Landing"; // LANDING
+
+            ui->landingLat->setText(current_data.humLat);
+            ui->landingLon->setText(current_data.humLon);
+
+            ui->descent_LED->setState(true);
+            ui->descent_LED->setFlashing(false);
+            ui->descent_label->setText("Complete");
+
+            landingTime = mission_time;
+            landing_time_set = true;
+        }
+        else
+        {
+            landing_time_set = false;
+        }
+
+        if(altList.size() > 1 && launch_time_set)
         {
             double altDiff = altList.last() - altList.front();
 
-            if((abs(altDiff) < 100 && (vel > -200 && vel < 0)) || checkIfAltIsChanging()) // If difference in start and end alt is less than 200ft and vel under -200ft/s
+            if((abs(altDiff) < 400 && (vel > -200 && vel <= 0))) // If difference in start and end alt is less than 400ft and vel under -200ft/s
             {
                 ui->landing_LED->setState(true);
                 ui->landing_time_label->setText(mission_time);
                 current_data.flightEvent = "Landing"; // LANDING
-                landing_time_set = true;
 
                 ui->landingLat->setText(current_data.humLat);
                 ui->landingLon->setText(current_data.humLon);
@@ -1272,45 +1314,57 @@ void MainWindow::alt_vel_update(int key, double time)
                 ui->descent_LED->setState(true);
                 ui->descent_LED->setFlashing(false);
                 ui->descent_label->setText("Complete");
+
+                landingTime = mission_time;
+
+                landing_time_set = true;
             }
             else
             {
-                ui->landing_LED->setState(false);
                 landing_time_set = false;
             }
         }
     }
 
-    double accelMag = plotting.getAccelerationMagnitude(1);
-
-    if(!qIsNaN(accelMag))
+    double gForce = plotting.getGForce(plotting.source);
+    if(!qIsNaN(gForce))
     {
-        ui->accel_LCD->display(accelMag);
-        current_data.acceleration = accelMag; // ACCELLERATION
-
-        double gForce = plotting.getGForce();
         ui->g_force->display(gForce);
-    }
+        current_data.accelerationG = gForce;
 
-    current_data.magX = 0;
-    current_data.magX = 0;
-    current_data.magX = 0;
+        if(gForce > maxAccelGs)
+        {
+             maxAccelGs = gForce;
+             ui->accel_max_LCD->display(maxAccelGs);
+             current_data.maxAccelGs = maxAccelGs;
+        }
+
+        double accelMag = plotting.getAccelerationMagnitude();
+
+        if(!qIsNaN(accelMag))
+        {
+            ui->accel_LCD->display(accelMag);
+            current_data.acceleration = accelMag; // ACCELLERATION
+        }
+    }
 }
 
-bool MainWindow::checkIfAltIsChanging()
+bool MainWindow::altIsChanging()
 {
-    if(altList.at(0) == altList.at(1) && launch_time_set)
+    double altDiff = abs(altList.at(0) - altList.at(1));
+
+    if(altDiff >= -5 && altDiff <= 5 && launch_time_set)
     {
         altDiffCount++;
     }
     else
     {
         altDiffCount = 0;
-        return false;
+        return true;
     }
     if(altDiffCount >= 5)
     {
-        return true;
+        return false;
     }
 }
 
@@ -1487,6 +1541,10 @@ void MainWindow::realtimeDataSlot()
     }
 
     ui->mission_time->display(mission_time);
+    if(!receivingData && landing_time_set)
+    {
+        ui->mission_time->display(landingTime);
+    }
     //------------------------------------------------------
 
     if (key-lastPointKey > 1.0) // at most add point every 2 ms
@@ -1497,11 +1555,18 @@ void MainWindow::realtimeDataSlot()
 
        double time = 1.0; //TODO: Add time count to parse function, instead of 1
 
+       profilePath = profile->getProfilePath();
+       writeCSV = profile->writeCSVCheck();
+
        nav_update(time);
        updateRocketPath();
        alt_vel_update(key, time);
-       final_data.append(current_data);
-       current_data.flightEvent = "";
+
+       if(receivingData)
+       {
+           final_data.append(current_data);
+           current_data.flightEvent = "";
+       }
 
        lastPointKey = key;
     }
@@ -1545,14 +1610,17 @@ void MainWindow::writeToFinalCSV()
     }
     QTextStream csvStream( &csv );
 
-    csvStream << "Time----------,Event----------,Altitude----------,Velocity----------,Acceleration----------,Latitude----------,"
-                 "Longitude----------,GyroX----------,GyroY----------,GyroZ----------,Pitch Rate----------,Roll Rate----------,"
-                 "Yaw Rate----------,MagX----------,MagY----------,MagZ----------\n";
+    csvStream << ",,Max Altitude,Max Velocity,,Max Acceleration(G)\n";
+    csvStream << ",," << QString::number(current_data.maxAlt) << "," << QString::number(current_data.maxVel) << ",," << QString::number(current_data.maxAccelGs) << "\n";
+
+    csvStream << "Time----------,Event----------,Altitude----------,Velocity----------,Acceleration(ft/s)----------,Acceleration(G)----------,Latitude(DD)----------,"
+                 "Longitude(DD)----------,Latitude(DDM)----------,Longitude(DDM)----------,GyroX----------,GyroY----------,GyroZ----------,"
+                 "Pitch Rate----------,Roll Rate----------,Yaw Rate----------,MagX----------,MagY----------,MagZ----------\n";
     for(int i = 0; i < final_data.size(); i++)
     {
         launchData tempData = final_data.at(i);
         csvStream << tempData.time << "," << tempData.flightEvent << "," << tempData.altitude << "," <<
-                     tempData.velocity << "," << tempData.acceleration << "," << tempData.latitude << "," <<
+                     tempData.velocity << "," << tempData.acceleration << "," << tempData.accelerationG << "," << tempData.latitude << "," <<
                      tempData.longitude << "," << tempData.humLat << "," << tempData.humLon << "," << tempData.gyroX << "," <<
                      tempData.gyroY << "," << tempData.gyroZ << "," << tempData.pitchRate << "," << tempData.rollRate << "," <<
                      tempData.yawRate << "," << tempData.magX << "," << tempData.magY << "," << tempData.magZ << "\n";
@@ -1740,7 +1808,6 @@ void MainWindow::initializeMap()
     ui->circleCheckBox->setChecked(circleOn);
     ui->focusRocketCheckBox->setChecked(focusRocketOn);
 
-
     view->rootContext()->setContextProperty("mapData", this);
     ui->map = QWidget::createWindowContainer(view, ui->mapFrame);
     ui->map->setMinimumSize(ui->mapFrame->width(), ui->mapFrame->height());
@@ -1755,6 +1822,12 @@ double MainWindow::convertGPSCoord(double degrees, double minutes)
     double decDeg;
     decDeg = degrees + minutes / 60;
     return decDeg;
+}
+
+void MainWindow::on_mapSelect_valueChanged(int arg1)
+{
+    mapType = arg1;
+    emit mapTypeChanged();
 }
 
 void MainWindow::on_zoomSlider_valueChanged(int value)
@@ -1778,8 +1851,8 @@ void MainWindow::on_focusRocketCheckBox_clicked(bool checked)
 
 void MainWindow::map_focus_update()
 {
-    ui->map->setMinimumSize(ui->mapFrame->width(), ui->mapFrame->height());
-    ui->map->setMinimumSize(ui->mapFrame->width(), ui->mapFrame->height());
+    ui->mapFrame->resize(ui->mapFrame->width(), ui->mapFrame->width());
+    ui->map->resize(ui->mapFrame->width(), ui->mapFrame->width());
     emit focusRocketChanged();
 }
 
@@ -1800,6 +1873,8 @@ void MainWindow::updateRocketPath()
         ui->gps_LED->setColor("red");
         current_data.latitude = "GPS ERROR";
         current_data.longitude = "GPS ERROR";
+        current_data.humLat = "GPS ERROR";
+        current_data.humLon = "GPS ERROR";
         return;
     }
     else
@@ -1868,6 +1943,11 @@ void MainWindow::updateRocketPath()
             emit rocketPathChanged();
         }
     }
+}
+
+double MainWindow::get_mapType()
+{
+    return mapType;
 }
 
 double MainWindow::get_zoom()

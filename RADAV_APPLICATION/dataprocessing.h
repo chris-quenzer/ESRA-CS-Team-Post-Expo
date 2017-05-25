@@ -250,18 +250,13 @@ public:
     double nextDataPoint(sensorData &sourceData, Attribute a, int pop);
     double getNextValue(QStringList &attribute, int pop);
     double getNextAltitude(int source, Attribute alt, struct baseAltitudeInfo altInfo);
-    double getGForce();
-
-    void convertInputData();
-
-   //Functions for Velocity
-    double calculateDistance(int source);
     double getNextVelocity(int source, double delta_time, double alt1, double alt2);
+    double getAccelerationMagnitude();
+    double getGForce(int source);
+
+    double calculateDistance(int source);
 
     void receiveDataVector(QVector<inputData>*, bool, QString);
-
-    //Chris's new functions defined in data processing needed a prototype
-    double getAccelerationMagnitude(int source);
 
     bool isValidCoord(double latDeg, double latMin, double lonDeg, double lonMin);
 
