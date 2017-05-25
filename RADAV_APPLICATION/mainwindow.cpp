@@ -1276,8 +1276,8 @@ void MainWindow::alt_vel_update(int key, double time)
             ui->descent_label->setText("In Progress");
             descent_ind_set = true;
         }
-
-        if(!altIsChanging()) // No alt change and still radio contact
+        /*
+        if(!altIsChanging() && receivingData) // No alt change and still radio contact
         {
             ui->landing_LED->setState(true);
             ui->landing_time_label->setText(mission_time);
@@ -1296,9 +1296,9 @@ void MainWindow::alt_vel_update(int key, double time)
         else
         {
             landing_time_set = false;
-        }
+        }*/
 
-        if(altList.size() > 1 && launch_time_set)
+        if(altList.size() > 1 && launch_time_set && receivingData)
         {
             double altDiff = altList.last() - altList.front();
 
@@ -1539,6 +1539,9 @@ void MainWindow::realtimeDataSlot()
 
         time_reset = true;
     }
+
+    //qDebug() << "Receiving Data: " << receivingData;
+    //qDebug() << "LandingTimeSet: " << landing_time_set;
 
     ui->mission_time->display(mission_time);
     if(!receivingData && landing_time_set)
