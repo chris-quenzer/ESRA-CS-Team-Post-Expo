@@ -285,6 +285,8 @@ void MainWindow::NoseAviByte()
             accHZ = quint8(dataBytes.at(curCount));
             curCount += 1;
 
+            setScaledH3LIS200DLAcc(curData, accHX, accHY, accHZ);
+
             //highPresAlt = quint8(dataBytes.at(curCount)) | quint8(dataBytes.at(curCount + 1)) << 8 | quint8(dataBytes.at(curCount + 2)) << 16  | quint8(dataBytes.at(curCount + 3)) << 24;
             highPresAlt = quint8(dataBytes.at(curCount)) <<24 | quint8(dataBytes.at(curCount + 1)) << 16 | quint8(dataBytes.at(curCount + 2)) << 8  | quint8(dataBytes.at(curCount + 3));
             curCount += 4;
@@ -331,11 +333,11 @@ void MainWindow::NoseAviByte()
             curData->magZ = QString::number(curData->scaledMagY);
 
             curData->intAccXH = accHX;
-            curData->accXH = QString::number(accHX);
+            curData->accXH = QString::number(curData->scaledHAccX);
             curData->intAccYH = accHY;
-            curData->accYH = QString::number(accHY);
+            curData->accYH = QString::number(curData->scaledHAccY);
             curData->intAccZH = accHZ;
-            curData->accZH = QString::number(accHZ);
+            curData->accZH = QString::number(curData->scaledHAccZ);
 
             curData->intAltitude = highPresAlt;
             curData->altitude = QString::number(highPresAlt);
@@ -797,6 +799,70 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
 
     curData->scaledMagZ = tmpDouble;
     qDebug() << tr("Scaled MagZ: ") + curData->scaledMagZ;
+}
+
+/******************************************************************************
+* Function: setScaled9250Acc()
+* Purpose: This function is desgine to scale the sensor data to output in valid
+*          human format. For acc -16 g's <= acc <= 16 g/sec. This gives
+*          a range of 33 values possible. so the scale factor is 65535/33.
+*          To normalize unsigned int to signed int, if value is grater than 32767
+*          it is deemed to be a negative number, thus subtracting 65535 from it
+*          will result in the proper negative value.
+* Parameters: Componenets of accelerometer data and the curData structure to store values.
+* Output: This will output the properly scaled value in g's  from the
+*         sensor in each directions
+*******************************************************************************/
+void MainWindow::setScaledH3LIS200DLAcc(inputData *curData, quint8 accX, quint8 accY, quint8 accZ)
+{
+    double x = 0.0;
+    double y = 0.0;
+    double z = 0.0;
+
+    if(accX > 127)
+    {
+        //It is a negative value, Normalize and scale
+        x = (((double)(accX - 255)) / (255/100));
+        curData->scaledHAccX = x;
+    }
+    else
+    {
+        //Positive value, just scale
+        x = (((double)(accX)) / (255/100));
+        curData->scaledHAccX = x;
+    }
+
+    qDebug() << tr("Scaled H AccX: ") + curData->scaledHAccX;
+
+    if(accY > 127)
+    {
+        //It is a negative value, Normalize and scale
+        y = (((double)(accY - 255)) / (255/100));
+        curData->scaledHAccY = y;
+    }
+    else
+    {
+        //Positive value, just scale
+        y = (((double)(accY)) / (255/100));
+        curData->scaledHAccY = y;
+    }
+
+    qDebug() << tr("Scaled H AccY: ") + curData->scaledHAccY;
+
+    if(accZ > 127)
+    {
+        //It is a negative value, Normalize and scale
+        z = (((double)(accZ - 255)) / (255/100));
+        curData->scaledHAccZ = z;
+    }
+    else
+    {
+        //Positive value, just scale
+        z = (((double)(accZ)) / (255/100));
+        curData->scaledHAccZ = z;
+    }
+    qDebug() << tr("Scaled H AccZ: ") + curData->scaledHAccZ;
+
 }
 
 void MainWindow::readNoseConeAvi()
@@ -1333,15 +1399,16 @@ void MainWindow::alt_vel_update(int key, double time)
         }
     }
 
-    double gForce = plotting.getGForce(plotting.source);
-    if(!qIsNaN(gForce))
+    // low-g
+    double gForceLow = plotting.getGForce(plotting.source, 1);
+    if(!qIsNaN(gForceLow))
     {
-        ui->g_force->display(gForce);
-        current_data.accelerationG = gForce;
+        ui->g_force->display(gForceLow);
+        current_data.accelerationG = gForceLow;
 
-        if(gForce > maxAccelGs)
+        if(gForceLow > maxAccelGs)
         {
-             maxAccelGs = gForce;
+             maxAccelGs = gForceLow;
              ui->accel_max_LCD->display(maxAccelGs);
              current_data.maxAccelGs = maxAccelGs;
         }
@@ -1352,6 +1419,21 @@ void MainWindow::alt_vel_update(int key, double time)
         {
             ui->accel_LCD->display(accelMag);
             current_data.acceleration = accelMag; // ACCELLERATION
+        }
+    }
+
+    // hig-g
+    double gForceHigh = plotting.getGForce(plotting.source, 0);
+    if(!qIsNaN(gForceHigh))
+    {
+        ui->high_g_force->display(gForceHigh);
+        current_data.accelerationHG = gForceHigh;
+
+        if(gForceHigh > maxAccelHGs)
+        {
+             maxAccelHGs = gForceHigh;
+             ui->accelH_max_LCD->display(maxAccelHGs);
+             current_data.maxAccelHGs = maxAccelHGs;
         }
     }
 }

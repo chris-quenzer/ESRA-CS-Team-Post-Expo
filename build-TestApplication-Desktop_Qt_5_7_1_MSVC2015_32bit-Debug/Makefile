@@ -240,6 +240,7 @@ Makefile: ..\RADAV_APPLICATION\TestApplication.pro E:\Qt\5.7\msvc2015\mkspecs\wi
 		E:\Qt\5.7\msvc2015\lib\Qt5Designer.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Widgets.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Quick.prl \
+		E:\Qt\5.7\msvc2015\lib\Qt5Multimedia.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Gui.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Qml.prl \
 		E:\Qt\5.7\msvc2015\lib\Qt5Network.prl \
@@ -414,6 +415,7 @@ E:\Qt\5.7\msvc2015\lib\Qt5PrintSupport.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Designer.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Widgets.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Quick.prl:
+E:\Qt\5.7\msvc2015\lib\Qt5Multimedia.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Gui.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Qml.prl:
 E:\Qt\5.7\msvc2015\lib\Qt5Network.prl:

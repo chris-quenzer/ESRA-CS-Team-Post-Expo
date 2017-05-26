@@ -111,6 +111,7 @@ public:
         double velocity;
         double acceleration;
         double accelerationG;
+        double accelerationHG;
         QString latitude;
         QString longitude;
         QString humLat;
@@ -128,10 +129,16 @@ public:
         double maxAlt;
         double maxVel;
         double maxAccelGs;
+        double maxAccelHGs;
     };
 
     QVector<launchData> final_data;
     launchData current_data;
+
+    double maxAlt = 0;
+    double maxVel = 0;
+    double maxAccelGs = 0;
+    double maxAccelHGs = 0;
 
     void writeToFinalCSV();
 
@@ -172,6 +179,8 @@ public:
     void setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY, quint16 accZ);
     void setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gyroY, quint16 gyroZ);
     void setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY, quint16 magZ);
+
+    void setScaledH3LIS200DLAcc(inputData *curData, quint8 accX, quint8 accY, quint8 accZ);
 
     static DataProcessing plotting;
 
@@ -353,9 +362,6 @@ private:
     bool writeCSV = false;
     QString profilePath = "../SensorData";
 
-    double maxAlt = 0;
-    double maxVel = 0;
-    double maxAccelGs = 0;
     double prevGyrox = 0;
     double prevGyroy = 0;
     double prevGyroz = 0;

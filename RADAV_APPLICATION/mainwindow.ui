@@ -633,7 +633,7 @@ border-radius: 10px;
                  <x>0</x>
                  <y>0</y>
                  <width>1275</width>
-                 <height>682</height>
+                 <height>740</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout_17">
@@ -834,6 +834,52 @@ border-radius: 10px;
                         <widget class="QLabel" name="label_20">
                          <property name="text">
                           <string>Max Gs</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="7" column="1">
+                        <widget class="QLCDNumber" name="high_g_force">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
+                         <property name="segmentStyle">
+                          <enum>QLCDNumber::Flat</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="7" column="0">
+                        <widget class="QLabel" name="label_21">
+                         <property name="text">
+                          <string>High-G Force (G)</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="8" column="1">
+                        <widget class="QLCDNumber" name="accelH_max_LCD">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="digitCount">
+                          <number>7</number>
+                         </property>
+                         <property name="segmentStyle">
+                          <enum>QLCDNumber::Flat</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="8" column="0">
+                        <widget class="QLabel" name="label_23">
+                         <property name="text">
+                          <string>Max Hig- Gs</string>
                          </property>
                         </widget>
                        </item>
@@ -1308,7 +1354,7 @@ border-radius: 10px;
                     <rect>
                      <x>0</x>
                      <y>0</y>
-                     <width>518</width>
+                     <width>381</width>
                      <height>930</height>
                     </rect>
                    </property>
