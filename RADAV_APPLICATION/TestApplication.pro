@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl quick network
+QT       += core gui opengl quick network multimedia
 QT       += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport core designer
 

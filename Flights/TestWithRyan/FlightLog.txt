@@ -1,0 +1,8 @@
+TestWithRyan
+Flight log for rocket Rocket Name On 05.25.2017
+Location: Location
+Initial Altitude: 260 ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 398.593 ft.
+Max Velocity Attained During Flight: 1.95 ft./s

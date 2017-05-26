@@ -77,6 +77,7 @@
 #include <QQmlContext>
 
 #include <QProcess>
+#include <QSound>
 
 QTime master_time(QTime::currentTime());
 QTimer dataTimer;
@@ -1221,12 +1222,14 @@ void MainWindow::alt_vel_update(int key, double time)
         {
             lastKnownMaxAlt = maxAlt;
             ui->alt_max_LCD->display(lastKnownMaxAlt);
-            if(inputAlt > 0 && !apo_time_set)
+            if(inputAlt > 0 && !apo_time_set && launch_time_set)
             {
                 ui->apo_LED->setState(true);
                 ui->apo_time_label->setText(mission_time);
                 current_data.flightEvent = "Apogee"; // APOGEE
                 apo_time_set = true;
+
+                //QSound::play("qrc:Resources/sounds/cabin_tone.wav");
 
                 ui->ascent_LED->setFlashing(false);
                 ui->ascent_LED->setState(true);
@@ -1253,6 +1256,8 @@ void MainWindow::alt_vel_update(int key, double time)
             current_data.flightEvent = "Launch"; // LAUNCH
             launch_time_set = true;
 
+            //QSound::play("qrc:Resources/sounds/cabin_tone.wav");
+
             ui->ascent_LED->setFlashing(true);
             ui->ascent_label->setText("In Progress");
         }
@@ -1270,7 +1275,7 @@ void MainWindow::alt_vel_update(int key, double time)
              ui->vel_max_LCD->display(vel);
         }
 
-        if(vel < -2 && !descent_ind_set)
+        if(vel < -2 && !descent_ind_set && apo_time_set)
         {
             ui->descent_LED->setFlashing(true);
             ui->descent_label->setText("In Progress");
@@ -1307,6 +1312,8 @@ void MainWindow::alt_vel_update(int key, double time)
                 ui->landing_LED->setState(true);
                 ui->landing_time_label->setText(mission_time);
                 current_data.flightEvent = "Landing"; // LANDING
+
+                //QSound::play("qrc:Resources/sounds/cabin_tone.wav");
 
                 ui->landingLat->setText(current_data.humLat);
                 ui->landingLon->setText(current_data.humLon);

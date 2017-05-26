@@ -9,5 +9,7 @@
         <file>Resources/textures/navball.bmp</file>
         <file>Resources/qml/mapping.qml</file>
         <file>Resources/images/rocket_icon.png</file>
+        <file>Resources/sounds/bleep.wav</file>
+        <file>Resources/sounds/cabin_tone.wav</file>
     </qresource>
 </RCC>

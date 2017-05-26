@@ -667,15 +667,15 @@ void DataProcessing::importFile_csv()
 
         QFileInfo fileInfo(csv.fileName());
         QString filename(fileInfo.fileName()); //extract .csv file name from import path
-        qDebug() << "Filename: " << filename;
+        //qDebug() << "Filename: " << filename;
 
         QString copy_path = "Files/csv/";
         copy_path.append(filename);
-        qDebug() << "Copy file path is: " << copy_path;
+        //qDebug() << "Copy file path is: " << copy_path;
 
         if(!QDir("Files/csv").exists()) //check if csv dir exists
         {
-            qDebug() << "Directory created!";
+            //qDebug() << "Directory created!";
             QDir().mkpath("Files/csv"); //create dir if it doesn't
         }
 
@@ -687,13 +687,13 @@ void DataProcessing::importFile_csv()
             {
                 QFile::remove(copy_path); //delete old file
                 QFile::copy(path, copy_path); //copy new one
-                qDebug() << "Copy file with question";
+                //qDebug() << "Copy file with question";
             }
         }
         else
         {
             QFile::copy(path, copy_path); //move the file to application dir
-            qDebug() << "Copy file without question";
+            //qDebug() << "Copy file without question";
         }
 
         path = copy_path; //set application read path to new file location
@@ -711,7 +711,7 @@ void DataProcessing::clear_data()
    csvData.m_yAccel.clear();
    csvData.m_zAccel.clear();
 
-    qDebug() << "LENGTH AFTER CLEAR: " << csvData.m_xGyro.length();
+    //qDebug() << "LENGTH AFTER CLEAR: " << csvData.m_xGyro.length();
 }
 
 bool DataProcessing::isValidCoord(double latDeg, double latMin, double lonDeg, double lonMin)

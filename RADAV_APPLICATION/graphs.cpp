@@ -174,7 +174,7 @@ double Graphs::plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing 
     // add data to lines:
    //double alt = plotting.getNextAltitude(plotting.source, ALTITUDE, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE, 1);
    //double altGps = plotting.getNextAltitude(plotting.source, ALTITUDE_GPS, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE_GPS, 1);
-   qDebug() << "ALT GPS " << alt << endl;
+   //qDebug() << "ALT GPS " << alt << endl;
    //double altDiff = fabs(alt) - fabs(altGps);
 
   altitude->graph(0)->addData(key, alt);
@@ -202,7 +202,7 @@ double Graphs::plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing 
 {
     //double velocityValue = plotting.getNextVelocity(plotting.source, time);
 
-    qDebug() << "VELOCITY VALUE " << velocityValue << endl;
+    //qDebug() << "VELOCITY VALUE " << velocityValue << endl;
     if(velocityValue != nan(""))
     {
         velocity->graph(0)->addData(key, velocityValue); //Position Data
