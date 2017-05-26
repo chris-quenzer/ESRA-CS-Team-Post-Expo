@@ -1,0 +1,8 @@
+TestWithRyan3
+Flight log for rocket Rocket Name On 05.26.2017
+Location: Dearborn
+Initial Altitude: 245 ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 271.529 ft.
+Max Velocity Attained During Flight: 1.66449 ft./s

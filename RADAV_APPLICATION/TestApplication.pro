@@ -18,7 +18,7 @@ CONFIG += plugin release
 #TEMPLATE = app
 
 TEMPLATE = app
-TARGET = $$qtLibraryTarget($$TARGET)
+TARGET = RADAV#$$qtLibraryTarget($$TARGET)
 target.path = $$[QT_INSTALL_PLUGINS]/designer
 INSTALLS += target
 
