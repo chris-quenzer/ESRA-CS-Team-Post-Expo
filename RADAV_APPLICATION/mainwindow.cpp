@@ -822,13 +822,13 @@ void MainWindow::setScaledH3LIS200DLAcc(inputData *curData, quint8 accX, quint8 
     if(accX > 127)
     {
         //It is a negative value, Normalize and scale
-        x = (((double)(accX - 255)) / (255/100));
+        x = (((double)(accX - 255)) / (255/200/*<Range*/)); // Range is either 200 or 100
         curData->scaledHAccX = x;
     }
     else
     {
         //Positive value, just scale
-        x = (((double)(accX)) / (255/100));
+        x = (((double)(accX)) / (255/200/*Range*/)); // Range is either 200 or 100
         curData->scaledHAccX = x;
     }
 
@@ -837,13 +837,13 @@ void MainWindow::setScaledH3LIS200DLAcc(inputData *curData, quint8 accX, quint8 
     if(accY > 127)
     {
         //It is a negative value, Normalize and scale
-        y = (((double)(accY - 255)) / (255/100));
+        y = (((double)(accY - 255)) / (255/200/*Range*/)); // Range is either 200 or 100
         curData->scaledHAccY = y;
     }
     else
     {
         //Positive value, just scale
-        y = (((double)(accY)) / (255/100));
+        y = (((double)(accY)) / (255/200/*Range*/)); // Range is either 200 or 100
         curData->scaledHAccY = y;
     }
 
@@ -852,13 +852,13 @@ void MainWindow::setScaledH3LIS200DLAcc(inputData *curData, quint8 accX, quint8 
     if(accZ > 127)
     {
         //It is a negative value, Normalize and scale
-        z = (((double)(accZ - 255)) / (255/100));
+        z = (((double)(accZ - 255)) / (255/200/*Range*/)); // Range is either 200 or 100
         curData->scaledHAccZ = z;
     }
     else
     {
         //Positive value, just scale
-        z = (((double)(accZ)) / (255/100));
+        z = (((double)(accZ)) / (255/200/*Range*/)); // Range is either 200 or 100
         curData->scaledHAccZ = z;
     }
     qDebug() << tr("Scaled H AccZ: ") + curData->scaledHAccZ;
@@ -1705,17 +1705,21 @@ void MainWindow::writeToFinalCSV()
     csvStream << ",,Max Altitude,Max Velocity,,Max Acceleration(G)\n";
     csvStream << ",," << QString::number(current_data.maxAlt) << "," << QString::number(current_data.maxVel) << ",," << QString::number(current_data.maxAccelGs) << "\n";
 
-    csvStream << "Time----------,Event----------,Altitude----------,Velocity----------,Acceleration(ft/s)----------,Acceleration(G)----------,Latitude(DD)----------,"
-                 "Longitude(DD)----------,Latitude(DDM)----------,Longitude(DDM)----------,GyroX----------,GyroY----------,GyroZ----------,"
-                 "Pitch Rate----------,Roll Rate----------,Yaw Rate----------,MagX----------,MagY----------,MagZ----------\n";
+    csvStream << "Time----------,Event----------,Altitude----------,Velocity----------,"
+                 "Acceleration(ft/s)----------,Acceleration(G)----------,High Acceleration(G)----------,"
+                 "Latitude(DD)----------,Longitude(DD)----------,Latitude(DDM)----------,Longitude(DDM)----------,"
+                 "GyroX----------,GyroY----------,GyroZ----------,"
+                 "Pitch Rate----------,Roll Rate----------,Yaw Rate----------,"
+                 "MagX----------,MagY----------,MagZ----------\n";
     for(int i = 0; i < final_data.size(); i++)
     {
         launchData tempData = final_data.at(i);
-        csvStream << tempData.time << "," << tempData.flightEvent << "," << tempData.altitude << "," <<
-                     tempData.velocity << "," << tempData.acceleration << "," << tempData.accelerationG << "," << tempData.latitude << "," <<
-                     tempData.longitude << "," << tempData.humLat << "," << tempData.humLon << "," << tempData.gyroX << "," <<
-                     tempData.gyroY << "," << tempData.gyroZ << "," << tempData.pitchRate << "," << tempData.rollRate << "," <<
-                     tempData.yawRate << "," << tempData.magX << "," << tempData.magY << "," << tempData.magZ << "\n";
+        csvStream << tempData.time << "," << tempData.flightEvent << "," << tempData.altitude << "," << tempData.velocity << "," <<
+                     tempData.acceleration << "," << tempData.accelerationG << "," << tempData.accelerationHG << "," <<
+                     tempData.latitude << "," << tempData.longitude << "," << tempData.humLat << "," << tempData.humLon << "," <<
+                     tempData.gyroX << "," << tempData.gyroY << "," << tempData.gyroZ << "," <<
+                     tempData.pitchRate << "," << tempData.rollRate << "," << tempData.yawRate << "," <<
+                     tempData.magX << "," << tempData.magY << "," << tempData.magZ << "\n";
     }
 
     csv.close();
