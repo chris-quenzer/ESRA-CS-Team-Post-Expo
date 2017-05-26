@@ -383,11 +383,24 @@ double DataProcessing::getNextAltitude(int source, Attribute alt, struct baseAlt
    return feetHeight;
 }
 
-double DataProcessing::getGForce(int source)
+double DataProcessing::getGForce(int source, int isLow)
 {
-    double accel_X = getAttributeFromSource(source, X_ACCEL, 1);
-    double accel_Y = getAttributeFromSource(source, Y_ACCEL, 1);
-    double accel_Z = getAttributeFromSource(source, Z_ACCEL, 1);
+    double accel_X;
+    double accel_Y;
+    double accel_Z;
+
+    if(isLow)
+    {
+        accel_X = getAttributeFromSource(source, X_ACCEL, 1);
+        accel_Y = getAttributeFromSource(source, Y_ACCEL, 1);
+        accel_Z = getAttributeFromSource(source, Z_ACCEL, 1);
+    }
+    else
+    {
+        accel_X = getAttributeFromSource(source, X_HACCEL, 1);
+        accel_Y = getAttributeFromSource(source, Y_HACCEL, 1);
+        accel_Z = getAttributeFromSource(source, Z_HACCEL, 1);
+    }
 
     g_force = sqrt((accel_X*accel_X) + (accel_Y*accel_Y) + (accel_Z*accel_Z)); // |a| = sqrt(ax^2 + ay^2 + az^2)
 

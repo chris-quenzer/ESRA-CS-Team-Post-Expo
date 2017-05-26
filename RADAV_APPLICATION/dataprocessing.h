@@ -74,6 +74,10 @@ typedef struct inputData
     double scaledAccY;          //Added for outputting scaled values 5/10/17
     double scaledAccZ;          //Added for outputting scaled values 5/10/17
 
+    double scaledHAccX;
+    double scaledHAccY;
+    double scaledHAccZ;
+
     //Gyroscope data
     QString gyroX;
     quint16 intGyroX;
@@ -252,7 +256,7 @@ public:
     double getNextAltitude(int source, Attribute alt, struct baseAltitudeInfo altInfo);
     double getNextVelocity(int source, double delta_time, double alt1, double alt2);
     double getAccelerationMagnitude();
-    double getGForce(int source);
+    double getGForce(int source, int isLow);
 
     double calculateDistance(int source);
 
