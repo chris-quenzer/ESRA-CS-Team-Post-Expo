@@ -1,0 +1,8 @@
+ESRA Test Launch 2
+Flight log for rocket Barely Legal On 05.27.2017
+Location: Brothers, OR
+Initial Altitude: 4561 ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 300.24 ft.
+Max Velocity Attained During Flight: 1.89485 ft./s
