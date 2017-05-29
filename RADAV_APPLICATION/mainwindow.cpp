@@ -365,11 +365,13 @@ void MainWindow::NoseAviByte()
             ui->latDisplay->setText(curData->humanLat);
             ui->gpsAltDisplay->setText(curData->altGPSFeet + tr(" ft"));
 
-            inputDataVector.push_back(*curData);
-
-            profilePath = profile->getProfilePath();
-            writeCSV = profile->writeCSVCheck();
-            plotting.receiveDataVector(&inputDataVector, writeCSV, profilePath);
+            if(sim_running)
+            {
+                inputDataVector.push_back(*curData);
+                profilePath = profile->getProfilePath();
+                writeCSV = profile->writeCSVCheck();
+                plotting.receiveDataVector(&inputDataVector, writeCSV, profilePath);
+            }
 
             //Adding scaled output field 05/10/17
             ui->scaledAccXDisp->setText(QString::number((curData->scaledAccX)));
@@ -1465,26 +1467,18 @@ bool MainWindow::altIsChanging()
 *******************************************************************************/
 void MainWindow::on_mpuStartButton_clicked()
 {
-
-    //NoseAviByte()
     setCollectDataOn();
     if(collectData)
     {
         qDebug() << "Data collection started!";
-        //rxTimer = new QTimer(this);
-        //connect(rxTimer, SIGNAL(timeout()),this, SLOT(startMpu9250()));
-        //connect(rxTimer, SIGNAL(timeout()),this, SLOT(noseConeData()));
         connect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
         rxTimer->start(500);        //get data from sensor 2x secnd
     }
     else
     {
-        //disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(startMpu9250()));
-        //disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(noseConeData()));
         disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
         qDebug() << "Data collection stopped!";
     }
-
 }
 
 void MainWindow::on_sndtoGrph_clicked()
@@ -1736,6 +1730,8 @@ void MainWindow::on_start_stop_clicked()
 
     if(sim_running)
     {
+
+
 
         if(MainWindow::plotting.path == "")
         {

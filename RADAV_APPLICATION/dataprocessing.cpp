@@ -379,7 +379,14 @@ double DataProcessing::getNextAltitude(int source, Attribute alt, struct baseAlt
 {
    double nextPressure = getAttributeFromSource(source, alt, 1);
 
-   double feetHeight = ((1 - qPow(((nextPressure/100) / 1012.25),0.190284)) * 145366.45) - altInfo.baseHeight;
+   if(!firstPressure)
+   {
+       seaLvlAlt = ((1 - qPow(((nextPressure/100) / 1012.25),0.190284)) * 145366.45);
+
+       firstPressure = true;
+   }
+
+   double feetHeight = ((1 - qPow(((nextPressure/100) / 1012.25),0.190284)) * 145366.45) - seaLvlAlt;
    return feetHeight;
 }
 

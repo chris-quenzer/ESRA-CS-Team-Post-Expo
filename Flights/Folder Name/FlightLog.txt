@@ -58,3 +58,7 @@ Max Altitude Attained During Flight: 29971.1 ft.
 Max Velocity Attained During Flight: 4373.66 ft./s
 Max Altitude Attained During Flight: 29971.1 ft.
 Max Velocity Attained During Flight: 4373.66 ft./s
+Max Altitude Attained During Flight: 5150.21 ft.
+Max Velocity Attained During Flight: 0.637188 ft./s
+Max Altitude Attained During Flight: 29382.8 ft.
+Max Velocity Attained During Flight: 4373.66 ft./s
