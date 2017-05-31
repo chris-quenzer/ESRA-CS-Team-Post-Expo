@@ -288,6 +288,9 @@ public:
     double altInit = 0;
 
     bool demo;
+
+    bool firstPressure = false;
+    double seaLvlAlt;
 };
 
 #endif // DATAPROCESSING_H

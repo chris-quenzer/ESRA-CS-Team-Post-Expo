@@ -365,11 +365,13 @@ void MainWindow::NoseAviByte()
             ui->latDisplay->setText(curData->humanLat);
             ui->gpsAltDisplay->setText(curData->altGPSFeet + tr(" ft"));
 
-            inputDataVector.push_back(*curData);
-
-            profilePath = profile->getProfilePath();
-            writeCSV = profile->writeCSVCheck();
-            plotting.receiveDataVector(&inputDataVector, writeCSV, profilePath);
+            if(sim_running)
+            {
+                inputDataVector.push_back(*curData);
+                profilePath = profile->getProfilePath();
+                writeCSV = profile->writeCSVCheck();
+                plotting.receiveDataVector(&inputDataVector, writeCSV, profilePath);
+            }
 
             //Adding scaled output field 05/10/17
             ui->scaledAccXDisp->setText(QString::number((curData->scaledAccX)));
@@ -1463,6 +1465,7 @@ bool MainWindow::altIsChanging()
 *******************************************************************************/
 void MainWindow::on_mpuStartButton_clicked()
 {
+
     if(connected)
     {
 
@@ -1487,10 +1490,8 @@ void MainWindow::on_mpuStartButton_clicked()
         QMessageBox notContBox;
         notContBox.setText(tr("You need to connect to a serial deivce first!"));
         notContBox.exec();
-
-        //Stop the launch button from being avaiabel
-
     }
+        //Stop the launch button from being avaiabel
 
 }
 
@@ -1743,6 +1744,8 @@ void MainWindow::on_start_stop_clicked()
 
     if(sim_running)
     {
+
+
 
         if(MainWindow::plotting.path == "")
         {
