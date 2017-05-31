@@ -458,12 +458,6 @@ void MainWindow::setGpsLat(quint8 lb, quint8 mlb, quint8 mhb, quint8 hb, inputDa
         }
     }
 
-    //curData->latitude = tmpString;
-
-    //QString subString = tmpString.mid((tmpString.size() - 8), 7);
-
-    //QString subString2 = tmpString.mid(0, (tmpString.size() - 8));
-
     //Substring made up of the minutes and fraction of minutes portion. pos 2 and 3
     //contain seconds pos4 has decimal and pos 5-8 contain fractions of minutes
     QString subString = tmpString.mid(2,7);
@@ -640,13 +634,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accX > 32767)
     {
         //It is a negative value, Normalize and scale
-        x = (((double)(accX - 65535)) / (65535/33));
+        x = (((double)(accX - 65535)) / (65535/32));
         curData->scaledAccX = x;
     }
     else
     {
         //Positive value, just scale
-        x = (((double)(accX)) / (65535/33));
+        x = (((double)(accX)) / (65535/32));
         curData->scaledAccX = x;
     }
 
@@ -655,13 +649,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accY > 32767)
     {
         //It is a negative value, Normalize and scale
-        y = (((double)(accY - 65535)) / (65535/33));
+        y = (((double)(accY - 65535)) / (65535/32));
         curData->scaledAccY = y;
     }
     else
     {
         //Positive value, just scale
-        y = (((double)(accY)) / (65535/33));
+        y = (((double)(accY)) / (65535/32));
         curData->scaledAccY = y;
     }
 
@@ -670,13 +664,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accZ > 32767)
     {
         //It is a negative value, Normalize and scale
-        z = (((double)(accZ - 65535)) / (65535/33));
+        z = (((double)(accZ - 65535)) / (65535/32));
         curData->scaledAccZ = z;
     }
     else
     {
         //Positive value, just scale
-        z = (((double)(accZ)) / (65535/33));
+        z = (((double)(accZ)) / (65535/32));
         curData->scaledAccZ = z;
     }
     qDebug() << tr("Scaled AccZ: ") + curData->scaledAccZ;
@@ -702,12 +696,12 @@ void MainWindow::setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gy
     if(gyroX > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(gyroX - 65535)) / (65535/4001));
+        tmpDouble = (((double)(gyroX - 65535)) / (65535/4000));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(gyroX)) / (65535/4001));
+        tmpDouble = (((double)(gyroX)) / (65535/4000));
     }
 
     curData->scaledGyroX = tmpDouble;
@@ -716,12 +710,12 @@ void MainWindow::setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gy
     if(gyroY > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(gyroY - 65535)) / (65535/4001));
+        tmpDouble = (((double)(gyroY - 65535)) / (65535/4000));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(gyroY)) / (65535/4001));
+        tmpDouble = (((double)(gyroY)) / (65535/4000));
     }
 
     curData->scaledGyroY = tmpDouble;
@@ -730,12 +724,12 @@ void MainWindow::setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gy
     if(gyroZ > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(gyroZ - 65535)) / (65535/4001));
+        tmpDouble = (((double)(gyroZ - 65535)) / (65535/4000));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(gyroZ)) / (65535/4001));
+        tmpDouble = (((double)(gyroZ)) / (65535/4000));
     }
 
     curData->scaledGyroZ = tmpDouble;
@@ -763,12 +757,12 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
     {
         //Negative value, Normalize and scale
         tmpDouble = (magX - 65535);
-        tmpDouble = tmpDouble / (65535/9601);
+        tmpDouble = tmpDouble / (65535/9600);
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(magX)) / (65535/9601));
+        tmpDouble = (((double)(magX)) / (65535/9600));
     }
 
     curData->scaledMagX = tmpDouble;
@@ -777,12 +771,12 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
     if(magY > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(magY - 65535)) / (65535/9601));
+        tmpDouble = (((double)(magY - 65535)) / (65535/9600));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(magY)) / (65535/9601));
+        tmpDouble = (((double)(magY)) / (65535/9600));
     }
 
     curData->scaledMagY = tmpDouble;
@@ -791,12 +785,12 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
     if(magZ > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(magZ - 65535)) / (65535/9601));
+        tmpDouble = (((double)(magZ - 65535)) / (65535/9600));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(magZ)) / (65535/9601));
+        tmpDouble = (((double)(magZ)) / (65535/9600));
     }
 
     curData->scaledMagZ = tmpDouble;
@@ -880,7 +874,9 @@ void MainWindow::readNoseConeAvi()
 void MainWindow::setCollectDataOn()
 {
     //Modified to start and stop data cllection
-    collectData = !collectData;
+
+        collectData = !collectData;
+
 }
 
 void MainWindow::setCollectDataOff()
@@ -1461,30 +1457,39 @@ bool MainWindow::altIsChanging()
 
 /******************************************************************************
 * Function: on_pushButton_2_clicked()
-* Purpose: This curently initiates the parsing of incoming sensor data - NEED UPDATE -
+* Purpose: This curently initiates the parsing of incoming sensor data
 * Parameters: None
 * Output: The output fieleds will be populated with sensor data
 *******************************************************************************/
 void MainWindow::on_mpuStartButton_clicked()
 {
-
-    //NoseAviByte()
-    setCollectDataOn();
-    if(collectData)
+    if(connected)
     {
-        qDebug() << "Data collection started!";
-        //rxTimer = new QTimer(this);
-        //connect(rxTimer, SIGNAL(timeout()),this, SLOT(startMpu9250()));
-        //connect(rxTimer, SIGNAL(timeout()),this, SLOT(noseConeData()));
-        connect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
-        rxTimer->start(500);        //get data from sensor 2x secnd
+
+        //NoseAviByte()
+        setCollectDataOn();
+
+        if(collectData)
+        {
+            qDebug() << "Data collection started!";
+            connect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
+            rxTimer->start(500);        //get data from sensor 2x secnd
+        }
+        else
+        {
+
+            disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
+            qDebug() << "Data collection stopped!";
+        }
     }
     else
     {
-        //disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(startMpu9250()));
-        //disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(noseConeData()));
-        disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
-        qDebug() << "Data collection stopped!";
+        QMessageBox notContBox;
+        notContBox.setText(tr("You need to connect to a serial deivce first!"));
+        notContBox.exec();
+
+        //Stop the launch button from being avaiabel
+
     }
 
 }
