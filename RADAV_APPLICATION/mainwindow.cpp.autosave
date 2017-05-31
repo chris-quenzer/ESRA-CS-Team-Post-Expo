@@ -458,12 +458,6 @@ void MainWindow::setGpsLat(quint8 lb, quint8 mlb, quint8 mhb, quint8 hb, inputDa
         }
     }
 
-    //curData->latitude = tmpString;
-
-    //QString subString = tmpString.mid((tmpString.size() - 8), 7);
-
-    //QString subString2 = tmpString.mid(0, (tmpString.size() - 8));
-
     //Substring made up of the minutes and fraction of minutes portion. pos 2 and 3
     //contain seconds pos4 has decimal and pos 5-8 contain fractions of minutes
     QString subString = tmpString.mid(2,7);
@@ -640,13 +634,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accX > 32767)
     {
         //It is a negative value, Normalize and scale
-        x = (((double)(accX - 65535)) / (65535/33));
+        x = (((double)(accX - 65535)) / (65535/32));
         curData->scaledAccX = x;
     }
     else
     {
         //Positive value, just scale
-        x = (((double)(accX)) / (65535/33));
+        x = (((double)(accX)) / (65535/32));
         curData->scaledAccX = x;
     }
 
@@ -655,13 +649,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accY > 32767)
     {
         //It is a negative value, Normalize and scale
-        y = (((double)(accY - 65535)) / (65535/33));
+        y = (((double)(accY - 65535)) / (65535/32));
         curData->scaledAccY = y;
     }
     else
     {
         //Positive value, just scale
-        y = (((double)(accY)) / (65535/33));
+        y = (((double)(accY)) / (65535/32));
         curData->scaledAccY = y;
     }
 
