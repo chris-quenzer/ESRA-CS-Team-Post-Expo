@@ -1,0 +1,8 @@
+RandomTest2
+Flight log for rocket Rocket Name On 05.31.2017
+Location: Location
+Initial Altitude: Starting Altitude (ft) ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 0 ft.
+Max Velocity Attained During Flight: 0 ft./s

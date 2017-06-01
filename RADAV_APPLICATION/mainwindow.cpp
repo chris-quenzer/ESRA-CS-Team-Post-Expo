@@ -155,6 +155,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timerSetup();
     set_graph1(false);
     set_graph2(false);
+    set_graph3(false);
     //connect(ui->start_stop, SIGNAL(on_start_stop_clicked()), Graphs, SLOT(&Graphs::on_start_stop_clicked()));
 
     // End graph setup ###################################################################
@@ -210,6 +211,8 @@ MainWindow::~MainWindow()
 *******************************************************************************/
 void MainWindow::NoseAviByte()
 {
+   qDebug() << "\nNOSEAVI\n";
+
     //Get data from nose cone avi bay
     readNoseConeAvi();
 
@@ -371,6 +374,8 @@ void MainWindow::NoseAviByte()
                 profilePath = profile->getProfilePath();
                 writeCSV = profile->writeCSVCheck();
                 plotting.receiveDataVector(&inputDataVector, writeCSV, profilePath);
+
+                qDebug() << "Adding Data To Lists";
             }
 
             //Adding scaled output field 05/10/17
@@ -459,12 +464,6 @@ void MainWindow::setGpsLat(quint8 lb, quint8 mlb, quint8 mhb, quint8 hb, inputDa
             tmpString.push_front('0');
         }
     }
-
-    //curData->latitude = tmpString;
-
-    //QString subString = tmpString.mid((tmpString.size() - 8), 7);
-
-    //QString subString2 = tmpString.mid(0, (tmpString.size() - 8));
 
     //Substring made up of the minutes and fraction of minutes portion. pos 2 and 3
     //contain seconds pos4 has decimal and pos 5-8 contain fractions of minutes
@@ -579,6 +578,8 @@ void MainWindow::setGpsTime(quint8 lb, quint8 mlb, quint8 mhb, quint8 hb, inputD
     gpsTime = lb << 24 | mlb << 16 | mhb << 8  | hb;
     curData->intGpsTime = gpsTime;
 
+    //Need to remove the Scaling once time is availabel as I think it will just send HHMMSS 24hr format
+    //QString tmpString = QString::number(gpsTime);
     QString tmpString = QString::number(double((gpsTime) / 1000.000), 'f', 3);
 
     //Find out if there are 10 characters in the string, if not add leading zeros
@@ -640,13 +641,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accX > 32767)
     {
         //It is a negative value, Normalize and scale
-        x = (((double)(accX - 65535)) / (65535/33));
+        x = (((double)(accX - 65535)) / (65535/32));
         curData->scaledAccX = x;
     }
     else
     {
         //Positive value, just scale
-        x = (((double)(accX)) / (65535/33));
+        x = (((double)(accX)) / (65535/32));
         curData->scaledAccX = x;
     }
 
@@ -655,13 +656,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accY > 32767)
     {
         //It is a negative value, Normalize and scale
-        y = (((double)(accY - 65535)) / (65535/33));
+        y = (((double)(accY - 65535)) / (65535/32));
         curData->scaledAccY = y;
     }
     else
     {
         //Positive value, just scale
-        y = (((double)(accY)) / (65535/33));
+        y = (((double)(accY)) / (65535/32));
         curData->scaledAccY = y;
     }
 
@@ -670,13 +671,13 @@ void MainWindow::setScaled9250Acc(inputData *curData, quint16 accX, quint16 accY
     if(accZ > 32767)
     {
         //It is a negative value, Normalize and scale
-        z = (((double)(accZ - 65535)) / (65535/33));
+        z = (((double)(accZ - 65535)) / (65535/32));
         curData->scaledAccZ = z;
     }
     else
     {
         //Positive value, just scale
-        z = (((double)(accZ)) / (65535/33));
+        z = (((double)(accZ)) / (65535/32));
         curData->scaledAccZ = z;
     }
     qDebug() << tr("Scaled AccZ: ") + curData->scaledAccZ;
@@ -702,12 +703,12 @@ void MainWindow::setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gy
     if(gyroX > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(gyroX - 65535)) / (65535/4001));
+        tmpDouble = (((double)(gyroX - 65535)) / (65535/4000));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(gyroX)) / (65535/4001));
+        tmpDouble = (((double)(gyroX)) / (65535/4000));
     }
 
     curData->scaledGyroX = tmpDouble;
@@ -716,12 +717,12 @@ void MainWindow::setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gy
     if(gyroY > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(gyroY - 65535)) / (65535/4001));
+        tmpDouble = (((double)(gyroY - 65535)) / (65535/4000));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(gyroY)) / (65535/4001));
+        tmpDouble = (((double)(gyroY)) / (65535/4000));
     }
 
     curData->scaledGyroY = tmpDouble;
@@ -730,12 +731,12 @@ void MainWindow::setScaled9250Gyro(inputData *curData, quint16 gyroX, quint16 gy
     if(gyroZ > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(gyroZ - 65535)) / (65535/4001));
+        tmpDouble = (((double)(gyroZ - 65535)) / (65535/4000));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(gyroZ)) / (65535/4001));
+        tmpDouble = (((double)(gyroZ)) / (65535/4000));
     }
 
     curData->scaledGyroZ = tmpDouble;
@@ -763,12 +764,12 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
     {
         //Negative value, Normalize and scale
         tmpDouble = (magX - 65535);
-        tmpDouble = tmpDouble / (65535/9601);
+        tmpDouble = tmpDouble / (65535/9600);
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(magX)) / (65535/9601));
+        tmpDouble = (((double)(magX)) / (65535/9600));
     }
 
     curData->scaledMagX = tmpDouble;
@@ -777,12 +778,12 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
     if(magY > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(magY - 65535)) / (65535/9601));
+        tmpDouble = (((double)(magY - 65535)) / (65535/9600));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(magY)) / (65535/9601));
+        tmpDouble = (((double)(magY)) / (65535/9600));
     }
 
     curData->scaledMagY = tmpDouble;
@@ -791,12 +792,12 @@ void MainWindow::setScaled9250Mag(inputData *curData, quint16 magX, quint16 magY
     if(magZ > 32767)
     {
         //Negative value, Normalize and scale
-        tmpDouble = (((double)(magZ - 65535)) / (65535/9601));
+        tmpDouble = (((double)(magZ - 65535)) / (65535/9600));
     }
     else
     {
         //positive value, scale
-        tmpDouble = (((double)(magZ)) / (65535/9601));
+        tmpDouble = (((double)(magZ)) / (65535/9600));
     }
 
     curData->scaledMagZ = tmpDouble;
@@ -880,7 +881,9 @@ void MainWindow::readNoseConeAvi()
 void MainWindow::setCollectDataOn()
 {
     //Modified to start and stop data cllection
-    collectData = !collectData;
+
+        collectData = !collectData;
+
 }
 
 void MainWindow::setCollectDataOff()
@@ -1231,6 +1234,23 @@ void MainWindow::nav_update(double time)
         {
             double heading = (atan2(mag_x, mag_z) * 180) / M_PI; // Heading in Z-X plane in degrees from North
 
+            if(mag_y > 0)
+            {
+                heading = 90 - atan2(mag_x, mag_y) * 180/M_PI;
+            }
+            if(mag_y < 0)
+            {
+                heading = 270 - atan2(mag_x, mag_y) * 180/M_PI;
+            }
+            if((mag_y == 0) && (mag_x < 0))
+            {
+                heading = 180;
+            }
+            if((mag_y == 0) && (mag_x > 0))
+            {
+                heading = 0;
+            }
+
             //ui->GLwidget->nav_rot_x = gyro_x;
             ui->GLwidget->nav_rot_y = heading;
             //ui->GLwidget->nav_rot_z = gyro_z;
@@ -1408,6 +1428,8 @@ void MainWindow::alt_vel_update(int key, double time)
         ui->g_force->display(gForceLow);
         current_data.accelerationG = gForceLow;
 
+        graph_data->plotNextAcceleration(key, accelPlot, gForceLow);
+
         if(gForceLow > maxAccelGs)
         {
              maxAccelGs = gForceLow;
@@ -1461,24 +1483,40 @@ bool MainWindow::altIsChanging()
 
 /******************************************************************************
 * Function: on_pushButton_2_clicked()
-* Purpose: This curently initiates the parsing of incoming sensor data - NEED UPDATE -
+* Purpose: This curently initiates the parsing of incoming sensor data
 * Parameters: None
 * Output: The output fieleds will be populated with sensor data
 *******************************************************************************/
 void MainWindow::on_mpuStartButton_clicked()
 {
-    setCollectDataOn();
-    if(collectData)
+
+    if(connected)
     {
-        qDebug() << "Data collection started!";
-        connect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
-        rxTimer->start(500);        //get data from sensor 2x secnd
+
+        //NoseAviByte()
+        setCollectDataOn();
+
+        if(collectData)
+        {
+            qDebug() << "Data collection started!";
+            connect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
+            rxTimer->start(500);        //get data from sensor 2x secnd
+        }
+        else
+        {
+
+            disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
+            qDebug() << "Data collection stopped!";
+        }
     }
     else
     {
-        disconnect(rxTimer, SIGNAL(timeout()),this, SLOT(NoseAviByte()));
-        qDebug() << "Data collection stopped!";
+        QMessageBox notContBox;
+        notContBox.setText(tr("You need to connect to a serial deivce first!"));
+        notContBox.exec();
     }
+        //Stop the launch button from being avaiabel
+
 }
 
 void MainWindow::on_sndtoGrph_clicked()
@@ -1569,6 +1607,12 @@ void MainWindow::set_graph2(bool historic)
     graph_data->makeVelocityPlot(velocity, historic);
 }
 
+void MainWindow::set_graph3(bool historic)
+{
+    accelPlot = ui->customPlot_3;
+    graph_data->makeAccelerationPlot(accelPlot);
+}
+
 void MainWindow::timerSetup()
 {
     dataTimer.setSingleShot(false);
@@ -1633,8 +1677,20 @@ void MainWindow::realtimeDataSlot()
     }
     //------------------------------------------------------
 
-    if (key-lastPointKey > 1.0) // at most add point every 2 ms
+    double timing;
+
+    if(plotting.demo)
     {
+        timing = 1.0;
+    }
+    else
+    {
+        timing = 0.5;
+    }
+
+    if (key-lastPointKey > timing) // at most add point every 2 ms
+    {
+       qDebug() << "\nREALTIMESLOT\n";
         // add data to graphs
        double timeMsec = plotting.getAttributeFromSource(plotting.source, GPS_TIME, 1);
        double timeMsec2 = plotting.getAttributeFromSource(plotting.source, GPS_TIME, 1);
@@ -1663,6 +1719,10 @@ void MainWindow::realtimeDataSlot()
    // ui->customPlot_2->xAxis->setRange(key, 8, Qt::AlignRight);
     ui->customPlot_2->xAxis->setRange(0, key, Qt::AlignLeft);
     ui->customPlot_2->replot();
+
+    // ui->customPlot_2->xAxis->setRange(key, 8, Qt::AlignRight);
+     ui->customPlot_3->xAxis->setRange(0, key, Qt::AlignLeft);
+     ui->customPlot_3->replot();
 
     // calculate frames per second:
     static double lastFpsKey;
@@ -1731,8 +1791,6 @@ void MainWindow::on_start_stop_clicked()
     if(sim_running)
     {
 
-
-
         if(MainWindow::plotting.path == "")
         {
             QMessageBox::StandardButton reply;
@@ -1761,10 +1819,18 @@ void MainWindow::on_start_stop_clicked()
             }
         }
 
-        dataTimer.start(0); // Interval 0 means to refresh as fast as possible
+        if(!plotting.demo)
+        {
+            on_mpuStartButton_clicked();
+        }
 
-        master_time.start();
-        printf("Timer started.\n");
+        //if(rxTimer->remainingTime() == 0) //sync timers
+        //{
+            dataTimer.start(0); // Interval 0 means to refresh as fast as possible
+            master_time.start();
+            printf("Timer started.\n");
+        //}
+
         ui->start_stop->setText("STOP");
 
         //set STOP button outline to red
@@ -1958,6 +2024,11 @@ void MainWindow::updateRocketPath()
 
     double latMins = plotting.getAttributeFromSource(plotting.source, LAT_MIN, 1);
     double lonMins = plotting.getAttributeFromSource(plotting.source, LON_MIN, 1);
+
+    if(qIsNaN(latDegrees) || qIsNaN(lonDegrees) || qIsNaN(latMins) || qIsNaN(lonMins))
+    {
+        return;
+    }
 
     if(!plotting.isValidCoord(latDegrees, latMins, lonDegrees, lonMins))
     {

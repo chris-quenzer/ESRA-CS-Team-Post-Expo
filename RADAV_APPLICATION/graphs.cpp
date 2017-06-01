@@ -161,6 +161,39 @@ void Graphs::makeVelocityPlot(QCustomPlot *&velocity, bool historic)
     }
 }
 
+void Graphs::makeAccelerationPlot(QCustomPlot *&accelPlot)
+{
+    accelPlot->addGraph(); // blue line altimiter
+    accelPlot->graph(0)->setName("Acceleration");
+    accelPlot->graph(0)->setPen(QPen(QColor(40, 110, 255)));
+    accelPlot->addGraph(); // red line gps altitude data
+    //accelPlot->graph(1)->setName("GPS Altimiter");
+    //accelPlot->graph(1)->setPen(QPen(QColor(255, 110, 40)));
+
+    //accelPlot->addGraph(); // grey line difference between each source of altimiter info
+    //accelPlot->graph(2)->setName("Difference");
+    //accelPlot->graph(2)->setPen(QPen((QColor(128, 128, 128)), 1.0, Qt::DotLine));
+
+    QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+    timeTicker->setTimeFormat("%h:%m:%s");
+    accelPlot->xAxis->setTicker(timeTicker);
+    accelPlot->axisRect()->setupFullAxesBox();
+    accelPlot->yAxis->setRange(-20, 20);
+
+    // make left and bottom axes transfer their ranges to right and top axes:
+    connect(accelPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), accelPlot->xAxis2, SLOT(setRange(QCPRange)));
+    connect(accelPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), accelPlot->yAxis2, SLOT(setRange(QCPRange)));
+
+    accelPlot->xAxis->setLabel("Time (s)");
+    accelPlot->yAxis->setLabel("Acceleration (G)");
+
+    accelPlot->graph(0)->addToLegend();
+    //accelPlot->graph(1)->addToLegend();
+    //accelPlot->graph(2)->addToLegend();
+    //accelPlot->legend->setVisible(true);
+
+}
+
 /***********************************************************************************
  * Function: plotNextAltitude
  * Description: gets attribute from specified source plots it onto graph using a key
@@ -220,4 +253,23 @@ double Graphs::plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing 
         }
     }
     return velocityValue;
+}
+
+double Graphs::plotNextAcceleration(int key, QCustomPlot *&accelPlot, double accelData)
+{
+    // add data to lines:
+   //double alt = plotting.getNextAltitude(plotting.source, ALTITUDE, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE, 1);
+   //double altGps = plotting.getNextAltitude(plotting.source, ALTITUDE_GPS, altInfo);//plotting.getAttributeFromSource(plotting.source, ALTITUDE_GPS, 1);
+   //qDebug() << "ALT GPS " << alt << endl;
+   //double altDiff = fabs(alt) - fabs(altGps);
+
+  accelPlot->graph(0)->addData(key, accelData);
+  //altitude->graph(1)->addData(key, altGps);
+  //altitude->graph(2)->addData(key, altDiff);
+
+  //rescale value (vertical) axis to fit the current data:
+  accelPlot->graph(0)->rescaleValueAxis(true);
+  //altitude->graph(1)->rescaleValueAxis(true);
+
+  return accelData;
 }

@@ -186,6 +186,7 @@ public:
 
     void set_graph1(bool);
     void set_graph2(bool);
+    void set_graph3(bool);
     void timerSetup();
     void updateTitle();
     void updateFlightLog();
@@ -357,6 +358,7 @@ private:
 
     QCustomPlot *altitude;
     QCustomPlot *velocity;
+    QCustomPlot *accelPlot;
     bool includeHistoric = false;
     bool writePDF = false;
     bool writeCSV = false;

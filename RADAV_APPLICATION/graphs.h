@@ -23,9 +23,11 @@ public:
     void makeCurrentPlot(QCustomPlot *&gyroCurrent);
     void makeAltitudePlot(QCustomPlot *&altitude);
     void makeVelocityPlot(QCustomPlot *&velocity, bool historic);
+    void makeAccelerationPlot(QCustomPlot *&accelPlot);
     void addHistoricVelocity(QCustomPlot*&velocity);
     double plotNextVelocity(int key, QCustomPlot *&velocity, DataProcessing &, double, bool, double velocityValue);
     double plotNextAltitude(int key, QCustomPlot *&altitude, DataProcessing &, struct baseAltitudeInfo altInfo, double alt);
+    double plotNextAcceleration(int key, QCustomPlot *&accelPlot, double accelData);
 
 
     void makeTable();
