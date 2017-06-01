@@ -1,0 +1,280 @@
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:3405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:3505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:3705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:3805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:4005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:4105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:4305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:4405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:4605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:4705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:4905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:5005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:5205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:5405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:5505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:34:5705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:34:5805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:0005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:0105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:0305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:0405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:0605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:0705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:0905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:1005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:1205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:1305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:1505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:1605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:1805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:1905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:2105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:2205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:2405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:2505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:2705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:2905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:3005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:3205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:3305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:3505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:3605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:3805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:3905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:4105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:4205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:4405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:4505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:4705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:4805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:5005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:5105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:5305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:5405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:5605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:35:5705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:35:5905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:0105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:0205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 83 lost at 46, Byte 78 lost at 47, Byte 80 lost at 48, Byte 255 lost at 49, Byte 218 lost at 50, Byte 255 lost at 51, Byte 200 lost at 52, Byte 223 lost at 53, Byte 238 lost at 54, Byte 0 lost at 55, Byte 59 lost at 56, Byte 255 lost at 57, Byte 247 lost at 58, 
+18:36:0405.31.2017
+Byte 0 lost at 0, Byte 2 lost at 1, Byte 254 lost at 2, Byte 209 lost at 3, Byte 254 lost at 4, Byte 209 lost at 5, Byte 2 lost at 6, Byte 5 lost at 7, Byte 255 lost at 8, Byte 128 lost at 9, Byte 0 lost at 10, Byte 0 lost at 11, Byte 0 lost at 12, Byte 4 lost at 13, Byte 6 lost at 14, Byte 2 lost at 15, Byte 98 lost at 16, Byte 242 lost at 17, Byte 127 lost at 18, Byte 6 lost at 19, Byte 68 lost at 20, Byte 23 lost at 21, Byte 160 lost at 22, Byte 0 lost at 23, Byte 0 lost at 24, Byte 6 lost at 25, Byte 39 lost at 26, Byte 14 lost at 27, Byte 32 lost at 28, Byte 237 lost at 29, Byte 152 lost at 30, Byte 13 lost at 31, Byte 10 lost at 32, Byte 13 lost at 77, Byte 10 lost at 78, 
+18:36:0505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:0705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:0805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:1005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:1105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:1305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:1405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:1605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:1705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:1905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:2005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:2205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:2305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:2505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:2605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:2805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:2905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:3105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:3205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:3405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:3605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, Byte 13 lost at 136, Byte 10 lost at 137, 
+18:36:3805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:3905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:4105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:4205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:4405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:4505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:4705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:4805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:5005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:5105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:5305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:5405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:5605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:36:5705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:36:5905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:0005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:0205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:0305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:0505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:0605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:0805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:1005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:1105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:1305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:1405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:1605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:1705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:1905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:2005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:2205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:2305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:2505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:2605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:2805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:2905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:3105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:3205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:3405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:3505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:3705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:3805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:4005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:4105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:4305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:4405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:4605.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 83 lost at 46, Byte 78 lost at 47, Byte 80 lost at 48, Byte 255 lost at 49, 
+18:37:4805.31.2017
+Byte 215 lost at 0, Byte 255 lost at 1, Byte 198 lost at 2, Byte 223 lost at 3, Byte 237 lost at 4, Byte 0 lost at 5, Byte 62 lost at 6, Byte 255 lost at 7, Byte 245 lost at 8, Byte 0 lost at 9, Byte 2 lost at 10, Byte 254 lost at 11, Byte 224 lost at 12, Byte 254 lost at 13, Byte 214 lost at 14, Byte 2 lost at 15, Byte 18 lost at 16, Byte 255 lost at 17, Byte 128 lost at 18, Byte 0 lost at 19, Byte 0 lost at 20, Byte 0 lost at 21, Byte 4 lost at 22, Byte 6 lost at 23, Byte 2 lost at 24, Byte 98 lost at 25, Byte 242 lost at 26, Byte 127 lost at 27, Byte 6 lost at 28, Byte 68 lost at 29, Byte 23 lost at 30, Byte 160 lost at 31, Byte 0 lost at 32, Byte 0 lost at 33, Byte 6 lost at 34, Byte 39 lost at 35, Byte 14 lost at 36, Byte 34 lost at 37, Byte 131 lost at 38, Byte 216 lost at 39, Byte 13 lost at 40, Byte 10 lost at 41, Byte 13 lost at 86, Byte 10 lost at 87, 
+18:37:4905.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:5105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:5205.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:5405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:5505.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:37:5705.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:37:5805.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:38:0005.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:38:0105.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:38:0305.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, 
+18:38:0405.31.2017
+Byte 13 lost at 44, Byte 10 lost at 45, Byte 13 lost at 90, Byte 10 lost at 91, 
+18:38:0605.31.2017

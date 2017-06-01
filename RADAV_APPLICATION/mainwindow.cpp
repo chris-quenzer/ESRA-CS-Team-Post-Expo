@@ -210,6 +210,8 @@ MainWindow::~MainWindow()
 *******************************************************************************/
 void MainWindow::NoseAviByte()
 {
+   qDebug() << "\nNOSEAVI\n";
+
     //Get data from nose cone avi bay
     readNoseConeAvi();
 
@@ -371,6 +373,8 @@ void MainWindow::NoseAviByte()
                 profilePath = profile->getProfilePath();
                 writeCSV = profile->writeCSVCheck();
                 plotting.receiveDataVector(&inputDataVector, writeCSV, profilePath);
+
+                qDebug() << "Adding Data To Lists";
             }
 
             //Adding scaled output field 05/10/17
@@ -1229,6 +1233,23 @@ void MainWindow::nav_update(double time)
         {
             double heading = (atan2(mag_x, mag_z) * 180) / M_PI; // Heading in Z-X plane in degrees from North
 
+            if(mag_y > 0)
+            {
+                heading = 90 - atan2(mag_x, mag_y) * 180/M_PI;
+            }
+            if(mag_y < 0)
+            {
+                heading = 270 - atan2(mag_x, mag_y) * 180/M_PI;
+            }
+            if((mag_y == 0) && (mag_x < 0))
+            {
+                heading = 180;
+            }
+            if((mag_y == 0) && (mag_x > 0))
+            {
+                heading = 0;
+            }
+
             //ui->GLwidget->nav_rot_x = gyro_x;
             ui->GLwidget->nav_rot_y = heading;
             //ui->GLwidget->nav_rot_z = gyro_z;
@@ -1647,8 +1668,20 @@ void MainWindow::realtimeDataSlot()
     }
     //------------------------------------------------------
 
-    if (key-lastPointKey > 1.0) // at most add point every 2 ms
+    double timing;
+
+    if(plotting.demo)
     {
+        timing = 1.0;
+    }
+    else
+    {
+        timing = 0.5;
+    }
+
+    if (key-lastPointKey > timing) // at most add point every 2 ms
+    {
+       qDebug() << "\nREALTIMESLOT\n";
         // add data to graphs
        double timeMsec = plotting.getAttributeFromSource(plotting.source, GPS_TIME, 1);
        double timeMsec2 = plotting.getAttributeFromSource(plotting.source, GPS_TIME, 1);
@@ -1775,10 +1808,13 @@ void MainWindow::on_start_stop_clicked()
             }
         }
 
-        dataTimer.start(0); // Interval 0 means to refresh as fast as possible
+        if(rxTimer->remainingTime() == 0) //sync timers
+        {
+            dataTimer.start(0); // Interval 0 means to refresh as fast as possible
+            master_time.start();
+            printf("Timer started.\n");
+        }
 
-        master_time.start();
-        printf("Timer started.\n");
         ui->start_stop->setText("STOP");
 
         //set STOP button outline to red
@@ -1972,6 +2008,11 @@ void MainWindow::updateRocketPath()
 
     double latMins = plotting.getAttributeFromSource(plotting.source, LAT_MIN, 1);
     double lonMins = plotting.getAttributeFromSource(plotting.source, LON_MIN, 1);
+
+    if(qIsNaN(latDegrees) || qIsNaN(lonDegrees) || qIsNaN(latMins) || qIsNaN(lonMins))
+    {
+        return;
+    }
 
     if(!plotting.isValidCoord(latDegrees, latMins, lonDegrees, lonMins))
     {
