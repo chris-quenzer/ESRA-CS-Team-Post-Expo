@@ -155,6 +155,7 @@ MainWindow::MainWindow(QWidget *parent) :
     timerSetup();
     set_graph1(false);
     set_graph2(false);
+    set_graph3(false);
     //connect(ui->start_stop, SIGNAL(on_start_stop_clicked()), Graphs, SLOT(&Graphs::on_start_stop_clicked()));
 
     // End graph setup ###################################################################
@@ -1427,6 +1428,8 @@ void MainWindow::alt_vel_update(int key, double time)
         ui->g_force->display(gForceLow);
         current_data.accelerationG = gForceLow;
 
+        graph_data->plotNextAcceleration(key, accelPlot, gForceLow);
+
         if(gForceLow > maxAccelGs)
         {
              maxAccelGs = gForceLow;
@@ -1604,6 +1607,12 @@ void MainWindow::set_graph2(bool historic)
     graph_data->makeVelocityPlot(velocity, historic);
 }
 
+void MainWindow::set_graph3(bool historic)
+{
+    accelPlot = ui->customPlot_3;
+    graph_data->makeAccelerationPlot(accelPlot);
+}
+
 void MainWindow::timerSetup()
 {
     dataTimer.setSingleShot(false);
@@ -1711,6 +1720,10 @@ void MainWindow::realtimeDataSlot()
     ui->customPlot_2->xAxis->setRange(0, key, Qt::AlignLeft);
     ui->customPlot_2->replot();
 
+    // ui->customPlot_2->xAxis->setRange(key, 8, Qt::AlignRight);
+     ui->customPlot_3->xAxis->setRange(0, key, Qt::AlignLeft);
+     ui->customPlot_3->replot();
+
     // calculate frames per second:
     static double lastFpsKey;
     static int frameCount;
@@ -1778,8 +1791,6 @@ void MainWindow::on_start_stop_clicked()
     if(sim_running)
     {
 
-
-
         if(MainWindow::plotting.path == "")
         {
             QMessageBox::StandardButton reply;
@@ -1808,12 +1819,17 @@ void MainWindow::on_start_stop_clicked()
             }
         }
 
-        if(rxTimer->remainingTime() == 0) //sync timers
+        if(!plotting.demo)
         {
+            on_mpuStartButton_clicked();
+        }
+
+        //if(rxTimer->remainingTime() == 0) //sync timers
+        //{
             dataTimer.start(0); // Interval 0 means to refresh as fast as possible
             master_time.start();
             printf("Timer started.\n");
-        }
+        //}
 
         ui->start_stop->setText("STOP");
 
