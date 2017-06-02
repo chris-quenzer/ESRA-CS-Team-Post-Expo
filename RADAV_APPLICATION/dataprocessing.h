@@ -258,7 +258,7 @@ public:
     double getAccelerationMagnitude();
     double getGForce(int source, int isLow);
 
-    double calculateDistance(int source);
+    double calculateDistance(double lat2, double lon2);
 
     void receiveDataVector(QVector<inputData>*, bool, QString);
 
@@ -291,6 +291,10 @@ public:
 
     bool firstPressure = false;
     double seaLvlAlt;
+
+    bool firstGPSCoord = false;
+    double startLat;
+    double startLon;
 };
 
 #endif // DATAPROCESSING_H

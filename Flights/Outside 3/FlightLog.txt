@@ -1,0 +1,8 @@
+Outside 3
+Flight log for rocket Rocket Name On 06.01.2017
+Location: Location
+Initial Altitude: Starting Altitude (ft) ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 48.181 ft.
+Max Velocity Attained During Flight: 2.77003 ft./s

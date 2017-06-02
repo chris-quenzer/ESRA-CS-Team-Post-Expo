@@ -296,19 +296,18 @@ void DataProcessing::receiveDataVector(QVector<inputData>* tmpData, bool writeCS
  * algorithm-to-calculate-speed-from-two-gps-latitude-and-longitude-points-and-time-difference/
  * Found on March 6th 2017 by Natalie Suderman
  * *************************************************************/
-double DataProcessing::calculateDistance(int source)
+double DataProcessing::calculateDistance(double lat2, double lon2)
 {
-   /*double lat1 = getAttributeFromSource(source, VEL_LAT_DEG, 1);
-   double lon1 = getAttributeFromSource(source, VEL_LON_DEG, 1);
 
-   lat1 += getAttributeFromSource(source, VEL_LAT_MIN, 1);
-   lon1 += getAttributeFromSource(source, VEL_LON_MIN, 1);
+   if(!firstGPSCoord)
+   {
+       startLat = lat2;
+       startLon = lon2;
+       firstGPSCoord = true;
+   }
 
-   double lat2 = getAttributeFromSource(source, VEL_LAT_DEG, 1);
-   double lon2 = getAttributeFromSource(source, VEL_LON_DEG, 1);
-
-   lat2 += getAttributeFromSource(source, VEL_LAT_MIN, 1);
-   lon2 += getAttributeFromSource(source, VEL_LON_MIN, 1);
+   double lat1 = startLat;
+   double lon1 = startLon;
 
     // Convert degrees to radians
     lat1 = lat1 * M_PI / 180.0;
@@ -342,9 +341,7 @@ double DataProcessing::calculateDistance(int source)
 
     //qDebug() << "THETA" << theta << "R " << r << endl;
 
-    return r * theta;*/
-return 0;
-
+    return r * theta;
 }
 
 /************************************************
@@ -433,6 +430,11 @@ double DataProcessing::getAccelerationMagnitude()
 
     return accel_mag;
 }
+
+//getAccelVelocity(double aX, double aY, double Az)
+//{
+
+//}
 
 /***************************************************8
  * Function: getAttributeFromSource
