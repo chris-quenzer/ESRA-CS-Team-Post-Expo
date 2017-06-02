@@ -1685,7 +1685,7 @@ void MainWindow::realtimeDataSlot()
     }
     else
     {
-        timing = 0.5;
+        timing = 0.9;
     }
 
     if (key-lastPointKey > timing) // at most add point every 2 ms
@@ -2050,6 +2050,10 @@ void MainWindow::updateRocketPath()
         current_data.latitude = QString::number(map_latitude); // LATITUDE
         current_data.longitude = QString::number(map_longitude); // LONGITUDE
     }
+
+    double distanceMeters = plotting.calculateDistance(map_latitude, map_longitude);
+    double distanceMiles = distanceMeters * 0.00062137;
+    ui->gps_distance->setText(QString::number(distanceMeters) + "m " + QString::number(distanceMiles) + "mi");
 
     QString windroseLat, windroseLon;
     if(map_latitude > 0)
