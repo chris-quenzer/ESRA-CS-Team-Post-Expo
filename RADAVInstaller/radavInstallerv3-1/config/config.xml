@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+	<Name>OSU AIAA ESRA RADAV</Name>
+	<Version>1.3.1</Version>
+	<Title>RADAV</Title>
+	<Publisher>Computer Science 2016-2016 Capstone Team 24</Publisher>
+	<StartMenuDir>OSU RADAV</StartMenuDir>
+	<InstallerApplicationIcon>OSU_Icon.ico</InstallerApplicationIcon>
+	<InstallerWindowIcon>OSU_AIAA_2016-17</InstallerWindowIcon>
+	<Banner>OSU_AIAA_2016-17.png</Banner>
+	<TargetDir>@ApplicationsDir@/MyRADAVApp</TargetDir>
+</Installer>
