@@ -5959,9 +5959,91 @@ release\mainwindow.obj: ..\RADAV_APPLICATION\mainwindow.cpp ../RADAV_APPLICATION
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtPrintSupport\qtprintsupportversion.h \
 		ui_mainwindow.h \
+		../RADAV_APPLICATION/LED.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\QtDesigner \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\QtDesignerDepends \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\QtXml \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\QtXmlDepends \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qtxmlglobal.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qdom.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qxml.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qtxmlversion.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\QtUiPlugin \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\QtUiPluginDepends \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\customwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QIcon \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\qdesignerexportwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QtGlobal \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\qtuipluginversion.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\extension.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\qextensionmanager.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\extension_global.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QHash \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractactioneditor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\sdk_global.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractdnditem.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformeditor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformeditorplugin.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindow.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindowcursor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindowmanager.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindowtool.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractintegration.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractlanguage.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractmetadatabase.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractnewformwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractobjectinspector.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractoptionspage.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractpromotioninterface.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QSet \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractpropertyeditor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractresourcebrowser.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractsettings.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractwidgetbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractwidgetdatabase.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractwidgetfactory.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\container.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\dynamicpropertysheet.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\extrainfo.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\layoutdecoration.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\membersheet.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\propertysheet.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\taskmenu.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformbuilder.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\uilib_global.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QDir \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSizePolicy \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QPalette \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\formbuilder.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\qtdesignerversion.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QFormLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QFrame \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGroupBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QMenu \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QMenuBar \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QScrollArea \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSlider \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSpinBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QStatusBar \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QTabWidget \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QToolBar \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		../RADAV_APPLICATION/glwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFunctions \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QOpenGLWidget \
 		../RADAV_APPLICATION/graphs.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QMessageBox \
-		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QColor \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QFileDialog \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QProcess \
@@ -6072,6 +6154,54 @@ release\settingsdialog.obj: ..\RADAV_APPLICATION\settingsdialog.cpp ../RADAV_APP
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtSerialPort\qserialport.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtSerialPort\qserialportglobal.h \
 		ui_settingsdialog.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QComboBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qcombobox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGroupBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qgroupbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QVBoxLayout \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtSerialPort\QSerialPortInfo \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtSerialPort\qserialportinfo.h
 
@@ -7902,7 +8032,90 @@ release\graphs.obj: ..\RADAV_APPLICATION\graphs.cpp ../RADAV_APPLICATION/graphs.
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QPair \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtPrintSupport\qtprintsupportversion.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../RADAV_APPLICATION/LED.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\QtDesigner \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\QtDesignerDepends \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\QtXml \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\QtXmlDepends \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qtxmlglobal.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qdom.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qxml.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtXml\qtxmlversion.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\QtUiPlugin \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\QtUiPluginDepends \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\customwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QIcon \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\qdesignerexportwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QtGlobal \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtUiPlugin\qtuipluginversion.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\extension.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\qextensionmanager.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\extension_global.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QHash \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractactioneditor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\sdk_global.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractdnditem.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformeditor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformeditorplugin.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindow.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindowcursor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindowmanager.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformwindowtool.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractintegration.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractlanguage.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractmetadatabase.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractnewformwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractobjectinspector.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractoptionspage.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractpromotioninterface.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QSet \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractpropertyeditor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractresourcebrowser.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractsettings.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractwidgetbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractwidgetdatabase.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractwidgetfactory.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\container.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\dynamicpropertysheet.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\extrainfo.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\layoutdecoration.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\membersheet.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\propertysheet.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\taskmenu.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\abstractformbuilder.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\uilib_global.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QDir \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSizePolicy \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QPalette \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\formbuilder.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtDesigner\qtdesignerversion.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QFormLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QFrame \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGroupBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QMenu \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QMenuBar \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QScrollArea \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSlider \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSpacerItem \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QSpinBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QStatusBar \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QTabWidget \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QToolBar \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		../RADAV_APPLICATION/glwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFunctions \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QOpenGLWidget
 
 release\glwidget.obj: ..\RADAV_APPLICATION\glwidget.cpp ../RADAV_APPLICATION/glwidget.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QOpenGLFunctions \
@@ -8805,6 +9018,56 @@ release\createprofile.obj: ..\RADAV_APPLICATION\createprofile.cpp ../RADAV_APPLI
 		../RADAV_APPLICATION/dataprocessing.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QStringList \
 		ui_createprofile.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QCheckBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qcheckbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QDialogButtonBox \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qdialogbuttonbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHBoxLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLineEdit \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlineedit.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qpen.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QVBoxLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QWidget \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QFileDialog \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qfiledialog.h \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qdir.h \
@@ -9114,7 +9377,58 @@ release\mavproxyint.obj: ..\RADAV_APPLICATION\mavproxyint.cpp ../RADAV_APPLICATI
 		../RADAV_APPLICATION/mavlinkIncludes/common/mavlink_msg_named_value_int.h \
 		../RADAV_APPLICATION/mavlinkIncludes/common/mavlink_msg_statustext.h \
 		../RADAV_APPLICATION/mavlinkIncludes/common/mavlink_msg_debug.h \
-		ui_mavproxyint.h
+		ui_mavproxyint.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\QVariant \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QAction \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qaction.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qicon.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qactiongroup.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QApplication \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qcoreapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qeventloop.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qguiapplication.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qinputmethod.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QButtonGroup \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qbuttongroup.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QGridLayout \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qgridlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlayoutitem.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qboxlayout.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QHeaderView \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qheaderview.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractitemview.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qframe.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qabstractitemmodel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qitemselectionmodel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qstyleoption.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qvalidator.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtCore\qregularexpression.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qslider.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractslider.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qstyle.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtabbar.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtabwidget.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qrubberband.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QLabel \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qlabel.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QPushButton \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qpushbutton.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qabstractbutton.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QScrollArea \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qscrollarea.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\QTextEdit \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtWidgets\qtextedit.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextdocument.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextoption.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextcursor.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qtextformat.h \
+		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qpen.h
 
 release\LED.obj: ..\RADAV_APPLICATION\LED.cpp ..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\QPainter \
 		..\..\..\IDEs\Qt\5.7\msvc2015_64\include\QtGui\qpainter.h \
