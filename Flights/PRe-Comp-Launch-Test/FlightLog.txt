@@ -1,0 +1,8 @@
+PRe-Comp-Launch-Test
+Flight log for rocket Barely Leagal On 06.22.2017
+Location: Spaceport America VLA
+Initial Altitude: Starting Altitude (ft) ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 3.14867 ft.
+Max Velocity Attained During Flight: 1.8892 ft./s

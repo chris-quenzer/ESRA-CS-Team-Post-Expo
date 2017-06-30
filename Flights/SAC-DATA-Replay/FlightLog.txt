@@ -1,0 +1,8 @@
+SAC-DATA-Replay
+Flight log for rocket Barely Legal On 06.23.2017
+Location: Spaceport America
+Initial Altitude: Starting Altitude (ft) ft. 
+Starting Pressure: Starting Pressure (mbar) milli bar 
+Temperature at launch site: Starting Temperature (K) Kelvin 
+Max Altitude Attained During Flight: 25113.3 ft.
+Max Velocity Attained During Flight: 1625.38 ft./s
